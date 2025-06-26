@@ -52,6 +52,8 @@
         body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); }
         h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
 
+        /* SE ELIMINÓ EL ESTILO DE TRANSICIÓN PARA #header */
+
         .logo-box {
             display: flex; align-items: center; justify-content: center;
             width: 44px; height: 44px; border: 2px solid var(--color-accent);
@@ -82,7 +84,8 @@
 <body class="bg-white antialiased">
 
     <!-- ===== HEADER ===== -->
-    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <!-- CAMBIO: Se eliminaron las clases 'sticky', 'bg-white/90', 'backdrop-blur-md', etc. para un header estático. -->
+    <header id="header" class="bg-white shadow-sm border-b border-gray-200">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center gap-8">
                 <a href="./index.html" class="logo-link flex-shrink-0">
@@ -109,6 +112,7 @@
         </div>
     </header>
 
+    <!-- CAMBIO: Se eliminó el padding-top (pt-20) ya que el header ya no es fijo -->
     <main class="py-20">
         <div class="container mx-auto px-6">
             <h1 class="text-5xl font-bold text-center mb-12">Sobre Mí</h1>
@@ -198,7 +202,8 @@
             const navLinks = document.querySelectorAll('#main-nav a');
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
             navLinks.forEach(link => {
-                if (link.getAttribute('href').includes(currentPath)) {
+                const linkHref = link.getAttribute('href').split('/').pop();
+                if (linkHref === currentPath) {
                     link.classList.add('nav-active');
                 }
             });
@@ -222,6 +227,8 @@
                     }
                 });
             }
+
+            // ===== CAMBIO: Se eliminó toda la lógica de animación del header =====
         });
     </script>
 </body>
