@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- ===== FUENTE AÑADIDA PARA EL NUEVO LOGO ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- ===== MEJORA SEO: SCHEMA.ORG PARA BOOK (CONECTADO A PERSON) ===== -->
@@ -72,16 +74,19 @@
         body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); }
         h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
 
-        .logo-box {
-            display: flex; align-items: center; justify-content: center;
-            width: 44px; height: 44px; border: 2px solid var(--color-accent);
-            color: var(--color-accent); font-family: 'Montserrat', sans-serif;
-            font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em;
-            transition: all 0.3s ease-out;
+        /* ===== ESTILOS DEL LOGO ACTUALIZADOS ===== */
+        .logo-text {
+            font-family: 'Playfair Display', serif; /* La nueva fuente para el logo */
+            font-size: 1.5rem; /* Tamaño del logo, ajústalo si lo prefieres */
+            font-weight: 700; /* Negrita */
+            color: var(--color-text-primary); /* Color de texto principal (negro suave) */
+            letter-spacing: 0.05em; /* Un ligero espaciado para más elegancia */
+            transition: color 0.3s ease-out; /* Transición suave para el hover */
         }
-        .logo-link:hover .logo-box {
-            background-color: var(--color-accent); color: white; transform: scale(1.05);
+        .logo-link:hover .logo-text {
+            color: var(--color-accent); /* Cambia al color acento en hover */
         }
+        /* ===== FIN DE ESTILOS DEL LOGO ACTUALIZADOS ===== */
 
         .cta-button {
             background-color: var(--color-accent); transition: all 0.3s ease;
@@ -126,13 +131,16 @@
 </head>
 <body class="bg-white antialiased">
 
-    <!-- ===== HEADER ===== -->
-    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-50">
+    <!-- ===== HEADER ACTUALIZADO ===== -->
+    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Parte Izquierda: Logo -->
+            <a href="./index.html" class="logo-link">
+                <span class="logo-text">CARLOS RAMÍREZ</span>
+            </a>
+
+            <!-- Parte Derecha: Navegación y Controles -->
             <div class="flex items-center gap-8">
-                <a href="./index.html" class="logo-link flex-shrink-0">
-                    <div class="logo-box">CR</div>
-                </a>
                 <nav id="main-nav" class="hidden md:flex items-center space-x-8">
                     <a href="./index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
                     <a href="./libro-nyhavn.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
@@ -140,10 +148,11 @@
                     <a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>
                     <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
                 </nav>
+
+                <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
+                    <i class="fas fa-bars w-6 h-6"></i>
+                </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
-                <i class="fas fa-bars w-6 h-6"></i>
-            </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
              <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
@@ -154,7 +163,7 @@
         </div>
     </header>
 
-    <main class="py-20">
+    <main class="pt-20"> <!-- Se mantiene el pt-20 por el header sticky -->
         <!-- ===== BOOK DETAILS SECTION ===== -->
         <section class="container mx-auto px-6 fade-in-section">
             <div class="flex flex-col md:flex-row items-start gap-8 md:gap-12">
@@ -203,7 +212,7 @@
         <!-- ===== BOOK TRAILER SECTION ===== -->
         <section class="container mx-auto py-20 px-6 text-center fade-in-section">
             <h2 class="text-4xl font-bold mb-10">Tráiler Oficial</h2>
-            <div class="aspect-w-16 aspect-h-9 max-w-4xl mx-auto bg-black rounded-lg shadow-xl">
+            <div class="aspect-w-16 aspect-h-9 max-w-4xl mx-auto bg-black rounded-lg shadow-xl overflow-hidden">
                  <iframe
                     class="w-full h-full"
                     src="https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -255,7 +264,7 @@
     </footer>
 
     <!-- MEJORA: Modal para "Otras tiendas" -->
-    <div id="modal-overlay" class="">
+    <div id="modal-overlay" class="hidden">
         <div id="modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative">
             <button id="close-modal-btn" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-800 text-2xl">&times;</button>
             <h3 class="text-2xl font-bold mb-6 text-center">Otras Tiendas Online</h3>
@@ -307,11 +316,11 @@
             sections.forEach(section => { observer.observe(section); });
 
             // Lógica del estado activo de la navegación
-            const navLinks = document.querySelectorAll('#main-nav a');
+            const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
             navLinks.forEach(link => {
                 const linkPath = link.getAttribute('href').split('/').pop();
-                if (linkPath === 'libro-nyhavn.html' && currentPath === 'libro-nyhavn.html') {
+                if (linkPath === currentPath) {
                     link.classList.add('nav-active');
                 }
             });
@@ -343,12 +352,15 @@
             const closeModalBtn = document.getElementById('close-modal-btn');
 
             if (modalOverlay && openModalBtn && closeModalBtn) {
-                openModalBtn.addEventListener('click', () => {
-                    modalOverlay.classList.add('show');
-                });
+                const openModal = () => {
+                    modalOverlay.classList.remove('hidden');
+                    setTimeout(() => modalOverlay.classList.add('show'), 10);
+                };
                 const closeModal = () => {
                     modalOverlay.classList.remove('show');
-                }
+                    setTimeout(() => modalOverlay.classList.add('hidden'), 300);
+                };
+                openModalBtn.addEventListener('click', openModal);
                 closeModalBtn.addEventListener('click', closeModal);
                 modalOverlay.addEventListener('click', (e) => {
                     if (e.target === modalOverlay) {

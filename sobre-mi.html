@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- ===== FUENTE AÑADIDA PARA EL NUEVO LOGO ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- ===== MEJORA SEO: SCHEMA.ORG PARA PERSON (AUTOR) ===== -->
@@ -52,16 +54,19 @@
         body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); }
         h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
 
-        /* SE ELIMINÓ EL ESTILO DE TRANSICIÓN PARA #header */
-
-        .logo-box {
-            display: flex; align-items: center; justify-content: center;
-            width: 44px; height: 44px; border: 2px solid var(--color-accent);
-            color: var(--color-accent); font-family: 'Montserrat', sans-serif;
-            font-weight: 700; font-size: 1.1rem; letter-spacing: 0.05em;
-            transition: all 0.3s ease-out;
+        /* ===== ESTILOS DEL LOGO ACTUALIZADOS ===== */
+        .logo-text {
+            font-family: 'Playfair Display', serif; /* La nueva fuente para el logo */
+            font-size: 1.5rem; /* Tamaño del logo, ajústalo si lo prefieres */
+            font-weight: 700; /* Negrita */
+            color: var(--color-text-primary); /* Color de texto principal (negro suave) */
+            letter-spacing: 0.05em; /* Un ligero espaciado para más elegancia */
+            transition: color 0.3s ease-out; /* Transición suave para el hover */
         }
-        .logo-link:hover .logo-box { background-color: var(--color-accent); color: white; transform: scale(1.05); }
+        .logo-link:hover .logo-text {
+            color: var(--color-accent); /* Cambia al color acento en hover */
+        }
+        /* ===== FIN DE ESTILOS DEL LOGO ACTUALIZADOS ===== */
 
         .cta-button {
             background-color: var(--color-accent); transition: all 0.3s ease;
@@ -83,14 +88,16 @@
 </head>
 <body class="bg-white antialiased">
 
-    <!-- ===== HEADER ===== -->
-    <!-- CAMBIO: Se eliminaron las clases 'sticky', 'bg-white/90', 'backdrop-blur-md', etc. para un header estático. -->
+    <!-- ===== HEADER ACTUALIZADO ===== -->
     <header id="header" class="bg-white shadow-sm border-b border-gray-200">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Parte Izquierda: Logo -->
+            <a href="./index.html" class="logo-link">
+                <span class="logo-text">CARLOS RAMÍREZ</span>
+            </a>
+
+            <!-- Parte Derecha: Navegación y Controles -->
             <div class="flex items-center gap-8">
-                <a href="./index.html" class="logo-link flex-shrink-0">
-                    <div class="logo-box">CR</div>
-                </a>
                 <nav id="main-nav" class="hidden md:flex items-center space-x-8">
                     <a href="./index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
                     <a href="./libro-nyhavn.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
@@ -98,10 +105,11 @@
                     <a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>
                     <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
                 </nav>
+
+                <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
+                    <i class="fas fa-bars w-6 h-6"></i>
+                </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
-                <i class="fas fa-bars w-6 h-6"></i>
-            </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
              <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
@@ -112,7 +120,6 @@
         </div>
     </header>
 
-    <!-- CAMBIO: Se eliminó el padding-top (pt-20) ya que el header ya no es fijo -->
     <main class="py-20">
         <div class="container mx-auto px-6">
             <h1 class="text-5xl font-bold text-center mb-12">Sobre Mí</h1>
@@ -199,11 +206,15 @@
                 });
             }
 
-            const navLinks = document.querySelectorAll('#main-nav a');
+            const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+            // Corrige la ruta de la página actual si está vacía para que coincida con "sobre-mi.html"
+            const pageName = currentPath === '' ? 'sobre-mi.html' : currentPath;
+
             navLinks.forEach(link => {
                 const linkHref = link.getAttribute('href').split('/').pop();
-                if (linkHref === currentPath) {
+                if (linkHref === pageName) {
                     link.classList.add('nav-active');
                 }
             });
@@ -227,8 +238,6 @@
                     }
                 });
             }
-
-            // ===== CAMBIO: Se eliminó toda la lógica de animación del header =====
         });
     </script>
 </body>
