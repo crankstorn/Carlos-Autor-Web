@@ -4,10 +4,10 @@
     <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias y Blog - Carlos Ramírez Autor</title>
-    <meta name="description" content="Sigue las últimas noticias, eventos, y artículos del blog del autor Carlos Ramírez.">
+    <title>Una Melodía de Silencio - La nueva novela de Carlos Ramírez</title>
+    <meta name="description" content="Explora los misterios de 'Una Melodía de Silencio', un thriller ambientado entre Copenhague y Mallorca. Conoce la sinopsis, lee reseñas y descubre el universo del libro.">
 
-     <!-- ===== FAVICON (ACTUALIZADO) ===== -->
+    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
 
     <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
@@ -21,40 +21,38 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Event",
-      "name": "Presentación y firma de 'Una Melodía de Silencio' en Palma",
-      "startDate": "2025-07-15T19:00:00+02:00",
-      "endDate": "2025-07-15T21:00:00+02:00",
-      "location": {
-        "@type": "Place",
-        "name": "Librería Rata Corner",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Carrer de l'Antic Pes de la Palla, 19",
-          "addressLocality": "Palma",
-          "postalCode": "07002",
-          "addressRegion": "Illes Balears",
-          "addressCountry": "ES"
+      "@type": "Book",
+      "name": "Una Melodía de Silencio",
+      "url": "https://URL-DEL-SITIO-WEB.com/una-melodía-de-silencio.html",
+      "author": {
+        "@type": "Person",
+        "@id": "https://URL-DEL-SITIO-WEB.com/#person"
+      },
+      "image": "https://URL-DEL-SITIO-WEB.com/images/portada-libro.jpg",
+      "isbn": "978-0-123456-78-9",
+      "bookFormat": "https://schema.org/Paperback",
+      "abstract": "Cuando Tom, un guitarrista callejero de Mallorca, se enamora de la enigmática Eli, su mundo se transforma en una búsqueda que lo lleva hasta Copenhague. Allí, descubrirá que la familia de Eli esconde un secreto ancestral de seres primigenios y poderes extraordinarios. Perseguidos por una misteriosa organización, Tom se verá envuelto en una batalla por la supervivencia y el amor en un mundo donde lo mítico colisiona con lo real.",
+      "review": [
+        {
+          "@type": "Review",
+          "reviewBody": "Una trama que te engancha desde la primera página. No pude soltarlo.",
+          "author": { "@type": "Organization", "name": "Blog 'Lectores Voraces'" }
+        },
+        {
+          "@type": "Review",
+          "reviewBody": "El contraste entre Copenhague y Mallorca está tan bien descrito que sientes que estás allí.",
+          "author": { "@type": "Person", "name": "Anna B." }
+        },
+        {
+          "@type": "Review",
+          "reviewBody": "Un final sorprendente. Carlos Ramírez es un maestro del suspense.",
+          "author": { "@type": "Organization", "name": "Revista 'Misterio y Letras'" }
         }
-      },
-      "description": "Carlos Ramírez charlará sobre su novela 'Una Melodía de Silencio', el proceso de escritura, y firmará ejemplares.",
-      "image": "https://URL-DEL-SITIO-WEB.com/images/evento-palma.jpg",
-      "offers": {
-        "@type": "Offer",
-        "url": "https://URL-DEL-SITIO-WEB.com/noticias.html",
-        "price": "0",
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2025-06-26"
-      },
-      "performer": {
-         "@type": "Person",
-         "@id": "https://URL-DEL-SITIO-WEB.com/#person"
-      }
+      ]
     }
     </script>
 
-    <!-- ===== ESTILOS PERSONALIZADOS ===== -->
+    <!-- ===== ESTILOS PERSONALIZADOS (Consistentes con la página de inicio) ===== -->
     <style>
         /* ===== 1. VARIABLES DE COLOR Y CONFIGURACIÓN GLOBAL ===== */
         :root {
@@ -107,12 +105,21 @@
             box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4);
         }
 
+        .button-secondary {
+            background-color: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+        }
+        .button-secondary:hover {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+        }
+
         .nav-active {
             font-weight: 600;
             color: var(--color-accent);
         }
 
-        /* ===== 4. ESTILOS DE SECCIÓN ESPECÍFICOS ===== */
         .dark-section {
             background-color: var(--color-dark-bg);
             background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png);
@@ -135,33 +142,29 @@
             text-decoration: underline;
         }
 
-        /* Separador ornamental (compacto) */
-        .section-separator {
-            height: 60px;
-            position: relative;
-            background-color: var(--color-bg);
+        /* Separador con Título (estilo consistente) */
+        .title-separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--color-text-primary);
+            margin-top: 1.5rem; /* Espacio superior añadido */
+            margin-bottom: 3rem; /* Espacio inferior aumentado */
         }
-        .section-separator::before {
+        .title-separator::before,
+        .title-separator::after {
             content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            border-top: 1px solid #EBE3D8;
+            flex: 1;
+            border-bottom: 1px solid #EBE3D8;
         }
-        .section-separator::after {
-            content: '§';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: var(--color-bg);
-            padding: 0 15px;
-            color: var(--color-text-secondary);
-            font-size: 1.5rem;
+        .title-separator:not(:empty)::before {
+            margin-right: 1.5em;
+        }
+        .title-separator:not(:empty)::after {
+            margin-left: 1.5em;
         }
 
-        /* ===== 5. ANIMACIONES Y EFECTOS ESPECIALES ===== */
+        /* ===== 4. ANIMACIONES Y EFECTOS ESPECIALES ===== */
         .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
@@ -186,14 +189,14 @@
             text-shadow: 0 0 10px rgba(32, 194, 194, 1),
                          0 0 20px rgba(32, 194, 194, 0.7);
         }
-        #secret-modal-overlay {
+        #secret-modal-overlay, #other-stores-modal-overlay {
             transition: opacity 0.3s ease-out;
         }
-        #secret-modal {
+        #secret-modal, #other-stores-modal {
             transition: transform 0.3s ease-out, opacity 0.3s ease-out;
             transform: translateY(20px) scale(0.95);
         }
-        #secret-modal-overlay.show #secret-modal {
+        #secret-modal-overlay.show #secret-modal, #other-stores-modal-overlay.show #other-stores-modal {
             transform: translateY(0) scale(1);
         }
 
@@ -214,12 +217,12 @@
         }
     </style>
 </head>
-<body class="bg-[--color-bg] antialiased">
+<body class="antialiased">
 
     <!-- =================================================================== -->
     <!-- ===== HEADER                                                  ===== -->
     <!-- =================================================================== -->
-    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
+    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="./index.html" class="logo-link">
                 <span class="logo-text">CARLOS RAMÍREZ</span>
@@ -252,63 +255,67 @@
     <!-- =================================================================== -->
     <!-- ===== CONTENIDO PRINCIPAL                                       ===== -->
     <!-- =================================================================== -->
-    <main class="py-16">
-        <div class="container mx-auto px-6">
-            <h1 class="text-5xl text-center mb-16">Noticias y Blog</h1>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Blog Post Card 1 -->
-                <article class="bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col border border-stone-200 hover:shadow-xl transition-shadow duration-300">
-                    <a href="./articulo-1.html" class="flex-grow flex flex-col">
-                        <img src="https://placehold.co/600x400/2F4F4F/FFFFFF?text=Copenhague" alt="Vista de Copenhague" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <p class="text-sm text-zinc-500 mb-1">20 de Agosto, 2025</p>
-                            <h2 class="text-2xl mb-2">Mi viaje de investigación a Copenhague</h2>
-                            <p class="text-[--color-text-secondary] flex-grow">Descubre los lugares reales que inspiraron 'Una Melodía de Silencio' y cómo la atmósfera de la ciudad se coló en las páginas del libro.</p>
-                            <span class="inline-block mt-4 font-bold text-[--color-accent] group-hover:underline">Leer más &rarr;</span>
+    <main>
+        <!-- ===== SECCIÓN DE DETALLES DEL LIBRO ===== -->
+        <section class="bg-[--color-bg] py-16 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-start gap-8 md:gap-12">
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <img src="https://placehold.co/400x600/1A202C/FDFBF7?text=Portada" alt="Portada de 'Una Melodía de Silencio'" class="rounded-lg shadow-2xl w-full max-w-sm mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/400x600/1A202C/FDFBF7?text=Error';">
+                    </div>
+                    <div class="md:w-2/3">
+                        <h1 class="text-4xl lg:text-5xl">Una Melodía de Silencio</h1>
+                        <p class="text-xl text-zinc-600 mt-2 font-serif italic">Su amor es música. Su secreto, guerra.</p>
+                       <div class="text-lg text-[--color-text-secondary] mt-6 leading-relaxed">
+                            <section>
+                                <p>Para Tom, la música es un don y una maldición. Un virtuoso de la guitarra capaz de silenciar un pub entero con una sola nota, pero cuya soberbia y orgullo le condenan a malvivir en las calles de Mallorca, saboteando cada oportunidad que se le presenta. Algunos dirían que está desperdiciando su vida, atrapado en la monótona rutina de cafés baratos y futuros inciertos. Pero esa rutina se rompe en mil pedazos la noche que conoce a Eli.</p>
+                            </section>
+                            <section class="mt-4">
+                                <p>Ella no es solo una bajista enigmática; su música desafía las leyes de la física y su mirada esconde secretos de siglos. Eli le ofrece a Tom algo que nunca creyó merecer: un dúo perfecto, una sintonía que va más allá de lo musical. Pero esa conexión tiene un precio.</p>
+                            </section>
+                            <section class="mt-4">
+                                <p>Arrastrado a una guerra que se libra en los rincones oscuros de Europa, desde Palma hasta Copenhague, Tom se convierte en una pieza clave en un juego mortal. Para sobrevivir, y para proteger a la única persona que ha escuchado la verdadera música de su alma, deberá enfrentarse a un mundo tejido en sombras y a los monstruos que habitan en él.</p>
+                            </section>
                         </div>
-                    </a>
-                </article>
-
-                <!-- Event Card 1 -->
-                <article class="bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col border border-stone-200 hover:shadow-xl transition-shadow duration-300">
-                   <div class="p-6 flex-grow flex flex-col">
-                        <p class="text-sm text-[--color-accent] font-semibold mb-1">EVENTO: 15 de Julio, 2025</p>
-                        <h2 class="text-2xl mb-2">Presentación en Palma</h2>
-                        <p class="text-[--color-text-secondary] flex-grow">Estaré en la librería Rata Corner de Palma para charlar sobre la novela, el proceso de escritura y firmar ejemplares. ¡Os espero!</p>
-                        <span class="inline-block mt-4 font-bold text-zinc-800">Librería Rata Corner, 19:00h</span>
+                        <div class="mt-8">
+                            <h3 class="text-2xl mb-4">Consíguelo ahora</h3>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#" class="cta-button text-white font-bold py-3 px-6 rounded-lg">Comprar en Amazon</a>
+                                <button id="open-stores-modal-btn" class="button-secondary font-bold py-3 px-6 rounded-lg transition-all duration-300">Otras tiendas</button>
+                            </div>
+                        </div>
                     </div>
-                </article>
-
-                <!-- Event Card 2 -->
-                <article class="bg-white rounded-lg shadow-lg overflow-hidden group flex flex-col border border-stone-200 hover:shadow-xl transition-shadow duration-300">
-                   <div class="p-6 flex-grow flex flex-col">
-                        <p class="text-sm text-[--color-accent] font-semibold mb-1">EVENTO: 1 de Septiembre, 2025</p>
-                        <h2 class="text-2xl mb-2">Gira de firmas en Copenhague</h2>
-                        <p class="text-[--color-text-secondary] flex-grow">Anunciaré pronto las fechas y librerías para la gira de firmas en Dinamarca. ¡Estad atentos a las redes sociales!</p>
-                        <span class="inline-block mt-4 font-bold text-zinc-800">Próximamente...</span>
-                    </div>
-                </article>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ===== SECCIÓN DE RESEÑAS (SEPARADOR MODIFICADO) ===== -->
+        <section class="py-16 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="title-separator text-4xl">Lo que dicen los lectores</h2>
+                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white/50 p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="italic text-zinc-700">"Una trama que te engancha desde la primera página. No pude soltarlo."</p>
+                        <p class="font-bold mt-4 font-serif text-[--color-text-primary]">- Blog 'Lectores Voraces'</p>
+                    </div>
+                    <div class="bg-white/50 p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="italic text-zinc-700">"El contraste entre Copenhague y Mallorca está tan bien descrito que sientes que estás allí."</p>
+                        <p class="font-bold mt-4 font-serif text-[--color-text-primary]">- Anna B., Goodreads</p>
+                    </div>
+                    <div class="bg-white/50 p-6 rounded-lg shadow-lg border border-stone-200">
+                        <p class="italic text-zinc-700">"Un final sorprendente. Carlos Ramírez es un maestro del suspense."</p>
+                        <p class="font-bold mt-4 font-serif text-[--color-text-primary]">- Revista 'Misterio y Letras'</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- =================================================================== -->
     <!-- ===== FOOTER (OSCURO)                                         ===== -->
     <!-- =================================================================== -->
-    <footer class="dark-section py-12 mt-16">
+    <footer class="dark-section py-12">
         <div class="container mx-auto px-6">
-            <div class="max-w-2xl mx-auto text-center mb-10">
-                 <h3 class="text-2xl">Únete a la Comunidad</h3>
-                 <p class="mt-2 text-[--color-dark-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
-                 <form id="newsletter-form" class="mt-6">
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <input type="email" name="email" id="newsletter-email" placeholder="Tu correo electrónico" required class="form-input w-full px-4 py-3 rounded-lg border focus:ring-2 focus:outline-none transition text-white placeholder:text-[--color-dark-text-secondary]">
-                        <button type="submit" class="cta-button text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap">Suscribirme</button>
-                    </div>
-                    <p id="newsletter-feedback" class="text-sm mt-2 h-4"></p>
-                 </form>
-            </div>
             <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
                 <a href="./index.html" class="footer-link">Inicio</a>
                 <a href="./una-melodía-de-silencio.html" class="footer-link">El Libro</a>
@@ -337,6 +344,21 @@
     <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
         <i class="fas fa-arrow-up"></i>
     </a>
+
+    <!-- Modal para "Otras tiendas" -->
+    <div id="other-stores-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
+        <div id="other-stores-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative">
+            <button id="close-stores-modal-btn" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-800 text-2xl">&times;</button>
+            <h3 class="text-2xl mb-6 text-center">Otras Tiendas Online</h3>
+            <div class="space-y-4">
+                <a href="#" class="block w-full text-center bg-gray-100 hover:bg-gray-200 py-3 px-4 rounded-lg font-semibold transition">Casa del Libro</a>
+                <a href="#" class="block w-full text-center bg-gray-100 hover:bg-gray-200 py-3 px-4 rounded-lg font-semibold transition">Fnac</a>
+                <a href="#" class="block w-full text-center bg-gray-100 hover:bg-gray-200 py-3 px-4 rounded-lg font-semibold transition">El Corte Inglés</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Easter Egg -->
     <div id="secret-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
         <div id="secret-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative text-center">
             <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">&times;</button>
@@ -347,47 +369,78 @@
         </div>
     </div>
 
+
     <!-- =================================================================== -->
     <!-- ===== SCRIPT PRINCIPAL                                          ===== -->
     <!-- =================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // Lógica genérica para cualquier modal
+            const initModal = (triggerBtnId, overlayId, closeBtnId, modalId) => {
+                const triggerBtn = document.getElementById(triggerBtnId);
+                const overlay = document.getElementById(overlayId);
+                const closeBtn = document.getElementById(closeBtnId);
+                const modal = document.getElementById(modalId);
+
+                if (triggerBtn && overlay && closeBtn && modal) {
+                    const openModal = () => {
+                        overlay.classList.remove('hidden');
+                        setTimeout(() => {
+                            overlay.classList.add('opacity-100');
+                            modal.classList.add('show');
+                        }, 10);
+                    };
+
+                    const closeModal = () => {
+                        overlay.classList.remove('opacity-100');
+                        modal.classList.remove('show');
+                        setTimeout(() => overlay.classList.add('hidden'), 300);
+                    };
+
+                    triggerBtn.addEventListener('click', openModal);
+                    closeBtn.addEventListener('click', closeModal);
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) closeModal();
+                    });
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === "Escape" && !overlay.classList.contains('hidden')) {
+                            closeModal();
+                        }
+                    });
+                }
+            };
+
+            // Inicializar los dos modales
+            initModal('easter-egg-trigger', 'secret-modal-overlay', 'close-secret-modal-btn', 'secret-modal');
+            initModal('open-stores-modal-btn', 'other-stores-modal-overlay', 'close-stores-modal-btn', 'other-stores-modal');
+
+            // Lógica del menú móvil
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
+                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             }
 
+            // Año actual en el footer
             const yearSpan = document.getElementById('year');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
+            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
+            // Lógica de animaciones de entrada
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
+                    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); }
                 });
-            }, {
-                rootMargin: '0px 0px -100px 0px'
-            });
+            }, { rootMargin: '0px 0px -100px 0px' });
             const sections = document.querySelectorAll('.fade-in-section');
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            sections.forEach(section => { observer.observe(section); });
 
+            // Lógica del botón para volver arriba
             const backToTopBtn = document.getElementById('back-to-top-btn');
             if (backToTopBtn) {
                 window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTopBtn.classList.add('show');
-                    } else {
-                        backToTopBtn.classList.remove('show');
-                    }
+                    if (window.scrollY > 300) { backToTopBtn.classList.add('show'); }
+                    else { backToTopBtn.classList.remove('show'); }
                 });
                 backToTopBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -395,60 +448,15 @@
                 });
             }
 
+            // Lógica para marcar el enlace activo en la navegación
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname.split('/').pop() || 'noticias.html';
+            const currentPath = window.location.pathname.split('/').pop();
             navLinks.forEach(link => {
-                const linkPath = link.getAttribute('href').split('/').pop();
-                if (linkPath === currentPath) {
+                // Se marca como activa la página "El Libro"
+                if (link.getAttribute('href').includes('una-melodía-de-silencio.html')) {
                     link.classList.add('nav-active');
                 }
             });
-
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const newsletterFeedback = document.getElementById('newsletter-feedback');
-                    const email = document.getElementById('newsletter-email').value;
-                    newsletterFeedback.textContent = '';
-
-                    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                        newsletterFeedback.textContent = '¡Gracias por suscribirte!';
-                        newsletterFeedback.classList.add('text-green-500');
-                        this.reset();
-                    } else {
-                        newsletterFeedback.textContent = 'Por favor, introduce un email válido.';
-                        newsletterFeedback.classList.add('text-red-500');
-                    }
-                });
-            }
-
-            const easterEggTrigger = document.getElementById('easter-egg-trigger');
-            const secretModalOverlay = document.getElementById('secret-modal-overlay');
-            if (easterEggTrigger && secretModalOverlay) {
-                const closeSecretModalBtn = document.getElementById('close-secret-modal-btn');
-
-                const openModal = () => {
-                    secretModalOverlay.classList.remove('hidden');
-                    setTimeout(() => secretModalOverlay.classList.add('opacity-100'), 10);
-                };
-
-                const closeModal = () => {
-                    secretModalOverlay.classList.remove('opacity-100');
-                    setTimeout(() => secretModalOverlay.classList.add('hidden'), 300);
-                };
-
-                easterEggTrigger.addEventListener('click', openModal);
-                closeSecretModalBtn.addEventListener('click', closeModal);
-                secretModalOverlay.addEventListener('click', (e) => {
-                    if (e.target === secretModalOverlay) closeModal();
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === "Escape" && !secretModalOverlay.classList.contains('hidden')) {
-                        closeModal();
-                    }
-                });
-            }
 
         });
     </script>

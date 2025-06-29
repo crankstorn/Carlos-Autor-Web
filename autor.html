@@ -4,10 +4,10 @@
     <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Ramírez Hernández - Autor</title>
-    <meta name="description" content="Web oficial de Carlos Ramírez Hernández, autor de la novela 'Una Melodía de Silencio'. Descubre sus libros, noticias y eventos.">
+    <title>Sobre Carlos - Carlos Ramírez Autor</title>
+    <meta name="description" content="Conoce a Carlos Ramírez, el autor detrás de 'Una Melodía de Silencio'. Descubre su inspiración, su vida y su proceso creativo.">
 
-    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
+     <!-- ===== FAVICON (ACTUALIZADO) ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
 
     <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
@@ -21,31 +21,25 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "name": "Carlos Ramírez Hernández - Sitio Oficial",
-          "url": "https://URL-DEL-SITIO-WEB.com/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://URL-DEL-SITIO-WEB.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "Person",
-          "@id": "https://URL-DEL-SITIO-WEB.com/#person",
-          "name": "Carlos Ramírez Hernández",
-          "url": "https://URL-DEL-SITIO-WEB.com/autor.html",
-           "sameAs": [
-            "https://twitter.com/tu-usuario-de-twitter",
-            "https://www.instagram.com/tu-usuario-de-instagram",
-            "https://www.goodreads.com/author/show/tu-id-de-goodreads"
-          ]
-        }
+      "@type": "Person",
+      "@id": "https://URL-DEL-SITIO-WEB.com/#person",
+      "name": "Carlos Ramírez",
+      "url": "https://URL-DEL-SITIO-WEB.com/autor.html",
+      "image": "https://URL-DEL-SITIO-WEB.com/images/foto-carlos-ramirez.jpg",
+      "description": "Autor de thrillers de misterio. Su obra explora la dualidad entre Mallorca y Copenhague, mezclando arte, historia y secretos del pasado.",
+      "jobTitle": "Autor",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Carlos Ramírez Autor"
+      },
+      "sameAs": [
+        "https://twitter.com/tu-usuario-de-twitter",
+        "https://www.instagram.com/tu-usuario-de-instagram",
+        "https://www.goodreads.com/author/show/tu-id-de-goodreads"
       ]
     }
     </script>
+
 
     <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
@@ -116,17 +110,6 @@
         .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon {
              font-family: 'Inter', sans-serif;
         }
-        .dark-section .text-special-accent {
-             color: #D69E2E;
-        }
-        .dark-section .button-secondary {
-            border-color: var(--color-dark-text-secondary);
-            color: var(--color-dark-text-secondary);
-        }
-         .dark-section .button-secondary:hover {
-            background-color: var(--color-dark-text-secondary);
-            color: var(--color-dark-bg);
-        }
         .dark-section .form-input {
              background-color: #2D3748;
              border-color: #4A5568;
@@ -139,6 +122,7 @@
             text-decoration: underline;
         }
 
+        /* Separador ornamental (compacto) */
         .section-separator {
             height: 60px;
             position: relative;
@@ -153,39 +137,15 @@
             border-top: 1px solid #EBE3D8;
         }
         .section-separator::after {
-            content: '';
+            content: '§';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 28px;
-            height: 28px;
             background-color: var(--color-bg);
             padding: 0 15px;
-            background-image: url('https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/50018b7f258b44030a3a57a84c8a023679997c73/Separador%20Triskel.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        /* NUEVO: Separador con Título */
-        .title-separator {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--color-text-primary);
-        }
-        .title-separator::before,
-        .title-separator::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #EBE3D8;
-        }
-        .title-separator:not(:empty)::before {
-            margin-right: 1.5em;
-        }
-        .title-separator:not(:empty)::after {
-            margin-left: 1.5em;
+            color: var(--color-text-secondary);
+            font-size: 1.5rem;
         }
 
         /* ===== 5. ANIMACIONES Y EFECTOS ESPECIALES ===== */
@@ -241,7 +201,7 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-[--color-bg] antialiased">
 
     <!-- =================================================================== -->
     <!-- ===== HEADER                                                  ===== -->
@@ -268,7 +228,7 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
-            <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
+             <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
             <a href="./una-melodía-de-silencio.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
             <a href="./autor.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre Carlos</a>
             <a href="./noticias.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Noticias</a>
@@ -277,89 +237,34 @@
     </header>
 
     <!-- =================================================================== -->
-    <!-- ===== CONTENIDO PRINCIPAL                                       ===== -->
+    <!-- ===== CONTENIDO PRINCIPAL                                     ===== -->
     <!-- =================================================================== -->
-    <main>
-
-        <!-- ===== SECCIÓN DEL LIBRO (OSCURA) ===== -->
-        <section id="libro" class="dark-section py-12 md:py-16">
-            <div class="container mx-auto">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="w-full md:w-1/2 p-8 flex justify-center items-center fade-in-section">
-                        <a href="./una-melodía-de-silencio.html" class="group block">
-                            <img src="https://placehold.co/400x600/F5EFE6/333333?text=Portada+del+Libro" alt="Portada de 'Una Melodía de Silencio'" class="rounded-lg shadow-2xl shadow-black/50 max-w-xs w-full transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/400x600/F5EFE6/333333?text=Error+cargando+imagen';">
-                        </a>
+    <main class="py-16">
+        <div class="container mx-auto px-6 fade-in-section">
+            <h1 class="text-5xl text-center mb-16">Sobre Carlos</h1>
+            <div class="max-w-4xl mx-auto md:flex md:items-start md:gap-12">
+                <div class="md:w-1/3 text-center mb-8 md:mb-0 flex-shrink-0">
+                    <img src="https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/refs/heads/main/sobre-mi.jpg" alt="Fotografía del autor Carlos Ramírez" class="rounded-lg w-full shadow-lg">
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl text-zinc-800 mb-4">Un contador de historias entre dos mundos.</h2>
+                    <div class="text-[--color-text-secondary] leading-relaxed space-y-4">
+                        <p>Desde que tengo memoria, mi vida ha transcurrido en un puente aéreo entre la luz del Mediterráneo en Palma de Mallorca y la melancólica belleza de los cielos grises de Copenhague. Soy hijo de esa dualidad, y es la principal fuente de inspiración para mis novelas.</p>
+                        <p>Soy un apasionado de la historia, el arte y los secretos que esconden los objetos cotidianos. Me fascina cómo un simple cuadro, una carta olvidada o una vieja fotografía pueden ser la puerta a un universo de intrigas y pasiones. Eso es lo que intento capturar en mis thrillers: la idea de que el pasado nunca está realmente muerto y puede regresar para reclamar lo que es suyo.</p>
+                        <p>Cuando no estoy escribiendo o perdido en un museo, me encontrarás paseando por calles antiguas, con una cámara en mano, intentando capturar la esencia de un lugar. Espero que, a través de mis libros, puedas viajar conmigo.</p>
                     </div>
-                    <div class="w-full md:w-1/2 p-8 text-center md:text-left fade-in-section">
-                        <h2 class="text-sm uppercase tracking-widest text-special-accent font-semibold">NOVELA DEBUT</h2>
-                        <h1 class="text-4xl md:text-5xl my-4 leading-tight">Una Melodía de Silencio</h1>
-                        <p class="text-[--color-dark-text-secondary] text-lg leading-relaxed mb-8">
-                            La vida para Tom es una rutina monótona hasta que la enigmática Eli y su música imposible lo rompen todo. Su conexión, tan perfecta como peligrosa, es la llave a un nuevo universo y el billete de entrada a una guerra fría y de desgaste. Para protegerla, Tom deberá sacrificar el mundo que conoce y arriesgar su propia vida para salvar la melodía que los unió.
-                        </p>
-                        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                            <a href="./una-melodía-de-silencio.html" class="cta-button text-white font-bold py-3 px-6 rounded-lg">Saber más</a>
-                            <a href="#" class="button-secondary font-bold py-3 px-6 rounded-lg border-2 transition-all duration-300">Comprar ahora</a>
-                        </div>
-                    </div>
+                    <blockquote class="mt-8 pl-4 border-l-4 border-[--color-accent] italic text-[--color-text-secondary]">
+                        "Escribo porque creo que toda ciudad tiene un secreto que contar. Solo hay que saber escuchar."
+                    </blockquote>
                 </div>
             </div>
-        </section>
-
-        <!-- ===== SEPARADOR ORNAMENTAL ===== -->
-        <div class="section-separator"></div>
-
-        <!-- ===== SECCIÓN Sobre Carlos ===== -->
-        <section id="autor" class="py-16 fade-in-section">
-            <div class="container mx-auto px-6">
-                <div class="md:flex md:items-center md:gap-12">
-                    <div class="md:w-1/3 text-center mb-8 md:mb-0 flex-shrink-0">
-                        <img src="https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/main/Profile%20Picture.png" alt="Fotografía del autor Carlos Ramírez" class="w-64 h-64 mx-auto rounded-full shadow-xl object-cover" onerror="this.onerror=null;this.src='https://placehold.co/256x256/ccc/333?text=Autor';">
-                    </div>
-                    <div class="md:w-2/3">
-                        <h2 class="text-4xl text-zinc-800 mb-4">Sobre Carlos Ramírez Hernández</h2>
-                        <p class="text-[--color-text-secondary] leading-relaxed mb-4">Creció con poco interés por la lectura, pero amando las historias. El Señor de los Anillos, Harry Potter, Narnia, todos esos mundos abrieron las puertas a una realidad intrigante y fantástica.</p>
-                        <blockquote class="mt-6 pl-4 border-l-4 border-[--color-accent] italic text-[--color-text-secondary]">
-                            "Para mí, el arte es ventana a la vez que espejo, y espero que mis libros cuenten historias que reflejen esa realidad."
-                        </blockquote>
-                        <a href="./autor.html" class="inline-block mt-6 font-bold text-[--color-accent] hover:underline">Conóceme mejor &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SECCIÓN DE NOTICIAS (SEPARADOR MODIFICADO) ===== -->
-        <section id="noticias" class="py-16 fade-in-section">
-            <div class="container mx-auto px-6">
-                <h2 class="title-separator text-4xl text-zinc-800 mb-12">Últimas Noticias</h2>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                    <div class="flex items-start gap-6 p-6 rounded-lg transition-all duration-300 bg-white border border-stone-200 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-[--color-accent] text-3xl mt-1"><i class="fas fa-calendar-alt"></i></div>
-                        <div>
-                            <p class="text-sm text-zinc-500 mb-1">15 de Julio, 2025</p>
-                            <h3 class="text-2xl text-zinc-800 mb-2">Presentación en Palma</h3>
-                            <p class="text-[--color-text-secondary]">Estaré en la librería Rata Corner de Palma para charlar sobre 'Una Melodía de Silencio'.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 p-6 rounded-lg transition-all duration-300 bg-white border border-stone-200 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-[--color-accent] text-3xl mt-1"><i class="fas fa-bullhorn"></i></div>
-                        <div>
-                            <p class="text-sm text-zinc-500 mb-1">1 de Septiembre, 2025</p>
-                            <h3 class="text-2xl text-zinc-800 mb-2">Gira de firmas en Copenhague</h3>
-                            <p class="text-[--color-text-secondary]">Pronto anunciaré las fechas para la gira de firmas en Dinamarca.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <a href="./noticias.html" class="cta-button text-white font-bold py-3 px-8 rounded-lg">Ver todas las noticias</a>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <!-- =================================================================== -->
     <!-- ===== FOOTER (OSCURO)                                         ===== -->
     <!-- =================================================================== -->
-    <footer class="dark-section py-12">
+    <footer class="dark-section py-12 mt-16">
         <div class="container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center mb-10">
                  <h3 class="text-2xl">Únete a la Comunidad</h3>
@@ -459,7 +364,7 @@
             }
 
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            const currentPath = window.location.pathname.split('/').pop() || 'autor.html';
             navLinks.forEach(link => {
                 const linkPath = link.getAttribute('href').split('/').pop();
                 if (linkPath === currentPath) {
@@ -483,10 +388,6 @@
                         newsletterFeedback.textContent = 'Por favor, introduce un email válido.';
                         newsletterFeedback.classList.add('text-red-500');
                     }
-                    setTimeout(() => {
-                        newsletterFeedback.textContent = '';
-                        newsletterFeedback.classList.remove('text-green-500', 'text-red-500');
-                    }, 3000);
                 });
             }
 
@@ -498,12 +399,10 @@
                 const openModal = () => {
                     secretModalOverlay.classList.remove('hidden');
                     setTimeout(() => secretModalOverlay.classList.add('opacity-100'), 10);
-                    setTimeout(() => document.getElementById('secret-modal').classList.add('show'), 10);
                 };
 
                 const closeModal = () => {
                     secretModalOverlay.classList.remove('opacity-100');
-                    document.getElementById('secret-modal').classList.remove('show');
                     setTimeout(() => secretModalOverlay.classList.add('hidden'), 300);
                 };
 
@@ -518,6 +417,7 @@
                     }
                 });
             }
+
         });
     </script>
 </body>

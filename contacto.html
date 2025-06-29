@@ -1,87 +1,203 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Carlos Ramírez Autor</title>
     <meta name="description" content="Ponte en contacto con el autor Carlos Ramírez para consultas, entrevistas o propuestas.">
 
-    <link rel="icon" href="https://placehold.co/32x32/493547/FDFBF7?text=CR" type="image/png">
+     <!-- ===== FAVICON (ACTUALIZADO) ===== -->
+    <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
 
+    <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <!-- ===== FUENTE AÑADIDA PARA EL NUEVO LOGO ===== -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
+        /* ===== 1. VARIABLES DE COLOR Y CONFIGURACIÓN GLOBAL ===== */
         :root {
             --color-accent: #493547; /* Berenjena oscuro */
-            --color-accent-hover: #66495E; /* Tono más claro para hover */
+            --color-accent-hover: #66495E;
             --color-bg: #FDFBF7; /* Pergamino claro */
-            --color-bg-warm: #EBE3D8; /* Pergamino envejecido */
             --color-text-primary: #1A1A1A; /* Negro Suave */
             --color-text-secondary: #5c5c5c; /* Gris oscuro */
-        }
-        body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
 
-        /* ===== ESTILOS DEL LOGO ACTUALIZADOS ===== */
+            /* Colores para secciones oscuras */
+            --color-dark-bg: #1A202C; /* Azul Noche Profundo */
+            --color-dark-text-primary: #F7FAFC; /* Texto claro */
+            --color-dark-text-secondary: #A0AEC0; /* Texto secundario claro */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== 2. TIPOGRAFÍA ===== */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg);
+        }
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        /* ===== 3. COMPONENTES REUTILIZABLES ===== */
         .logo-text {
-            font-family: 'Playfair Display', serif; /* La nueva fuente para el logo */
-            font-size: 1.5rem; /* Tamaño del logo, ajústalo si lo prefieres */
-            font-weight: 700; /* Negrita */
-            color: var(--color-text-primary); /* Color de texto principal (negro suave) */
-            letter-spacing: 0.05em; /* Un ligero espaciado para más elegancia */
-            transition: color 0.3s ease-out; /* Transición suave para el hover */
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            transition: color 0.3s ease-out;
         }
         .logo-link:hover .logo-text {
-            color: var(--color-accent); /* Cambia al color acento en hover */
+            color: var(--color-accent);
         }
-        /* ===== FIN DE ESTILOS DEL LOGO ACTUALIZADOS ===== */
-
 
         .cta-button {
-            background-color: var(--color-accent); transition: all 0.3s ease;
+            background-color: var(--color-accent);
+            transition: all 0.3s ease;
             box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3);
         }
-        .cta-button:hover { transform: scale(1.05); background-color: var(--color-accent-hover); box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4); }
-        .bg-warm { background-color: var(--color-bg-warm); }
-        .social-icon i { transition: transform 0.3s ease-out; }
-        .social-icon:hover i { transform: translateY(-4px); }
+        .cta-button:hover {
+            transform: scale(1.05);
+            background-color: var(--color-accent-hover);
+            box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4);
+        }
+
+        .nav-active {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* ===== 4. ESTILOS DE SECCIÓN ESPECÍFICOS ===== */
+        .dark-section {
+            background-color: var(--color-dark-bg);
+            background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png);
+        }
+        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span {
+            color: var(--color-dark-text-primary);
+        }
+        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon {
+             font-family: 'Inter', sans-serif;
+        }
+        .dark-section .form-input {
+             background-color: #2D3748;
+             border-color: #4A5568;
+        }
+        .dark-section .footer-link {
+            color: var(--color-dark-text-secondary);
+        }
+        .dark-section .footer-link:hover {
+            color: var(--color-dark-text-primary);
+            text-decoration: underline;
+        }
+
+        /* Separador ornamental (compacto) */
+        .section-separator {
+            height: 60px;
+            position: relative;
+            background-color: var(--color-bg);
+        }
+        .section-separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-top: 1px solid #EBE3D8;
+        }
+        .section-separator::after {
+            content: '§';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--color-bg);
+            padding: 0 15px;
+            color: var(--color-text-secondary);
+            font-size: 1.5rem;
+        }
+
+        /* ===== 5. ANIMACIONES Y EFECTOS ESPECIALES ===== */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .easter-egg-note {
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #20c2c2;
+            opacity: 0;
+            text-shadow: 0 0 8px rgba(32, 194, 194, 0);
+            transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        .easter-egg-note:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(32, 194, 194, 1),
+                         0 0 20px rgba(32, 194, 194, 0.7);
+        }
+        #secret-modal-overlay {
+            transition: opacity 0.3s ease-out;
+        }
+        #secret-modal {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: translateY(20px) scale(0.95);
+        }
+        #secret-modal-overlay.show #secret-modal {
+            transform: translateY(0) scale(1);
+        }
 
         #back-to-top-btn {
-            position: fixed; bottom: 2rem; right: 2rem; z-index: 50;
-            opacity: 0; visibility: hidden; transform: translateY(1rem);
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(1rem);
             transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
         }
-        #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-active { font-weight: 600; color: var(--color-accent); }
+        #back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
     </style>
 </head>
-<body class="bg-white antialiased">
+<body class="bg-[--color-bg] antialiased">
 
-    <!-- ===== HEADER ACTUALIZADO ===== -->
+    <!-- =================================================================== -->
+    <!-- ===== HEADER                                                  ===== -->
+    <!-- =================================================================== -->
     <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <!-- Parte Izquierda: Logo -->
             <a href="./index.html" class="logo-link">
                 <span class="logo-text">CARLOS RAMÍREZ</span>
             </a>
-
-            <!-- Parte Derecha: Navegación y Controles -->
             <div class="flex items-center gap-8">
                 <nav id="main-nav" class="hidden md:flex items-center space-x-8">
                     <a href="./index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
-                    <a href="./libro-nyhavn.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
-                    <a href="./sobre-mi.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Sobre mí</a>
+                    <a href="./una-melodía-de-silencio.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
+                    <a href="./autor.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Sobre Carlos</a>
                     <a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>
                     <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
                 </nav>
-
+                <div class="hidden md:block">
+                    <span id="easter-egg-trigger" class="easter-egg-note">𝄽</span>
+                </div>
                 <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
                     <i class="fas fa-bars w-6 h-6"></i>
                 </button>
@@ -89,17 +205,20 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
              <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
-            <a href="./libro-nyhavn.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
-            <a href="./sobre-mi.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre mí</a>
+            <a href="./una-melodía-de-silencio.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
+            <a href="./autor.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre Carlos</a>
             <a href="./noticias.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Noticias</a>
             <a href="./contacto.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Contacto</a>
         </div>
     </header>
 
-    <main class="py-20">
+    <!-- =================================================================== -->
+    <!-- ===== CONTENIDO PRINCIPAL                                       ===== -->
+    <!-- =================================================================== -->
+    <main class="py-16">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto">
-                <h1 class="text-5xl font-bold">Ponte en contacto</h1>
+                <h1 class="text-5xl">Ponte en contacto</h1>
                 <p class="mt-4 text-lg text-[--color-text-secondary]">¿Tienes alguna pregunta, propuesta o simplemente quieres saludar? Me encantará leerte. Para consultas de prensa o derechos, por favor, contacta a mi agente en <a href="mailto:agente@ejemplo.com" class="text-[--color-accent] underline">agente@ejemplo.com</a>.</p>
             </div>
 
@@ -125,37 +244,26 @@
         </div>
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="bg-warm text-zinc-600 py-12 border-t border-stone-200 mt-20">
+    <!-- =================================================================== -->
+    <!-- ===== FOOTER (OSCURO)                                         ===== -->
+    <!-- =================================================================== -->
+    <footer class="dark-section py-12 mt-8">
         <div class="container mx-auto px-6">
-            <div class="max-w-2xl mx-auto text-center mb-10">
-                 <h3 class="text-2xl font-bold text-zinc-800">Únete a la Comunidad</h3>
-                 <p class="mt-2 text-[--color-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
-                 <form id="newsletter-form" class="mt-6">
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <input type="email" name="email" id="newsletter-email" placeholder="Tu correo electrónico" required class="w-full px-4 py-3 rounded-lg border border-stone-300 focus:ring-2 focus:ring-[--color-accent] focus:outline-none transition">
-                        <button type="submit" class="cta-button text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap">Suscribirme</button>
-                    </div>
-                    <p id="newsletter-feedback" class="text-sm mt-2 h-4"></p>
-                 </form>
-            </div>
-
-            <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-500">
-                <a href="./index.html" class="hover:text-[--color-accent] hover:underline">Inicio</a>
-                <a href="./libro-nyhavn.html" class="hover:text-[--color-accent] hover:underline">El Libro</a>
-                <a href="./sobre-mi.html" class="hover:text-[--color-accent] hover:underline">Sobre mí</a>
-                <a href="./noticias.html" class="hover:text-[--color-accent] hover:underline">Noticias</a>
-                <a href="./contacto.html" class="hover:text-[--color-accent] hover:underline">Contacto</a>
+            <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
+                <a href="./index.html" class="footer-link">Inicio</a>
+                <a href="./una-melodía-de-silencio.html" class="footer-link">El Libro</a>
+                <a href="./autor.html" class="footer-link">Sobre Carlos</a>
+                <a href="./noticias.html" class="footer-link">Noticias</a>
+                <a href="./contacto.html" class="footer-link">Contacto</a>
             </nav>
-
             <div class="text-center">
                 <div class="flex justify-center space-x-6 mb-6">
-                    <a href="#" class="social-icon text-zinc-600 hover:text-[--color-accent] transition-colors duration-300 text-2xl" aria-label="Enlace a Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon text-zinc-600 hover:text-[--color-accent] transition-colors duration-300 text-2xl" aria-label="Enlace a Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon text-zinc-600 hover:text-[--color-accent] transition-colors duration-300 text-2xl" aria-label="Enlace a Goodreads"><i class="fab fa-goodreads"></i></a>
+                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Goodreads"><i class="fab fa-goodreads"></i></a>
                 </div>
-                <div class="text-sm text-zinc-500">
-                    <a href="./assets/press_kit/kit_de_prensa.zip" download class="hover:text-[--color-accent] hover:underline">Kit de Prensa</a>
+                <div class="text-sm footer-link">
+                    <a href="./assets/press_kit/kit_de_prensa.zip" download class="footer-link">Kit de Prensa</a>
                     <span class="mx-2">|</span>
                     <p class="inline">&copy; <span id="year"></span> Carlos Ramírez. Todos los derechos reservados.</p>
                 </div>
@@ -163,18 +271,58 @@
         </div>
     </footer>
 
+    <!-- =================================================================== -->
+    <!-- ===== ELEMENTOS FLOTANTES Y MODALES                           ===== -->
+    <!-- =================================================================== -->
+    <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <div id="secret-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
+        <div id="secret-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative text-center">
+            <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">&times;</button>
+            <p class="text-xl italic text-zinc-700 leading-relaxed font-serif">
+                Has encontrado un momento de silencio. A veces, es la curiosidad la que nos regala las sonrisas más inesperadas. Gracias por tu curiosidad.
+            </p>
+            <p class="text-right mt-4 font-semibold text-zinc-800">- Carlos Ramírez Hernández</p>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- ===== SCRIPT PRINCIPAL                                          ===== -->
+    <!-- =================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
             }
+
             const yearSpan = document.getElementById('year');
-            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+            if (backToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                    }
+                });
+                backToTopBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
 
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            const currentPath = window.location.pathname.split('/').pop() || 'contacto.html';
             navLinks.forEach(link => {
                 const linkPath = link.getAttribute('href').split('/').pop();
                 if (linkPath === currentPath) {
@@ -183,42 +331,68 @@
             });
 
             const newsletterForm = document.getElementById('newsletter-form');
-            const newsletterFeedback = document.getElementById('newsletter-feedback');
             if (newsletterForm) {
                 newsletterForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    const newsletterFeedback = document.getElementById('newsletter-feedback');
                     const email = document.getElementById('newsletter-email').value;
                     newsletterFeedback.textContent = '';
-                    newsletterFeedback.classList.remove('text-green-500', 'text-red-500');
 
                     if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                         newsletterFeedback.textContent = '¡Gracias por suscribirte!';
-                        newsletterFeedback.classList.add('text-green-600');
+                        newsletterFeedback.classList.add('text-green-500');
                         this.reset();
                     } else {
                         newsletterFeedback.textContent = 'Por favor, introduce un email válido.';
-                        newsletterFeedback.classList.add('text-red-600');
+                        newsletterFeedback.classList.add('text-red-500');
                     }
                 });
             }
 
-            // Lógica para el formulario de contacto
             const contactForm = document.getElementById('contact-form');
-            const formFeedback = document.getElementById('form-feedback');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    formFeedback.textContent = '¡Gracias por tu mensaje!';
+                    const formFeedback = document.getElementById('form-feedback');
+                    formFeedback.textContent = '¡Gracias por tu mensaje! Te responderé lo antes posible.';
                     formFeedback.classList.remove('hidden', 'bg-red-500');
                     formFeedback.classList.add('bg-green-600', 'block');
 
                     setTimeout(() => {
                         formFeedback.classList.add('hidden');
                         formFeedback.classList.remove('block');
-                    }, 4000);
+                    }, 5000);
                     this.reset();
                 });
             }
+
+            const easterEggTrigger = document.getElementById('easter-egg-trigger');
+            const secretModalOverlay = document.getElementById('secret-modal-overlay');
+            if (easterEggTrigger && secretModalOverlay) {
+                const closeSecretModalBtn = document.getElementById('close-secret-modal-btn');
+
+                const openModal = () => {
+                    secretModalOverlay.classList.remove('hidden');
+                    setTimeout(() => secretModalOverlay.classList.add('opacity-100'), 10);
+                };
+
+                const closeModal = () => {
+                    secretModalOverlay.classList.remove('opacity-100');
+                    setTimeout(() => secretModalOverlay.classList.add('hidden'), 300);
+                };
+
+                easterEggTrigger.addEventListener('click', openModal);
+                closeSecretModalBtn.addEventListener('click', closeModal);
+                secretModalOverlay.addEventListener('click', (e) => {
+                    if (e.target === secretModalOverlay) closeModal();
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === "Escape" && !secretModalOverlay.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                });
+            }
+
         });
     </script>
 </body>
