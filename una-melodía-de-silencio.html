@@ -315,8 +315,22 @@
         </section>
     </main>
 
+    <!-- =================================================================== -->
+    <!-- ===== FOOTER (OSCURO)                                         ===== -->
+    <!-- =================================================================== -->
     <footer class="dark-section py-12">
         <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center mb-10">
+                 <h3 class="text-2xl">Únete a la Comunidad</h3>
+                 <p class="mt-2 text-[--color-dark-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
+                 <form id="newsletter-form" class="mt-6">
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="email" name="email" id="newsletter-email" placeholder="Tu correo electrónico" required class="form-input w-full px-4 py-3 rounded-lg border focus:ring-2 focus:outline-none transition text-white placeholder:text-[--color-dark-text-secondary]">
+                        <button type="submit" class="cta-button text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap">Suscribirme</button>
+                    </div>
+                    <p id="newsletter-feedback" class="text-sm mt-2 h-4"></p>
+                 </form>
+            </div>
             <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
                 <a href="./index.html" class="footer-link">Inicio</a>
                 <a href="./una-melodía-de-silencio.html" class="footer-link">El Libro</a>
@@ -338,7 +352,7 @@
             </div>
         </div>
     </footer>
-
+    
     <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
         <i class="fas fa-arrow-up"></i>
     </a>
