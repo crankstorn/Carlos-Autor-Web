@@ -7,7 +7,7 @@
     <title>Una Melodía de Silencio - La nueva novela de Carlos Ramírez</title>
     <meta name="description" content="Explora los misterios de 'Una Melodía de Silencio', un thriller ambientado entre Copenhague y Mallorca. Conoce la sinopsis, lee reseñas y descubre el universo del libro.">
 
-    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
+    <!-- ===== FAVICON ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
 
     <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
@@ -52,7 +52,7 @@
     }
     </script>
 
-    <!-- ===== ESTILOS PERSONALIZADOS (Consistentes con la página de inicio) ===== -->
+    <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
         /* ===== 1. VARIABLES DE COLOR Y CONFIGURACIÓN GLOBAL ===== */
         :root {
@@ -250,7 +250,7 @@
     </header>
 
     <main>
-        <!-- ===== SECCIÓN DEL LIBRO (ESPACIADO AJUSTADO) ===== -->
+        <!-- ===== SECCIÓN DEL LIBRO ===== -->
         <section class="bg-[--color-bg] pt-16 pb-8 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-start gap-8 md:gap-12">
@@ -283,7 +283,7 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN DE RESEÑAS (ESPACIADO AJUSTADO) ===== -->
+        <!-- ===== SECCIÓN DE RESEÑAS ===== -->
         <section class="pt-8 pb-8 fade-in-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="title-separator text-4xl">Lo que dicen los lectores</h2>
@@ -304,7 +304,7 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN DE SPOTIFY (ESPACIADO AJUSTADO) ===== -->
+        <!-- ===== SECCIÓN DE SPOTIFY ===== -->
         <section class="pt-8 pb-16 fade-in-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="title-separator text-4xl">La Banda Sonora del Libro</h2>
@@ -446,18 +446,28 @@
 
             // Lógica para marcar el enlace activo en la navegación (CORREGIDO)
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            // Obtener la parte final de la URL actual. Si está vacía (en la raíz), usar 'index.html' como referencia.
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const currentPathname = window.location.pathname;
 
             navLinks.forEach(link => {
-                const linkPage = link.getAttribute('href').split('/').pop();
-                // Comprobar si el enlace corresponde a la página actual
-                if (linkPage === currentPage) {
+                // El objeto 'link' (HTMLAnchorElement) tiene una propiedad 'pathname' que el navegador
+                // resuelve a la ruta correcta, incluso para href relativos. Esto evita errores con 'new URL()'.
+                const linkPathname = link.pathname;
+
+                link.classList.remove('nav-active');
+                link.removeAttribute('aria-current');
+
+                // Compara las rutas normalizadas (eliminando las barras finales si existen)
+                const cleanCurrentPath = currentPathname.replace(/\/$/, "");
+                const cleanLinkPath = linkPathname.replace(/\/$/, "");
+
+                if (cleanLinkPath === cleanCurrentPath) {
                     link.classList.add('nav-active');
-                    link.setAttribute('aria-current', 'page'); // Mejor para accesibilidad
-                } else {
-                    link.classList.remove('nav-active');
-                    link.removeAttribute('aria-current');
+                    link.setAttribute('aria-current', 'page');
+                }
+                // Caso especial para la página de inicio (index.html)
+                if (cleanLinkPath.endsWith('/index.html') && cleanCurrentPath === '') {
+                    link.classList.add('nav-active');
+                    link.setAttribute('aria-current', 'page');
                 }
             });
 
