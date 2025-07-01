@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Una Melodía de Silencio - La nueva novela de Carlos Ramírez</title>
     <meta name="description" content="Explora los misterios de 'Una Melodía de Silencio', un thriller ambientado entre Copenhague y Mallorca. Conoce la sinopsis, lee reseñas y descubre el universo del libro.">
 
+    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
 
+    <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- ===== DATOS ESTRUCTURADOS (SEO) ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -48,6 +52,7 @@
     }
     </script>
 
+    <!-- ===== ESTILOS PERSONALIZADOS (Consistentes con la página de inicio) ===== -->
     <style>
         /* ===== 1. VARIABLES DE COLOR Y CONFIGURACIÓN GLOBAL ===== */
         :root {
@@ -245,7 +250,8 @@
     </header>
 
     <main>
-        <section class="bg-[--color-bg] py-16 fade-in-section">
+        <!-- ===== SECCIÓN DEL LIBRO (ESPACIADO AJUSTADO) ===== -->
+        <section class="bg-[--color-bg] pt-16 pb-8 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-start gap-8 md:gap-12">
                     <div class="md:w-1/3 flex-shrink-0">
@@ -277,7 +283,8 @@
             </div>
         </section>
 
-        <section class="py-16 fade-in-section">
+        <!-- ===== SECCIÓN DE RESEÑAS (ESPACIADO AJUSTADO) ===== -->
+        <section class="pt-8 pb-8 fade-in-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="title-separator text-4xl">Lo que dicen los lectores</h2>
                 <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -297,15 +304,19 @@
             </div>
         </section>
 
-        <section class="py-16 fade-in-section">
+        <!-- ===== SECCIÓN DE SPOTIFY (ESPACIADO AJUSTADO) ===== -->
+        <section class="pt-8 pb-16 fade-in-section">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="title-separator text-4xl">La Banda Sonora del Libro</h2>
-                <div class="max-w-3xl mx-auto mt-8 shadow-lg rounded-lg overflow-hidden">
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8Uebhn0w44N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <p class="max-w-3xl mx-auto text-lg text-[--color-text-secondary] mb-8">
+                    Sumérgete aún más en el universo de "Una Melodía de Silencio". Cada canción ha sido seleccionada para acompañar los momentos clave de la novela, desde las calles de Mallorca hasta los misterios de Copenhague.
+                </p>
+                <div class="max-w-3xl mx-auto shadow-lg rounded-lg overflow-hidden">
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5ZTNoqczlRLRplcp3fXShT?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
-        </main>
+    </main>
 
     <footer class="dark-section py-12">
         <div class="container mx-auto px-6">
@@ -325,7 +336,7 @@
                 <div class="text-sm footer-link">
                     <a href="./assets/press_kit/kit_de_prensa.zip" download class="footer-link">Kit de Prensa</a>
                     <span class="mx-2">|</span>
-                    <p class="inline">© <span id="year"></span> Carlos Ramírez. Todos los derechos reservados.</p>
+                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
@@ -337,7 +348,7 @@
 
     <div id="other-stores-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
         <div id="other-stores-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative">
-            <button id="close-stores-modal-btn" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-800 text-2xl">×</button>
+            <button id="close-stores-modal-btn" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-800 text-2xl">&times;</button>
             <h3 class="text-2xl mb-6 text-center">Otras Tiendas Online</h3>
             <div class="space-y-4">
                 <a href="#" class="block w-full text-center bg-gray-100 hover:bg-gray-200 py-3 px-4 rounded-lg font-semibold transition">Casa del Libro</a>
@@ -349,7 +360,7 @@
 
     <div id="secret-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
         <div id="secret-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative text-center">
-            <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">×</button>
+            <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">&times;</button>
             <p class="text-xl italic text-zinc-700 leading-relaxed font-serif">
                 Has encontrado un momento de silencio. A veces, es la curiosidad la que nos regala las sonrisas más inesperadas. Gracias por tu curiosidad.
             </p>
@@ -433,13 +444,20 @@
                 });
             }
 
-            // Lógica para marcar el enlace activo en la navegación
+            // Lógica para marcar el enlace activo en la navegación (CORREGIDO)
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname.split('/').pop();
+            // Obtener la parte final de la URL actual. Si está vacía (en la raíz), usar 'index.html' como referencia.
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
             navLinks.forEach(link => {
-                // Se marca como activa la página "El Libro"
-                if (link.getAttribute('href').includes('una-melodía-de-silencio.html')) {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                // Comprobar si el enlace corresponde a la página actual
+                if (linkPage === currentPage) {
                     link.classList.add('nav-active');
+                    link.setAttribute('aria-current', 'page'); // Mejor para accesibilidad
+                } else {
+                    link.classList.remove('nav-active');
+                    link.removeAttribute('aria-current');
                 }
             });
 
