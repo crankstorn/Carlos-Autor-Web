@@ -49,141 +49,42 @@
 
     <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
-        /* ===== 1. VARIABLES DE COLOR Y CONFIGURACIÓN GLOBAL ===== */
         :root {
-            --color-accent: #493547; /* Berenjena oscuro */
+            --color-accent: #493547;
             --color-accent-hover: #66495E;
-            --color-bg: #FDFBF7; /* Pergamino claro */
-            --color-text-primary: #1A1A1A; /* Negro Suave */
-            --color-text-secondary: #5c5c5c; /* Gris oscuro */
-
-            /* Colores para secciones oscuras */
-            --color-dark-bg: #1A202C; /* Azul Noche Profundo */
-            --color-dark-text-primary: #F7FAFC; /* Texto claro */
-            --color-dark-text-secondary: #A0AEC0; /* Texto secundario claro */
+            --color-bg: #FDFBF7;
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #5c5c5c;
+            --color-dark-bg: #1A202C;
+            --color-dark-text-primary: #F7FAFC;
+            --color-dark-text-secondary: #A0AEC0;
         }
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* ===== 2. TIPOGRAFÍA ===== */
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--color-text-primary);
-            background-color: var(--color-bg);
-        }
-        h1, h2, h3, h4, h5, h6, .font-serif {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
-
-        /* ===== 3. COMPONENTES REUTILIZABLES ===== */
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-            transition: color 0.3s ease-out;
-        }
-        .logo-link:hover .logo-text {
-            color: var(--color-accent);
-        }
-
-        .cta-button {
-            background-color: var(--color-accent);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3);
-        }
-        .cta-button:hover {
-            transform: scale(1.05);
-            background-color: var(--color-accent-hover);
-            box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4);
-        }
-
-        .nav-active {
-            font-weight: 600;
-            color: var(--color-accent);
-        }
-
-        /* Estilo para el botón secundario */
-        .button-secondary {
-            background-color: transparent;
-            border: 2px solid var(--color-accent);
-            color: var(--color-accent);
-        }
-        .button-secondary:hover {
-            background-color: var(--color-accent);
-            color: var(--color-bg);
-        }
-
-        /* ===== 4. ESTILOS DE SECCIÓN ESPECÍFICOS ===== */
-        .dark-section {
-            background-color: var(--color-dark-bg);
-            background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png);
-        }
-        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span {
-            color: var(--color-dark-text-primary);
-        }
-        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon {
-             font-family: 'Inter', sans-serif;
-        }
-        .dark-section .form-input {
-             background-color: #2D3748;
-             border-color: #4A5568;
-        }
-        .dark-section .footer-link {
-            color: var(--color-dark-text-secondary);
-        }
-        .dark-section .footer-link:hover {
-            color: var(--color-dark-text-primary);
-            text-decoration: underline;
-        }
-
-        /* Contenido del artículo */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); background-color: var(--color-bg); }
+        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; font-weight: 400; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); transition: color 0.3s ease-out; }
+        .logo-link:hover .logo-text { color: var(--color-accent); }
+        .cta-button:disabled { background-color: #9ca3af; cursor: not-allowed; transform: scale(1); box-shadow: none; }
+        .cta-button { background-color: var(--color-accent); transition: all 0.3s ease; box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3); }
+        .cta-button:hover:not(:disabled) { transform: scale(1.05); background-color: var(--color-accent-hover); box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4); }
+        .nav-active { font-weight: 600; color: var(--color-accent); }
+        .button-secondary { background-color: transparent; border: 2px solid var(--color-accent); color: var(--color-accent); }
+        .button-secondary:hover { background-color: var(--color-accent); color: var(--color-bg); }
+        .dark-section { background-color: var(--color-dark-bg); background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png); }
+        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span { color: var(--color-dark-text-primary); }
+        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon { font-family: 'Inter', sans-serif; }
+        .dark-section .form-input { background-color: #2D3748; border-color: #4A5568; }
+        .dark-section .footer-link { color: var(--color-dark-text-secondary); }
+        .dark-section .footer-link:hover { color: var(--color-dark-text-primary); text-decoration: underline; }
         .article-content p { margin-bottom: 1.5rem; line-height: 1.75; }
         .article-content blockquote { border-left: 4px solid var(--color-accent); padding-left: 1rem; margin: 2rem 0; font-style: italic; color: var(--color-text-secondary); }
-
-        /* ===== 5. ANIMACIONES Y EFECTOS ESPECIALES ===== */
-        .easter-egg-note {
-            font-size: 1.5rem;
-            line-height: 1;
-            cursor: pointer;
-            color: #20c2c2;
-            opacity: 0;
-            text-shadow: 0 0 8px rgba(32, 194, 194, 0);
-            transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-        }
-        .easter-egg-note:hover {
-            opacity: 1;
-            text-shadow: 0 0 10px rgba(32, 194, 194, 1),
-                         0 0 20px rgba(32, 194, 194, 0.7);
-        }
-        #secret-modal-overlay {
-            transition: opacity 0.3s ease-out;
-        }
-        #secret-modal {
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            transform: translateY(20px) scale(0.95);
-        }
-        #secret-modal-overlay.show #secret-modal {
-            transform: translateY(0) scale(1);
-        }
-
-        #back-to-top-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 50;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(1rem);
-            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-        }
-        #back-to-top-btn.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        .easter-egg-note { font-size: 1.5rem; line-height: 1; cursor: pointer; color: #20c2c2; opacity: 0; text-shadow: 0 0 8px rgba(32, 194, 194, 0); transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out; }
+        .easter-egg-note:hover { opacity: 1; text-shadow: 0 0 10px rgba(32, 194, 194, 1), 0 0 20px rgba(32, 194, 194, 0.7); }
+        #secret-modal-overlay { transition: opacity 0.3s ease-out; }
+        #secret-modal { transition: transform 0.3s ease-out, opacity 0.3s ease-out; transform: translateY(20px) scale(0.95); }
+        #secret-modal-overlay.show #secret-modal { transform: translateY(0) scale(1); }
+        #back-to-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
+        #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
     </style>
 </head>
 <body class="bg-[--color-bg] antialiased">
@@ -191,7 +92,7 @@
     <!-- =================================================================== -->
     <!-- ===== HEADER                                                  ===== -->
     <!-- =================================================================== -->
-    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
+    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="./index.html" class="logo-link">
                 <span class="logo-text">CARLOS RAMÍREZ</span>
@@ -251,16 +152,36 @@
     </main>
 
     <!-- =================================================================== -->
-    <!-- ===== FOOTER (OSCURO)                                         ===== -->
+    <!-- ===== FOOTER (OSCURO) CON NEWSLETTER Y MEJORAS RGPD           ===== -->
     <!-- =================================================================== -->
-    <footer class="dark-section py-12 mt-12">
+    <footer class="dark-section py-12 mt-16">
         <div class="container mx-auto px-6">
+           <div class="max-w-2xl mx-auto text-center mb-10">
+                 <h3 class="text-2xl">Únete a la Comunidad</h3>
+                 <p class="mt-2 text-[--color-dark-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
+                <form id="newsletter-form" class="mt-6">
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <input type="email" id="newsletter-email" name="email" placeholder="Tu correo electrónico" required class="w-full sm:w-auto flex-grow px-4 py-2.5 text-white form-input rounded-md focus:ring-2 focus:ring-white/80 focus:border-white/80 transition duration-300">
+                        <button type="submit" id="newsletter-submit-btn" class="cta-button text-white font-bold py-2.5 px-8 rounded-md text-base">Suscribirme</button>
+                    </div>
+                    <div class="mt-4 text-left max-w-sm mx-auto">
+                        <label for="gdpr-consent" class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" id="gdpr-consent" name="gdpr-consent" required class="mt-1 h-4 w-4 rounded border-gray-300 text-[--color-accent] focus:ring-[--color-accent]">
+                            <span class="text-xs text-left text-[--color-dark-text-secondary]">
+                                Acepto recibir comunicaciones y confirmo que he leído y acepto la <a href="./politica-de-privacidad.html" class="underline hover:text-white">Política de Privacidad</a>.
+                            </span>
+                        </label>
+                    </div>
+                </form>
+                <div id="newsletter-feedback" class="mt-4 text-sm h-5"></div>
+            </div>
             <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
                 <a href="./index.html" class="footer-link">Inicio</a>
                 <a href="./una-melodía-de-silencio.html" class="footer-link">El Libro</a>
                 <a href="./autor.html" class="footer-link">Sobre Carlos</a>
                 <a href="./noticias.html" class="footer-link">Noticias</a>
                 <a href="./contacto.html" class="footer-link">Contacto</a>
+                <a href="./politica-de-privacidad.html" class="footer-link">Política de Privacidad</a>
             </nav>
             <div class="text-center">
                 <div class="flex justify-center space-x-6 mb-6">
@@ -271,14 +192,14 @@
                 <div class="text-sm footer-link">
                     <a href="./assets/press_kit/kit_de_prensa.zip" download class="footer-link">Kit de Prensa</a>
                     <span class="mx-2">|</span>
-                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez. Todos los derechos reservados.</p>
+                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez Hernández. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- =================================================================== -->
-    <!-- ===== ELEMENTOS FLOTANTES Y MODALES                           ===== -->
+    <!-- ===== ELEMENTOS FLOTANTES Y MODALES (CON SÍMBOLO SECRETO)     ===== -->
     <!-- =================================================================== -->
     <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
         <i class="fas fa-arrow-up"></i>
@@ -294,11 +215,64 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- ===== SCRIPT PRINCIPAL                                          ===== -->
+    <!-- ===== SCRIPT PRINCIPAL (VERSIÓN SEGURA Y COMPLETA)            ===== -->
     <!-- =================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // --- MANEJO DE LA NEWSLETTER CON NETLIFY Y RGPD ---
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                const submitButton = document.getElementById('newsletter-submit-btn');
+                const consentCheckbox = document.getElementById('gdpr-consent');
+                submitButton.disabled = true;
+                consentCheckbox.addEventListener('change', () => {
+                    submitButton.disabled = !consentCheckbox.checked;
+                });
+                newsletterForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    if (!consentCheckbox.checked) return;
+                    const form = e.target;
+                    const emailInput = document.getElementById('newsletter-email');
+                    const feedbackDiv = document.getElementById('newsletter-feedback');
+                    const email = emailInput.value;
+                    const MAILERLITE_GROUP_ID = '158756233196602950';
+                    const FUNCTION_URL = '/.netlify/functions/subscribe';
+                    feedbackDiv.textContent = 'Procesando...';
+                    feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
+                    submitButton.disabled = true;
+                    try {
+                        const response = await fetch(FUNCTION_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: email,
+                                groupId: MAILERLITE_GROUP_ID
+                            }),
+                        });
+                        if (response.ok) {
+                            feedbackDiv.textContent = '¡Gracias por suscribirte!';
+                            feedbackDiv.className = 'mt-4 text-sm h-5 text-green-400';
+                            form.reset();
+                            consentCheckbox.checked = false;
+                            submitButton.disabled = true;
+                        } else {
+                            const errorData = await response.json();
+                            const errorMessage = errorData.message || 'El email es inválido o ya está suscrito.';
+                            feedbackDiv.textContent = errorMessage;
+                            feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
+                            submitButton.disabled = false;
+                        }
+                    } catch (error) {
+                        feedbackDiv.textContent = 'Ocurrió un error. Inténtalo de nuevo.';
+                        feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
+                        console.error('Error en la suscripción:', error);
+                        submitButton.disabled = false;
+                    }
+                });
+            }
+
+            // --- CÓDIGO GENÉRICO (MENÚ, AÑO, EASTER EGG, ETC.) ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
@@ -336,40 +310,22 @@
                 }
             });
 
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const newsletterFeedback = document.getElementById('newsletter-feedback');
-                    const email = document.getElementById('newsletter-email').value;
-                    newsletterFeedback.textContent = '';
-
-                    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                        newsletterFeedback.textContent = '¡Gracias por suscribirte!';
-                        newsletterFeedback.classList.add('text-green-500');
-                        this.reset();
-                    } else {
-                        newsletterFeedback.textContent = 'Por favor, introduce un email válido.';
-                        newsletterFeedback.classList.add('text-red-500');
-                    }
-                });
-            }
-
             const easterEggTrigger = document.getElementById('easter-egg-trigger');
             const secretModalOverlay = document.getElementById('secret-modal-overlay');
             if (easterEggTrigger && secretModalOverlay) {
                 const closeSecretModalBtn = document.getElementById('close-secret-modal-btn');
-
                 const openModal = () => {
                     secretModalOverlay.classList.remove('hidden');
-                    setTimeout(() => secretModalOverlay.classList.add('opacity-100'), 10);
+                    setTimeout(() => {
+                        secretModalOverlay.classList.add('opacity-100');
+                        document.getElementById('secret-modal').classList.add('show');
+                    }, 10);
                 };
-
                 const closeModal = () => {
                     secretModalOverlay.classList.remove('opacity-100');
+                    document.getElementById('secret-modal').classList.remove('show');
                     setTimeout(() => secretModalOverlay.classList.add('hidden'), 300);
                 };
-
                 easterEggTrigger.addEventListener('click', openModal);
                 closeSecretModalBtn.addEventListener('click', closeModal);
                 secretModalOverlay.addEventListener('click', (e) => {
@@ -381,7 +337,6 @@
                     }
                 });
             }
-
         });
     </script>
 </body>

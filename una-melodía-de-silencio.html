@@ -54,167 +54,46 @@
 
     <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
-        /* ===== 1. VARIABLES DE COLOR Y CONFIGURACIÓN GLOBAL ===== */
         :root {
-            --color-accent: #493547; /* Berenjena oscuro */
+            --color-accent: #493547;
             --color-accent-hover: #66495E;
-            --color-bg: #FDFBF7; /* Pergamino claro */
-            --color-text-primary: #1A1A1A; /* Negro Suave */
-            --color-text-secondary: #5c5c5c; /* Gris oscuro */
-
-            /* Colores para secciones oscuras */
-            --color-dark-bg: #1A202C; /* Azul Noche Profundo */
-            --color-dark-text-primary: #F7FAFC; /* Texto claro */
-            --color-dark-text-secondary: #A0AEC0; /* Texto secundario claro */
+            --color-bg: #FDFBF7;
+            --color-text-primary: #1A1A1A;
+            --color-text-secondary: #5c5c5c;
+            --color-dark-bg: #1A202C;
+            --color-dark-text-primary: #F7FAFC;
+            --color-dark-text-secondary: #A0AEC0;
         }
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* ===== 2. TIPOGRAFÍA ===== */
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--color-text-primary);
-            background-color: var(--color-bg);
-        }
-        h1, h2, h3, h4, h5, h6, .font-serif {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-        }
-
-        /* ===== 3. COMPONENTES REUTILIZABLES ===== */
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-            transition: color 0.3s ease-out;
-        }
-        .logo-link:hover .logo-text {
-            color: var(--color-accent);
-        }
-
-        .cta-button {
-            background-color: var(--color-accent);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3);
-        }
-        .cta-button:hover {
-            transform: scale(1.05);
-            background-color: var(--color-accent-hover);
-            box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4);
-        }
-
-        .button-secondary {
-            background-color: transparent;
-            border: 2px solid var(--color-accent);
-            color: var(--color-accent);
-        }
-        .button-secondary:hover {
-            background-color: var(--color-accent);
-            color: var(--color-bg);
-        }
-
-        .nav-active {
-            font-weight: 600;
-            color: var(--color-accent);
-        }
-
-        .dark-section {
-            background-color: var(--color-dark-bg);
-            background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png);
-        }
-        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span {
-            color: var(--color-dark-text-primary);
-        }
-        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon {
-             font-family: 'Inter', sans-serif;
-        }
-        .dark-section .form-input {
-             background-color: #2D3748;
-             border-color: #4A5568;
-        }
-        .dark-section .footer-link {
-            color: var(--color-dark-text-secondary);
-        }
-        .dark-section .footer-link:hover {
-            color: var(--color-dark-text-primary);
-            text-decoration: underline;
-        }
-
-        /* Separador con Título (estilo consistente) */
-        .title-separator {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--color-text-primary);
-            margin-top: 1.5rem; /* Espacio superior añadido */
-            margin-bottom: 3rem; /* Espacio inferior aumentado */
-        }
-        .title-separator::before,
-        .title-separator::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #EBE3D8;
-        }
-        .title-separator:not(:empty)::before {
-            margin-right: 1.5em;
-        }
-        .title-separator:not(:empty)::after {
-            margin-left: 1.5em;
-        }
-
-        /* ===== 4. ANIMACIONES Y EFECTOS ESPECIALES ===== */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .easter-egg-note {
-            font-size: 1.5rem;
-            line-height: 1;
-            cursor: pointer;
-            color: #20c2c2;
-            opacity: 0;
-            text-shadow: 0 0 8px rgba(32, 194, 194, 0);
-            transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
-        }
-        .easter-egg-note:hover {
-            opacity: 1;
-            text-shadow: 0 0 10px rgba(32, 194, 194, 1),
-                         0 0 20px rgba(32, 194, 194, 0.7);
-        }
-        #secret-modal-overlay, #other-stores-modal-overlay {
-            transition: opacity 0.3s ease-out;
-        }
-        #secret-modal, #other-stores-modal {
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-            transform: translateY(20px) scale(0.95);
-        }
-        #secret-modal-overlay.show #secret-modal, #other-stores-modal-overlay.show #other-stores-modal {
-            transform: translateY(0) scale(1);
-        }
-
-        #back-to-top-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 50;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(1rem);
-            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-        }
-        #back-to-top-btn.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); background-color: var(--color-bg); }
+        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; font-weight: 400; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); transition: color 0.3s ease-out; }
+        .logo-link:hover .logo-text { color: var(--color-accent); }
+        .cta-button:disabled { background-color: #9ca3af; cursor: not-allowed; transform: scale(1); box-shadow: none; }
+        .cta-button { background-color: var(--color-accent); transition: all 0.3s ease; box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3); }
+        .cta-button:hover:not(:disabled) { transform: scale(1.05); background-color: var(--color-accent-hover); box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4); }
+        .button-secondary { background-color: transparent; border: 2px solid var(--color-accent); color: var(--color-accent); }
+        .button-secondary:hover { background-color: var(--color-accent); color: var(--color-bg); }
+        .nav-active { font-weight: 600; color: var(--color-accent); }
+        .dark-section { background-color: var(--color-dark-bg); background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png); }
+        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span { color: var(--color-dark-text-primary); }
+        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon { font-family: 'Inter', sans-serif; }
+        .dark-section .form-input { background-color: #2D3748; border-color: #4A5568; }
+        .dark-section .footer-link { color: var(--color-dark-text-secondary); }
+        .dark-section .footer-link:hover { color: var(--color-dark-text-primary); text-decoration: underline; }
+        .title-separator { display: flex; align-items: center; text-align: center; color: var(--color-text-primary); margin-top: 1.5rem; margin-bottom: 3rem; }
+        .title-separator::before, .title-separator::after { content: ''; flex: 1; border-bottom: 1px solid #EBE3D8; }
+        .title-separator:not(:empty)::before { margin-right: 1.5em; }
+        .title-separator:not(:empty)::after { margin-left: 1.5em; }
+        .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+        .easter-egg-note { font-size: 1.5rem; line-height: 1; cursor: pointer; color: #20c2c2; opacity: 0; text-shadow: 0 0 8px rgba(32, 194, 194, 0); transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out; }
+        .easter-egg-note:hover { opacity: 1; text-shadow: 0 0 10px rgba(32, 194, 194, 1), 0 0 20px rgba(32, 194, 194, 0.7); }
+        #secret-modal-overlay, #other-stores-modal-overlay { transition: opacity 0.3s ease-out; }
+        #secret-modal, #other-stores-modal { transition: transform 0.3s ease-out, opacity 0.3s ease-out; transform: translateY(20px) scale(0.95); }
+        #secret-modal-overlay.show #secret-modal, #other-stores-modal-overlay.show #other-stores-modal { transform: translateY(0) scale(1); }
+        #back-to-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
+        #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
     </style>
 </head>
 <body class="antialiased">
@@ -316,20 +195,28 @@
     </main>
 
     <!-- =================================================================== -->
-    <!-- ===== FOOTER (OSCURO)                                         ===== -->
+    <!-- ===== FOOTER (OSCURO) CON NEWSLETTER Y MEJORAS RGPD           ===== -->
     <!-- =================================================================== -->
-    <footer class="dark-section py-12">
+    <footer class="dark-section py-12 mt-16">
         <div class="container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center mb-10">
                  <h3 class="text-2xl">Únete a la Comunidad</h3>
                  <p class="mt-2 text-[--color-dark-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
-                 <form id="newsletter-form" class="mt-6">
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <input type="email" name="email" id="newsletter-email" placeholder="Tu correo electrónico" required class="form-input w-full px-4 py-3 rounded-lg border focus:ring-2 focus:outline-none transition text-white placeholder:text-[--color-dark-text-secondary]">
-                        <button type="submit" class="cta-button text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap">Suscribirme</button>
+                <form id="newsletter-form" class="mt-6">
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                        <input type="email" id="newsletter-email" name="email" placeholder="Tu correo electrónico" required class="w-full sm:w-auto flex-grow px-4 py-2.5 text-white form-input rounded-md focus:ring-2 focus:ring-white/80 focus:border-white/80 transition duration-300">
+                        <button type="submit" id="newsletter-submit-btn" class="cta-button text-white font-bold py-2.5 px-8 rounded-md text-base">Suscribirme</button>
                     </div>
-                    <p id="newsletter-feedback" class="text-sm mt-2 h-4"></p>
-                 </form>
+                    <div class="mt-4 text-left max-w-sm mx-auto">
+                        <label for="gdpr-consent" class="flex items-start space-x-3 cursor-pointer">
+                            <input type="checkbox" id="gdpr-consent" name="gdpr-consent" required class="mt-1 h-4 w-4 rounded border-gray-300 text-[--color-accent] focus:ring-[--color-accent]">
+                            <span class="text-xs text-left text-[--color-dark-text-secondary]">
+                                Acepto recibir comunicaciones y confirmo que he leído y acepto la <a href="./politica-de-privacidad.html" class="underline hover:text-white">Política de Privacidad</a>.
+                            </span>
+                        </label>
+                    </div>
+                </form>
+                <div id="newsletter-feedback" class="mt-4 text-sm h-5"></div>
             </div>
             <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
                 <a href="./index.html" class="footer-link">Inicio</a>
@@ -337,6 +224,7 @@
                 <a href="./autor.html" class="footer-link">Sobre Carlos</a>
                 <a href="./noticias.html" class="footer-link">Noticias</a>
                 <a href="./contacto.html" class="footer-link">Contacto</a>
+                <a href="./politica-de-privacidad.html" class="footer-link">Política de Privacidad</a>
             </nav>
             <div class="text-center">
                 <div class="flex justify-center space-x-6 mb-6">
@@ -347,16 +235,18 @@
                 <div class="text-sm footer-link">
                     <a href="./assets/press_kit/kit_de_prensa.zip" download class="footer-link">Kit de Prensa</a>
                     <span class="mx-2">|</span>
-                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez. Todos los derechos reservados.</p>
+                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez Hernández. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
     </footer>
-    
+
+    <!-- =================================================================== -->
+    <!-- ===== ELEMENTOS FLOTANTES Y MODALES (CON SÍMBOLO SECRETO)     ===== -->
+    <!-- =================================================================== -->
     <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
         <i class="fas fa-arrow-up"></i>
     </a>
-
     <div id="other-stores-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
         <div id="other-stores-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative">
             <button id="close-stores-modal-btn" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-800 text-2xl">&times;</button>
@@ -368,7 +258,6 @@
             </div>
         </div>
     </div>
-
     <div id="secret-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
         <div id="secret-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative text-center">
             <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">&times;</button>
@@ -380,10 +269,65 @@
     </div>
 
 
+    <!-- =================================================================== -->
+    <!-- ===== SCRIPT PRINCIPAL (VERSIÓN SEGURA Y COMPLETA)            ===== -->
+    <!-- =================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // Lógica genérica para cualquier modal
+            // --- MANEJO DE LA NEWSLETTER CON NETLIFY Y RGPD ---
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                const submitButton = document.getElementById('newsletter-submit-btn');
+                const consentCheckbox = document.getElementById('gdpr-consent');
+                submitButton.disabled = true;
+                consentCheckbox.addEventListener('change', () => {
+                    submitButton.disabled = !consentCheckbox.checked;
+                });
+                newsletterForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    if (!consentCheckbox.checked) return;
+                    const form = e.target;
+                    const emailInput = document.getElementById('newsletter-email');
+                    const feedbackDiv = document.getElementById('newsletter-feedback');
+                    const email = emailInput.value;
+                    const MAILERLITE_GROUP_ID = '158756233196602950';
+                    const FUNCTION_URL = '/.netlify/functions/subscribe';
+                    feedbackDiv.textContent = 'Procesando...';
+                    feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
+                    submitButton.disabled = true;
+                    try {
+                        const response = await fetch(FUNCTION_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: email,
+                                groupId: MAILERLITE_GROUP_ID
+                            }),
+                        });
+                        if (response.ok) {
+                            feedbackDiv.textContent = '¡Gracias por suscribirte!';
+                            feedbackDiv.className = 'mt-4 text-sm h-5 text-green-400';
+                            form.reset();
+                            consentCheckbox.checked = false;
+                            submitButton.disabled = true;
+                        } else {
+                            const errorData = await response.json();
+                            const errorMessage = errorData.message || 'El email es inválido o ya está suscrito.';
+                            feedbackDiv.textContent = errorMessage;
+                            feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
+                            submitButton.disabled = false;
+                        }
+                    } catch (error) {
+                        feedbackDiv.textContent = 'Ocurrió un error. Inténtalo de nuevo.';
+                        feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
+                        console.error('Error en la suscripción:', error);
+                        submitButton.disabled = false;
+                    }
+                });
+            }
+
+            // --- CÓDIGO GENÉRICO (MENÚ, AÑO, EASTER EGG, MODALES, ETC.) ---
             const initModal = (triggerBtnId, overlayId, closeBtnId, modalId) => {
                 const triggerBtn = document.getElementById(triggerBtnId);
                 const overlay = document.getElementById(overlayId);
@@ -418,22 +362,18 @@
                 }
             };
 
-            // Inicializar los dos modales
             initModal('easter-egg-trigger', 'secret-modal-overlay', 'close-secret-modal-btn', 'secret-modal');
             initModal('open-stores-modal-btn', 'other-stores-modal-overlay', 'close-stores-modal-btn', 'other-stores-modal');
 
-            // Lógica del menú móvil
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             }
 
-            // Año actual en el footer
             const yearSpan = document.getElementById('year');
             if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
-            // Lógica de animaciones de entrada
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) { entry.target.classList.add('is-visible'); }
@@ -442,7 +382,6 @@
             const sections = document.querySelectorAll('.fade-in-section');
             sections.forEach(section => { observer.observe(section); });
 
-            // Lógica del botón para volver arriba
             const backToTopBtn = document.getElementById('back-to-top-btn');
             if (backToTopBtn) {
                 window.addEventListener('scroll', () => {
@@ -455,19 +394,13 @@
                 });
             }
 
-            // Lógica para marcar el enlace activo en la navegación (CORREGIDO)
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
             const currentPathname = window.location.pathname;
 
             navLinks.forEach(link => {
-                // El objeto 'link' (HTMLAnchorElement) tiene una propiedad 'pathname' que el navegador
-                // resuelve a la ruta correcta, incluso para href relativos. Esto evita errores con 'new URL()'.
                 const linkPathname = link.pathname;
-
                 link.classList.remove('nav-active');
                 link.removeAttribute('aria-current');
-
-                // Compara las rutas normalizadas (eliminando las barras finales si existen)
                 const cleanCurrentPath = currentPathname.replace(/\/$/, "");
                 const cleanLinkPath = linkPathname.replace(/\/$/, "");
 
@@ -475,14 +408,13 @@
                     link.classList.add('nav-active');
                     link.setAttribute('aria-current', 'page');
                 }
-                // Caso especial para la página de inicio (index.html)
-                if (cleanLinkPath.endsWith('/index.html') && cleanCurrentPath === '') {
+                if (cleanCurrentPath === '' && cleanLinkPath.endsWith('/index.html')) {
                     link.classList.add('nav-active');
                     link.setAttribute('aria-current', 'page');
                 }
             });
-
         });
     </script>
 </body>
 </html>
+

@@ -4,10 +4,10 @@
     <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Carlos - Carlos Ramírez Autor</title>
-    <meta name="description" content="Conoce a Carlos Ramírez, el autor detrás de 'Una Melodía de Silencio'. Descubre su inspiración, su vida y su proceso creativo.">
+    <title>Política de Privacidad - Carlos Ramírez Autor</title>
+    <meta name="description" content="Política de Privacidad del sitio web del autor Carlos Ramírez.">
 
-     <!-- ===== FAVICON (ACTUALIZADO) ===== -->
+    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
 
     <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
@@ -16,30 +16,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- ===== DATOS ESTRUCTURADOS (SEO) ===== -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": "https://URL-DEL-SITIO-WEB.com/#person",
-      "name": "Carlos Ramírez",
-      "url": "https://URL-DEL-SITIO-WEB.com/autor.html",
-      "image": "https://URL-DEL-SITIO-WEB.com/images/foto-carlos-ramirez.jpg",
-      "description": "Autor de thrillers de misterio. Su obra explora la dualidad entre Mallorca y Copenhague, mezclando arte, historia y secretos del pasado.",
-      "jobTitle": "Autor",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Carlos Ramírez Autor"
-      },
-      "sameAs": [
-        "https://twitter.com/tu-usuario-de-twitter",
-        "https://www.instagram.com/tu-usuario-de-instagram",
-        "https://www.goodreads.com/author/show/tu-id-de-goodreads"
-      ]
-    }
-    </script>
-
 
     <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
@@ -68,15 +44,15 @@
         .dark-section .form-input { background-color: #2D3748; border-color: #4A5568; }
         .dark-section .footer-link { color: var(--color-dark-text-secondary); }
         .dark-section .footer-link:hover { color: var(--color-dark-text-primary); text-decoration: underline; }
-        .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
-        .easter-egg-note { font-size: 1.5rem; line-height: 1; cursor: pointer; color: #20c2c2; opacity: 0; text-shadow: 0 0 8px rgba(32, 194, 194, 0); transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out; }
-        .easter-egg-note:hover { opacity: 1; text-shadow: 0 0 10px rgba(32, 194, 194, 1), 0 0 20px rgba(32, 194, 194, 0.7); }
-        #secret-modal-overlay { transition: opacity 0.3s ease-out; }
-        #secret-modal { transition: transform 0.3s ease-out, opacity 0.3s ease-out; transform: translateY(20px) scale(0.95); }
-        #secret-modal-overlay.show #secret-modal { transform: translateY(0) scale(1); }
         #back-to-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
         #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        /* Estilos para el contenido de la política */
+        .privacy-content h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid #EBE3D8; padding-bottom: 0.5rem;}
+        .privacy-content p, .privacy-content ul { margin-bottom: 1rem; line-height: 1.7; color: var(--color-text-secondary); }
+        .privacy-content ul { list-style-position: inside; list-style-type: disc; }
+        .privacy-content li { margin-bottom: 0.5rem; }
+        .privacy-content a { color: var(--color-accent); text-decoration: underline; }
+        .privacy-content strong { font-weight: 600; color: var(--color-text-primary); }
     </style>
 </head>
 <body class="bg-[--color-bg] antialiased">
@@ -97,9 +73,6 @@
                     <a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>
                     <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
                 </nav>
-                <div class="hidden md:block">
-                    <span id="easter-egg-trigger" class="easter-egg-note">𝄽</span>
-                </div>
                 <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
                     <i class="fas fa-bars w-6 h-6"></i>
                 </button>
@@ -115,34 +88,90 @@
     </header>
 
     <!-- =================================================================== -->
-    <!-- ===== CONTENIDO PRINCIPAL                                     ===== -->
+    <!-- ===== CONTENIDO PRINCIPAL: POLÍTICA DE PRIVACIDAD (EXTENDIDA) ===== -->
     <!-- =================================================================== -->
     <main class="py-16">
-        <div class="container mx-auto px-6 fade-in-section">
-            <h1 class="text-5xl text-center mb-16">Sobre Carlos</h1>
-            <div class="max-w-4xl mx-auto md:flex md:items-start md:gap-12">
-                <div class="md:w-1/3 text-center mb-8 md:mb-0 flex-shrink-0">
-                    <img src="https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/refs/heads/main/sobre-mi.jpg" alt="Fotografía del autor Carlos Ramírez" class="rounded-lg w-full shadow-lg">
-                </div>
-                <div class="md:w-2/3">
-                    <h2 class="text-3xl text-zinc-800 mb-4">Insertar título.</h2>
-                    <div class="text-[--color-text-secondary] leading-relaxed space-y-4">
-                        <p>Párrafo 1.</p>
-                        <p>Párrafo 2.</p>
-                        <p>Párrafo 3.</p>
-                    </div>
-                    <blockquote class="mt-8 pl-4 border-l-4 border-[--color-accent] italic text-[--color-text-secondary]">
-                        "Cita 1."
-                    </blockquote>
-                </div>
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center">
+                <h1 class="text-5xl">Política de Privacidad</h1>
+                <p class="mt-4 text-lg text-[--color-text-secondary]">Última actualización: 2 de julio de 2025</p>
             </div>
+
+            <article class="privacy-content mt-12">
+                <p>Bienvenido a mi web. Tu privacidad es de suma importancia para mí. Esta política de privacidad explica qué datos personales recojo, cómo los uso y qué derechos tienes sobre ellos.</p>
+
+                <h2>1. Responsable del Tratamiento de tus Datos</h2>
+                <ul>
+                    <li><strong>Nombre del Responsable:</strong> [Tu Nombre Completo]</li>
+                    <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:[Tu Correo de Contacto para Privacidad]">[Tu Correo de Contacto para Privacidad]</a></li>
+                    <li><strong>Sitio web:</strong> <a href="[La URL de tu sitio web]">[La URL de tu sitio web]</a></li>
+                </ul>
+
+                <h2>2. ¿Qué Datos Personales Recogemos y por Qué?</h2>
+                <p>Recojo la mínima información necesaria para mantener una relación contigo y ofrecerte mis contenidos.</p>
+                <ul>
+                    <li><strong>Formulario de Contacto:</strong> Cuando me envías un mensaje a través del formulario de contacto, recojo tu <strong>nombre</strong> y tu <strong>dirección de correo electrónico</strong>. Utilizo estos datos únicamente para poder responder a tu consulta. El envío y gestión de estos correos se realiza a través del servicio <strong>Formspree</strong>.</li>
+                    <li><strong>Suscripción a la Newsletter:</strong> Cuando te suscribes a mi boletín de noticias, recojo tu <strong>dirección de correo electrónico</strong>. El propósito es enviarte comunicaciones periódicas con noticias sobre mis libros, eventos, artículos y otro contenido que considero que puede ser de tu interés. Para que esta suscripción sea válida, requerimos tu consentimiento explícito a través de la casilla de aceptación. La gestión de la lista de suscriptores y el envío de correos se realiza a través del servicio <strong>MailerLite</strong>.</li>
+                    <li><strong>Datos de Navegación:</strong> Mi sitio web está alojado en <strong>Netlify</strong>. Netlify puede recoger datos técnicos anónimos, como la dirección IP o el tipo de navegador, con el fin de servir el sitio web de forma segura y para fines analíticos (por ejemplo, contar el número de visitantes). Estos datos no se utilizan para identificarte personalmente.</li>
+                    <li><strong>Sorteos y Promociones (Futuro):</strong> Si participas en algún sorteo o promoción, podremos recoger datos adicionales como tu <strong>dirección postal</strong> para poder enviarte el premio. Estos datos se solicitarán en el momento de la participación y se utilizarán exclusivamente para la gestión del sorteo, basándonos en tu consentimiento al participar.</li>
+                    <li><strong>Venta de Productos (Futuro):</strong> Si en el futuro se habilita una tienda en este sitio web, se recogerán los datos necesarios para procesar el pedido (nombre, dirección de envío, etc.), basándonos en la necesidad de cumplir un contrato de venta contigo.</li>
+                </ul>
+
+                <h2>3. Legitimación para el Tratamiento de tus Datos</h2>
+                <p>La base legal para tratar tus datos depende de la interacción:</p>
+                <ul>
+                    <li>Para el <strong>formulario de contacto</strong>, la base es el <strong>interés legítimo</strong> en responder a la solicitud que tú mismo has iniciado.</li>
+                    <li>Para la <strong>suscripción a la newsletter</strong> y la participación en <strong>sorteos</strong>, la base es tu <strong>consentimiento explícito</strong>.</li>
+                    <li>Para la <strong>compra de productos (futuro)</strong>, la base será la <strong>ejecución de un contrato</strong> de compraventa.</li>
+                </ul>
+
+                <h2>4. ¿Con Quién Compartimos tus Datos?</h2>
+                <p>Para que esta web funcione, comparto tus datos con los siguientes proveedores de servicios, quienes también están comprometidos con el cumplimiento del RGPD:</p>
+                <ul>
+                    <li><strong>Netlify (Hosting):</strong> Aloja los archivos de este sitio web.</li>
+                    <li><strong>Formspree (Formulario de Contacto):</strong> Procesa y me reenvía los mensajes que me envías.</li>
+                    <li><strong>MailerLite (Newsletter):</strong> Almacena tu correo electrónico en la lista de suscriptores y gestiona el envío de los boletines.</li>
+                    <li><strong>Pasarelas de Pago (Futuro):</strong> En caso de habilitarse una tienda, los datos de tu pago serán procesados directamente por pasarelas de pago seguras como <strong>Stripe</strong> o <strong>PayPal</strong>. Nosotros no tendremos acceso a la información completa de tu tarjeta.</li>
+                </ul>
+                <p>Fuera de estos casos, no compartiré tus datos personales con terceros a menos que esté legalmente obligado a ello.</p>
+
+                <h2>5. ¿Durante Cuánto Tiempo Conservaremos tus Datos?</h2>
+                <ul>
+                    <li><strong>Datos del Formulario de Contacto:</strong> Se conservarán el tiempo estrictamente necesario para resolver tu consulta y se eliminarán después.</li>
+                    <li><strong>Datos de Sorteos:</strong> Se eliminarán una vez que el sorteo haya finalizado y el premio haya sido entregado.</li>
+                    <li><strong>Datos de la Newsletter:</strong> Se conservarán indefinidamente mientras no retires tu consentimiento. En cada comunicación que recibas, tendrás un enlace para darte de baja de forma sencilla.</li>
+                </ul>
+
+                <h2>6. Tus Derechos sobre tus Datos</h2>
+                <p>Como titular de los datos, tienes derecho a:</p>
+                <ul>
+                    <li><strong>Acceder</strong> a tus datos personales.</li>
+                    <li><strong>Rectificar</strong> los datos si son inexactos o incompletos.</li>
+                    <li><strong>Suprimir</strong> tus datos ("derecho al olvido").</li>
+                    <li><strong>Limitar</strong> el tratamiento de tus datos.</li>
+                    <li><strong>Oponerte</strong> al tratamiento de tus datos.</li>
+                    <li>Solicitar la <strong>portabilidad</strong> de tus datos.</li>
+                </ul>
+
+                <h2>7. Cómo Ejercer tus Derechos</h2>
+                <p>Puedes ejercer tus derechos enviando un correo electrónico a <strong><a href="mailto:[Tu Correo de Contacto para Privacidad]">[Tu Correo de Contacto para Privacidad]</a></strong>, indicando claramente tu nombre y el derecho que deseas ejercer.</p>
+
+                <h2>8. Cambios en la Política de Privacidad</h2>
+                <p>Me reservo el derecho a modificar esta política para adaptarla a novedades legislativas o cambios en mis prácticas. Cualquier modificación será publicada en esta misma página.</p>
+
+                <h2>9. Cookies y Tecnologías de Seguimiento</h2>
+                <ul>
+                    <li><strong>Cookies Esenciales:</strong> Este sitio utiliza cookies técnicas necesarias para su correcto funcionamiento, gestionadas por nuestro proveedor de hosting, <strong>Netlify</strong>.</li>
+                    <li><strong>Cookies de Terceros y Píxeles (Futuro):</strong> Si en el futuro se implementan servicios de análisis o publicidad (como Google Analytics o Píxeles de Facebook), se utilizarán cookies para recoger información sobre la navegación de forma anónima y para personalizar la publicidad. En ese caso, se te solicitará el consentimiento explícito a través de un banner de cookies.</li>
+                </ul>
+            </article>
         </div>
     </main>
 
     <!-- =================================================================== -->
-    <!-- ===== FOOTER (OSCURO) CON NEWSLETTER Y MEJORAS RGPD           ===== -->
+    <!-- ===== FOOTER (COPIA DEL OTRO ARCHIVO PARA CONSISTENCIA)       ===== -->
     <!-- =================================================================== -->
-    <footer class="dark-section py-12 mt-16">
+    <footer class="dark-section py-12 mt-8">
         <div class="container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center mb-10">
                  <h3 class="text-2xl">Únete a la Comunidad</h3>
@@ -187,27 +216,10 @@
     </footer>
 
     <!-- =================================================================== -->
-    <!-- ===== ELEMENTOS FLOTANTES Y MODALES (CON SÍMBOLO SECRETO)     ===== -->
-    <!-- =================================================================== -->
-    <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-    <div id="secret-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
-        <div id="secret-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative text-center">
-            <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">&times;</button>
-            <p class="text-xl italic text-zinc-700 leading-relaxed font-serif">
-                Has encontrado un momento de silencio. A veces, es la curiosidad la que nos regala las sonrisas más inesperadas. Gracias por tu curiosidad.
-            </p>
-            <p class="text-right mt-4 font-semibold text-zinc-800">- Carlos Ramírez Hernández</p>
-        </div>
-    </div>
-
-    <!-- =================================================================== -->
-    <!-- ===== SCRIPT PRINCIPAL (VERSIÓN SEGURA Y COMPLETA)            ===== -->
+    <!-- ===== SCRIPT PRINCIPAL (COPIA DEL OTRO ARCHIVO)               ===== -->
     <!-- =================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
             // --- MANEJO DE LA NEWSLETTER CON NETLIFY Y RGPD ---
             const newsletterForm = document.getElementById('newsletter-form');
             if (newsletterForm) {
@@ -259,8 +271,7 @@
                     }
                 });
             }
-
-            // --- CÓDIGO GENÉRICO (MENÚ, AÑO, EASTER EGG, ETC.) ---
+            // --- CÓDIGO GENÉRICO (MENÚ, AÑO, ETC.) ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
@@ -268,26 +279,10 @@
                     mobileMenu.classList.toggle('hidden');
                 });
             }
-
             const yearSpan = document.getElementById('year');
             if (yearSpan) {
                 yearSpan.textContent = new Date().getFullYear();
             }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, {
-                rootMargin: '0px 0px -100px 0px'
-            });
-            const sections = document.querySelectorAll('.fade-in-section');
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
             const backToTopBtn = document.getElementById('back-to-top-btn');
             if (backToTopBtn) {
                 window.addEventListener('scroll', () => {
@@ -302,43 +297,14 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             }
-
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname.split('/').pop() || 'autor.html';
+            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
             navLinks.forEach(link => {
                 const linkPath = link.getAttribute('href').split('/').pop();
                 if (linkPath === currentPath) {
                     link.classList.add('nav-active');
                 }
             });
-
-            const easterEggTrigger = document.getElementById('easter-egg-trigger');
-            const secretModalOverlay = document.getElementById('secret-modal-overlay');
-            if (easterEggTrigger && secretModalOverlay) {
-                const closeSecretModalBtn = document.getElementById('close-secret-modal-btn');
-                const openModal = () => {
-                    secretModalOverlay.classList.remove('hidden');
-                    setTimeout(() => {
-                        secretModalOverlay.classList.add('opacity-100');
-                        document.getElementById('secret-modal').classList.add('show');
-                    }, 10);
-                };
-                const closeModal = () => {
-                    secretModalOverlay.classList.remove('opacity-100');
-                    document.getElementById('secret-modal').classList.remove('show');
-                    setTimeout(() => secretModalOverlay.classList.add('hidden'), 300);
-                };
-                easterEggTrigger.addEventListener('click', openModal);
-                closeSecretModalBtn.addEventListener('click', closeModal);
-                secretModalOverlay.addEventListener('click', (e) => {
-                    if (e.target === secretModalOverlay) closeModal();
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === "Escape" && !secretModalOverlay.classList.contains('hidden')) {
-                        closeModal();
-                    }
-                });
-            }
         });
     </script>
 </body>
