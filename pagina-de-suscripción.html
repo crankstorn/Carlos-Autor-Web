@@ -4,48 +4,16 @@
     <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Ramírez Hernández - Autor</title>
-    <meta name="description" content="Web oficial de Carlos Ramírez Hernández, autor de la novela 'Una Melodía de Silencio'. Descubre sus libros, noticias y eventos.">
+    <title>Avísame del Lanzamiento - Una Melodía de Silencio</title>
+    <meta name="description" content="Suscríbete para ser el primero en saber sobre el lanzamiento de la novela 'Una Melodía de Silencio' de Carlos Ramírez y recibe contenido exclusivo.">
 
-    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
+    <!-- ===== FAVICON Y LIBRERÍAS EXTERNAS ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
-
-    <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- ===== DATOS ESTRUCTURADOS (SEO) ===== -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "name": "Carlos Ramírez Hernández - Sitio Oficial",
-          "url": "https://URL-DEL-SITIO-WEB.com/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://URL-DEL-SITIO-WEB.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        },
-        {
-          "@type": "Person",
-          "@id": "https://URL-DEL-SITIO-WEB.com/#person",
-          "name": "Carlos Ramírez Hernández",
-          "url": "https://URL-DEL-SITIO-WEB.com/autor.html",
-           "sameAs": [
-            "https://twitter.com/tu-usuario-de-twitter",
-            "https://www.instagram.com/tu-usuario-de-instagram",
-            "https://www.goodreads.com/author/show/tu-id-de-goodreads"
-          ]
-        }
-      ]
-    }
-    </script>
 
     <!-- ===== ESTILOS PERSONALIZADOS ===== -->
     <style>
@@ -71,21 +39,9 @@
         .dark-section { background-color: var(--color-dark-bg); background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png); }
         .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span { color: var(--color-dark-text-primary); }
         .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon { font-family: 'Inter', sans-serif; }
-        .dark-section .text-special-accent { color: #D69E2E; }
-        .dark-section .button-secondary { border-color: var(--color-dark-text-secondary); color: var(--color-dark-text-secondary); }
-        .dark-section .button-secondary:hover { background-color: var(--color-dark-text-secondary); color: var(--color-dark-bg); }
         .dark-section .form-input { background-color: #2D3748; border-color: #4A5568; }
         .dark-section .footer-link { color: var(--color-dark-text-secondary); }
         .dark-section .footer-link:hover { color: var(--color-dark-text-primary); text-decoration: underline; }
-        .section-separator { height: 60px; position: relative; background-color: var(--color-bg); }
-        .section-separator::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid #EBE3D8; }
-        .section-separator::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 28px; height: 28px; background-color: var(--color-bg); padding: 0 15px; background-image: url('https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/50018b7f258b44030a3a57a84c8a023679997c73/Separador%20Triskel.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; }
-        .title-separator { display: flex; align-items: center; text-align: center; color: var(--color-text-primary); }
-        .title-separator::before, .title-separator::after { content: ''; flex: 1; border-bottom: 1px solid #EBE3D8; }
-        .title-separator:not(:empty)::before { margin-right: 1.5em; }
-        .title-separator:not(:empty)::after { margin-left: 1.5em; }
-        .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
         .easter-egg-note { font-size: 1.5rem; line-height: 1; cursor: pointer; color: #20c2c2; opacity: 0; text-shadow: 0 0 8px rgba(32, 194, 194, 0); transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out; }
         .easter-egg-note:hover { opacity: 1; text-shadow: 0 0 10px rgba(32, 194, 194, 1), 0 0 20px rgba(32, 194, 194, 0.7); }
         #secret-modal-overlay { transition: opacity 0.3s ease-out; }
@@ -95,11 +51,9 @@
         #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-[--color-bg] antialiased">
 
-    <!-- =================================================================== -->
-    <!-- ===== HEADER                                                  ===== -->
-    <!-- =================================================================== -->
+    <!-- ===== HEADER ===== -->
     <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="./index.html" class="logo-link">
@@ -122,7 +76,7 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
-            <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
+             <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
             <a href="./una-melodia-de-silencio.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
             <a href="./autor.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre Carlos</a>
             <a href="./noticias.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Noticias</a>
@@ -130,93 +84,32 @@
         </div>
     </header>
 
-    <!-- =================================================================== -->
-    <!-- ===== CONTENIDO PRINCIPAL                                     ===== -->
-    <!-- =================================================================== -->
-    <main>
-
-        <!-- ===== SECCIÓN DEL LIBRO (OSCURA) ===== -->
-        <section id="libro" class="dark-section py-12 md:py-8">
-            <div class="container mx-auto">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="w-full md:w-1/2 p-8 flex justify-center items-center">
-                        <a href="./una-melodia-de-silencio.html" class="group block">
-                            <img src="https://images.unsplash.com/photo-1727035305444-bbdfe6be13a3?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clavijero de un bajo con una luz roja" class="rounded-lg shadow-2xl shadow-black/50 max-w-xs w-full transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/400x600/F5EFE6/333333?text=Error+cargando+imagen';">
-                        </a>
-                    </div>
-                    <div class="w-full md:w-1/2 p-8 text-center md:text-left">
-                        <!-- CAMBIO: Añadida la clase 'font-sans' para forzar la fuente del body (Inter) -->
-                        <h2 class="font-sans text-sm tracking-widest text-special-accent font-semibold">Su amor es música. Su secreto, guerra.</h2>
-                        <h1 class="text-4xl md:text-5xl my-4 leading-tight">Una Melodía de Silencio</h1>
-                        <p class="text-[--color-dark-text-secondary] leading-relaxed mb-8">
-                            La vida para Tom es una rutina monótona hasta que la enigmática Eli y su música imposible irrumpen en ella. Su conexión, tan fascinante como peligrosa, es la llave a un nuevo mundo y el billete de entrada a una guerra fría y de desgaste. Con tal de proteger a sus seres queridos, Tom dejará atrás la única realidad que conoce y se encontrará librando una guerra que no comenzó, contra un enemigo que no acaba de comprender.
-                        </p>
-                        <div class="mt-8 flex justify-center md:justify-start">
-                            <a href="./pagina-de-suscripción.html" class="cta-button text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-special-accent">
-                                Avísame del lanzamiento
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <!-- ===== CONTENIDO PRINCIPAL DE LA PÁGINA DE SUSCRIPCIÓN ===== -->
+    <main class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto">
+                <h1 class="text-5xl">Sé el primero en saberlo</h1>
+                <p class="mt-4 text-lg text-[--color-text-secondary]">Deja tu correo y te avisaré personalmente el día del lanzamiento de 'Una Melodía de Silencio'. Además, recibirás noticias exclusivas y un avance del libro directamente en tu bandeja de entrada.</p>
             </div>
-        </section>
 
-        <!-- ===== SEPARADOR ORNAMENTAL ===== -->
-        <div class="section-separator"></div>
-
-        <!-- ===== SECCIÓN Sobre Carlos ===== -->
-        <section id="autor" class="py-8">
-            <div class="container mx-auto px-6">
-                <div class="md:flex md:items-center md:gap-12">
-                    <div class="md:w-1/3 text-center mb-8 md:mb-0 flex-shrink-0">
-                        <img src="https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/main/Profile%20Picture.png" alt="Fotografía del autor Carlos Ramírez" class="w-64 h-64 mx-auto rounded-full shadow-xl object-cover" onerror="this.onerror=null;this.src='https://placehold.co/256x256/ccc/333?text=Autor';">
-                    </div>
-                    <div class="md:w-2/3">
-                        <h2 class="text-4xl text-zinc-800 mb-4">Sobre Carlos Ramírez Hernández</h2>
-                        <p class="text-[--color-text-secondary] leading-relaxed mb-4">Inspirado por los mundos de La Tierra Media, Temerant y otros cientos de universos, las historias de Carlos exploran lo extraordinario en lo cotidiano y lo humano en lo extraño.</p>
-                        <a href="./autor.html" class="inline-block mt-6 font-bold text-[--color-accent] hover:underline">Conoce mejor a Carlos &rarr;</a>
-                    </div>
+            <!-- Formulario simplificado que apunta al nuevo endpoint de Formspree -->
+            <form action="https://formspree.io/f/movwbwev" method="POST" class="max-w-md mx-auto mt-12">
+                <div class="mb-6">
+                    <label for="email" class="block mb-2 text-sm font-medium text-zinc-700 sr-only">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico aquí" class="w-full px-4 py-3 bg-stone-50 border border-stone-300 rounded-lg text-lg text-center focus:ring-2 focus:ring-[--color-accent] focus:border-[--color-accent] transition" required>
                 </div>
-            </div>
-        </section>
-
-        <!-- ===== SECCIÓN DE NOTICIAS (SEPARADOR MODIFICADO) ===== -->
-        <!--
-        <section id="noticias" class="py-8 mb-16">
-            <div class="container mx-auto px-6">
-                <h2 class="title-separator text-4xl text-zinc-800 mb-12">Últimas Noticias</h2>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                    <div class="flex items-start gap-6 p-6 rounded-lg transition-all duration-300 bg-white border border-stone-200 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-[--color-accent] text-3xl mt-1"><i class="fas fa-calendar-alt"></i></div>
-                        <div>
-                            <p class="text-sm text-zinc-500 mb-1">15 de Julio, 2025</p>
-                            <h3 class="text-2xl text-zinc-800 mb-2">Ejemplo evento</h3>
-                            <p class="text-[--color-text-secondary]">Estaré en la librería Rata Corner de Palma para charlar sobre 'Una Melodía de Silencio'.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 p-6 rounded-lg transition-all duration-300 bg-white border border-stone-200 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-[--color-accent] text-3xl mt-1"><i class="fas fa-bullhorn"></i></div>
-                        <div>
-                            <p class="text-sm text-zinc-500 mb-1">1 de Septiembre, 2025</p>
-                            <h3 class="text-2xl text-zinc-800 mb-2">Ejemplo gira</h3>
-                            <p class="text-[--color-text-secondary]">Pronto anunciaré las fechas para la gira de firmas en Dinamarca.</p>
-                        </div>
-                    </div>
+                <div class="text-center mt-6">
+                    <button type="submit" class="cta-button text-white font-bold py-3 px-10 rounded-full text-lg">AVÍSAME</button>
                 </div>
-                <div class="text-center mt-12">
-                    <a href="./noticias.html" class="cta-button text-white font-bold py-3 px-8 rounded-lg">Ver todas las noticias</a>
-                </div>
-            </div>
-        </section>
-        -->
+                <p class="text-xs text-center text-zinc-500 mt-8">Respeto tu privacidad. No recibirás spam. Consulta la <a href="./politica-de-privacidad.html" class="underline hover:text-[--color-accent]">Política de Privacidad</a>.</p>
+            </form>
+        </div>
     </main>
 
-    <!-- =================================================================== -->
-    <!-- ===== FOOTER (OSCURO) CON NEWSLETTER Y MEJORAS RGPD           ===== -->
-    <!-- =================================================================== -->
-    <footer class="dark-section py-12 mt-16">
+    <!-- ===== FOOTER ===== -->
+    <footer class="dark-section py-12 mt-8">
         <div class="container mx-auto px-6">
-             <div class="max-w-2xl mx-auto text-center mb-10">
+            <div class="max-w-2xl mx-auto text-center mb-10">
                  <h3 class="text-2xl">Únete a la Comunidad</h3>
                  <p class="mt-2 text-[--color-dark-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
                 <form id="newsletter-form" class="mt-6">
@@ -258,9 +151,7 @@
         </div>
     </footer>
 
-    <!-- =================================================================== -->
-    <!-- ===== ELEMENTOS FLOTANTES Y MODALES (CON SÍMBOLO SECRETO)     ===== -->
-    <!-- =================================================================== -->
+    <!-- ===== ELEMENTOS FLOTANTES Y MODALES ===== -->
     <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
         <i class="fas fa-arrow-up"></i>
     </a>
@@ -274,9 +165,7 @@
         </div>
     </div>
 
-    <!-- =================================================================== -->
-    <!-- ===== SCRIPT PRINCIPAL (VERSIÓN SEGURA Y COMPLETA)            ===== -->
-    <!-- =================================================================== -->
+    <!-- ===== SCRIPT PRINCIPAL ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -333,64 +222,27 @@
             }
 
             // --- CÓDIGO GENÉRICO (MENÚ, AÑO, EASTER EGG, ETC.) ---
-            const initModal = (triggerBtnId, overlayId, closeBtnId, modalId) => {
-                const triggerBtn = document.getElementById(triggerBtnId);
-                const overlay = document.getElementById(overlayId);
-                const closeBtn = document.getElementById(closeBtnId);
-                const modal = document.getElementById(modalId);
-
-                if (triggerBtn && overlay && closeBtn && modal) {
-                    const openModal = () => {
-                        overlay.classList.remove('hidden');
-                        setTimeout(() => {
-                            overlay.classList.add('opacity-100');
-                            modal.classList.add('show');
-                        }, 10);
-                    };
-
-                    const closeModal = () => {
-                        overlay.classList.remove('opacity-100');
-                        modal.classList.remove('show');
-                        setTimeout(() => overlay.classList.add('hidden'), 300);
-                    };
-
-                    triggerBtn.addEventListener('click', openModal);
-                    closeBtn.addEventListener('click', closeModal);
-                    overlay.addEventListener('click', (e) => {
-                        if (e.target === overlay) closeModal();
-                    });
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === "Escape" && !overlay.classList.contains('hidden')) {
-                            closeModal();
-                        }
-                    });
-                }
-            };
-
-            initModal('easter-egg-trigger', 'secret-modal-overlay', 'close-secret-modal-btn', 'secret-modal');
-
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
             }
 
             const yearSpan = document.getElementById('year');
-            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); }
-                });
-            }, { rootMargin: '0px 0px -100px 0px' });
-            const sections = document.querySelectorAll('.fade-in-section');
-            sections.forEach(section => { observer.observe(section); });
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
 
             const backToTopBtn = document.getElementById('back-to-top-btn');
             if (backToTopBtn) {
                 window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) { backToTopBtn.classList.add('show'); }
-                    else { backToTopBtn.classList.remove('show'); }
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                    }
                 });
                 backToTopBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -398,30 +250,42 @@
                 });
             }
 
-            // LÓGICA DE NAVEGACIÓN ACTIVA CORREGIDA
             const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname;
-
+            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
             navLinks.forEach(link => {
-                // Usamos 'link.pathname' que es la forma más segura de obtener la ruta del enlace.
-                const linkPath = link.pathname;
-
-                // Normalizamos las rutas para asegurarnos de que no haya barras finales
-                const cleanCurrentPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
-                const cleanLinkPath = linkPath.endsWith('/') && linkPath.length > 1 ? linkPath.slice(0, -1) : linkPath;
-
-                // Comparamos las rutas
-                if (cleanLinkPath === cleanCurrentPath) {
+                const linkPath = link.getAttribute('href').split('/').pop();
+                if (linkPath === currentPath) {
                     link.classList.add('nav-active');
-                }
-                // Caso especial para la página de inicio, donde la ruta puede ser '/'
-                else if (cleanCurrentPath === '/' && cleanLinkPath.endsWith('/index.html')) {
-                    link.classList.add('nav-active');
-                }
-                else {
-                    link.classList.remove('nav-active');
                 }
             });
+
+            const easterEggTrigger = document.getElementById('easter-egg-trigger');
+            const secretModalOverlay = document.getElementById('secret-modal-overlay');
+            if (easterEggTrigger && secretModalOverlay) {
+                const closeSecretModalBtn = document.getElementById('close-secret-modal-btn');
+                const openModal = () => {
+                    secretModalOverlay.classList.remove('hidden');
+                    setTimeout(() => {
+                        secretModalOverlay.classList.add('opacity-100');
+                        document.getElementById('secret-modal').classList.add('show');
+                    }, 10);
+                };
+                const closeModal = () => {
+                    secretModalOverlay.classList.remove('opacity-100');
+                    document.getElementById('secret-modal').classList.remove('show');
+                    setTimeout(() => secretModalOverlay.classList.add('hidden'), 300);
+                };
+                easterEggTrigger.addEventListener('click', openModal);
+                closeSecretModalBtn.addEventListener('click', closeModal);
+                secretModalOverlay.addEventListener('click', (e) => {
+                    if (e.target === secretModalOverlay) closeModal();
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === "Escape" && !secretModalOverlay.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                });
+            }
         });
     </script>
 </body>
