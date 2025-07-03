@@ -1,0 +1,50 @@
+# Archivo 2: Crea este archivo en la ruta /admin/config.yml
+
+# Configuración del backend para usar Netlify y GitHub
+backend:
+  name: git-gateway
+  branch: main # Asegúrate de que esta es tu rama principal en GitHub
+
+# Configuración para las imágenes que subas desde el CMS
+media_folder: "public/images/uploads" # Dónde se guardarán las imágenes
+public_folder: "/images/uploads" # Cómo se accederá a ellas desde la web
+
+# Definición de las colecciones de contenido
+collections:
+  # === COLECCIÓN PARA ARTÍCULOS DEL BLOG ===
+  - name: "blog"
+    label: "Artículos del Blog"
+    folder: "src/content/blog" # Dónde se guardarán los archivos
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título del Artículo", name: "title", widget: "string" }
+      - { label: "Fecha de Publicación", name: "pubDate", widget: "datetime" }
+      - { label: "Descripción Corta (para vistas previas)", name: "description", widget: "string" }
+      - { label: "Imagen Destacada", name: "heroImage", widget: "image", required: false }
+      - { label: "Cuerpo del Artículo", name: "body", widget: "markdown" }
+
+  # === COLECCIÓN PARA NOTICIAS CORTAS ===
+  - name: "news"
+    label: "Noticias"
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titular de la Noticia", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Resumen Corto", name: "summary", widget: "text" }
+      - { label: "Enlace Externo (Opcional)", name: "link", widget: "string", required: false }
+
+  # === COLECCIÓN PARA EVENTOS ===
+  - name: "events"
+    label: "Eventos"
+    folder: "src/content/events"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre del Evento", name: "title", widget: "string" }
+      - { label: "Fecha y Hora del Evento", name: "eventDate", widget: "datetime" }
+      - { label: "Lugar (Ciudad, Librería, etc.)", name: "location", widget: "string" }
+      - { label: "Descripción Corta", name: "description", widget: "text", required: false }
+      - { label: "Enlace para Entradas/Info", name: "link", widget: "string", required: false }
