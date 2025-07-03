@@ -25,23 +25,30 @@
         {
           "@type": "WebSite",
           "name": "Carlos Ramírez Hernández - Sitio Oficial",
-          "url": "https://URL-DEL-SITIO-WEB.com/",
+          "url": "https://carlosramirezhernandez.com/",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://URL-DEL-SITIO-WEB.com/search?q={search_term_string}",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://carlosramirezhernandez.com/?s={search_term_string}"
+            },
             "query-input": "required name=search_term_string"
           }
         },
         {
           "@type": "Person",
-          "@id": "https://URL-DEL-SITIO-WEB.com/#person",
+          "@id": "https://carlosramirezhernandez.com/#person",
           "name": "Carlos Ramírez Hernández",
-          "url": "https://URL-DEL-SITIO-WEB.com/autor.html",
+          "url": "https://carlosramirezhernandez.com/autor.html",
            "sameAs": [
-            "https://twitter.com/tu-usuario-de-twitter",
-            "https://www.instagram.com/tu-usuario-de-instagram",
-            "https://www.goodreads.com/author/show/tu-id-de-goodreads"
-          ]
+            "https://twitter.com/TU_USUARIO_DE_TWITTER",
+            "https://www.instagram.com/TU_USUARIO_DE_INSTAGRAM",
+            "https://www.goodreads.com/author/show/TU_ID_DE_GOODREADS"
+          ],
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://carlosramirezhernandez.com/"
+          }
         }
       ]
     }
@@ -110,7 +117,7 @@
                     <a href="./index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
                     <a href="./una-melodia-de-silencio.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
                     <a href="./autor.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Sobre Carlos</a>
-                    <a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>
+                    <!--<a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>-->
                     <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
                 </nav>
                 <div class="hidden md:block">
@@ -125,7 +132,7 @@
             <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
             <a href="./una-melodia-de-silencio.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
             <a href="./autor.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre Carlos</a>
-            <a href="./noticias.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Noticias</a>
+           <!-- <a href="./noticias.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Noticias</a>-->
             <a href="./contacto.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Contacto</a>
         </div>
     </header>
@@ -239,7 +246,7 @@
                 <a href="./index.html" class="footer-link">Inicio</a>
                 <a href="./una-melodia-de-silencio.html" class="footer-link">El Libro</a>
                 <a href="./autor.html" class="footer-link">Sobre Carlos</a>
-                <a href="./noticias.html" class="footer-link">Noticias</a>
+               <!-- <a href="./noticias.html" class="footer-link">Noticias</a>-->
                 <a href="./contacto.html" class="footer-link">Contacto</a>
                 <a href="./politica-de-privacidad.html" class="footer-link">Política de Privacidad</a>
             </nav>
