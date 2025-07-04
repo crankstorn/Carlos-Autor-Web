@@ -38,57 +38,52 @@ function displayPosts(posts) {
     postsContainer.innerHTML = ''; // Limpiar el contenedor
 
     posts.forEach((post, index) => {
-      const { title, slug, category, summary, date, content, image } = post.fields;
-
-      // --- INICIO DE LA NUEVA LÓGICA ---
+      const { title, slug, category, date, content } = post.fields;
 
       let displayContent;
-      let readMoreLink = ''; // Por defecto, no hay enlace "Leer más"
+      let readMoreLink = '';
+      // Clase especial para el wrapper del contenido
+      let contentWrapperClass = 'text-zinc-700 leading-relaxed text-center';
 
-      // Si es el primer post (el más reciente), muestra el contenido completo.
       if (index === 0) {
-        displayContent = content; // Usamos el campo de contenido principal
-      }
-      // Para todos los demás posts, muestra un extracto.
-      else {
-        // Creamos un extracto de los primeros 400 caracteres del contenido.
-        displayContent = content.substring(0, 400) + ' [...]';
-        // Y añadimos el enlace "Leer más".
+        displayContent = content; // Contenido completo para el más reciente
+      } else {
+        displayContent = content; // También el contenido completo...
+        // ...pero le añadimos una clase para truncarlo con CSS
+        contentWrapperClass += ' truncated-content';
         readMoreLink = `<a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>`;
       }
-
-      // --- FIN DE LA NUEVA LÓGICA ---
 
       const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
 
       const postElement = document.createElement('article');
-      // Eliminamos las clases de la tarjeta (sombra, fondo, padding, etc.)
-      postElement.className = 'py-8';
+      // Reducimos el padding vertical para disminuir el espacio
+      postElement.className = 'py-6';
 
       postElement.innerHTML = `
-        <div class="text-sm text-zinc-500 mb-2">
+        <div class="text-sm text-zinc-500 mb-2 text-center">
           <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${category}</span>
           <span>&middot; ${postDate}</span>
         </div>
-        <h2 class="text-3xl font-serif mb-4">
+        <h2 class="text-3xl font-serif mb-4 text-center">
           <a href="post.html?slug=${slug || '#'}" class="hover:text-[--color-accent] transition-colors">${title}</a>
         </h2>
 
-        <div class="text-zinc-700 space-y-4 leading-relaxed">
+        <div class="${contentWrapperClass}">
             ${displayContent}
         </div>
 
-        <div class="mt-4">
+        <div class="mt-4 text-center">
             ${readMoreLink}
         </div>
       `;
 
       postsContainer.appendChild(postElement);
 
-      // Añadimos un separador después de cada post, excepto el último.
       if (index < posts.length - 1) {
           const separator = document.createElement('hr');
-          separator.className = 'my-6 border-t border-zinc-200'; // Estilo de la línea
+          // Reducimos el margen del separador
+          separator.className = 'my-4 border-t border-zinc-200';
           postsContainer.appendChild(separator);
       }
     });
