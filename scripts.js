@@ -21,7 +21,10 @@ function initializePageScripts() {
 
                 const emailInput = document.getElementById('newsletter-email');
                 const email = emailInput.value;
-                const FUNCTION_URL = '/.netlify/functions/subscribe'; // Ajusta si es necesario
+
+                // === CORRECCIÓN: Se restaura el ID del grupo de MailerLite ===
+                const MAILERLITE_GROUP_ID = '158756233196602950';
+                const FUNCTION_URL = '/.netlify/functions/subscribe';
 
                 feedbackDiv.textContent = 'Procesando...';
                 feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
@@ -31,7 +34,11 @@ function initializePageScripts() {
                     const response = await fetch(FUNCTION_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: email }), // Adapta el payload si tu función necesita más datos
+                        // === CORRECCIÓN: Se vuelve a enviar el groupId ===
+                        body: JSON.stringify({
+                            email: email,
+                            groupId: MAILERLITE_GROUP_ID
+                        }),
                     });
 
                     if (response.ok) {
@@ -91,7 +98,6 @@ function initializePageScripts() {
         }
     };
 
-    // Inicializar todos los modales que puedan existir
     initModal('easter-egg-trigger', 'secret-modal-overlay', 'close-secret-modal-btn', 'secret-modal');
     initModal('open-stores-modal-btn', 'other-stores-modal-overlay', 'close-stores-modal-btn', 'other-stores-modal');
 
@@ -142,11 +148,14 @@ function initializePageScripts() {
 
     // --- LÓGICA DE NAVEGACIÓN ACTIVA ---
     const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-    const currentPath = window.location.pathname.replace(/\/$/, ''); // Elimina la barra final si existe
+    const currentPath = window.location.pathname.replace(/\/$/, '');
     if (navLinks.length > 0) {
         navLinks.forEach(link => {
+            // Usamos new URL para obtener la ruta de forma segura, incluso con URLs completas
             const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
-            // Compara la ruta actual con la del enlace
+
+            // Comparamos la ruta actual con la del enlace.
+            // El segundo caso es para la página de inicio, que puede ser / o /index.html
             if (linkPath === currentPath || (currentPath === '' && linkPath.endsWith('/index.html'))) {
                 link.classList.add('nav-active');
                 link.setAttribute('aria-current', 'page');
