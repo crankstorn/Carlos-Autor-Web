@@ -37,43 +37,60 @@ document.addEventListener('DOMContentLoaded', () => {
 function displayPosts(posts) {
     postsContainer.innerHTML = ''; // Limpiar el contenedor
 
-    posts.forEach(post => {
-      // Accede directamente a post.fields, que contiene todos tus datos.
-      const { title, slug, category, summary, date, image } = post.fields;
+    posts.forEach((post, index) => {
+      const { title, slug, category, summary, date, content, image } = post.fields;
 
-      let imageHTML = '';
-      if (image && image.fields && image.fields.file) {
-        const imageUrl = 'https:' + image.fields.file.url;
-        const imageAlt = image.fields.description || title || "Imagen del post";
-        imageHTML = `
-          <a href="post.html?slug=${slug || '#'}">
-              <img src="${imageUrl}" alt="${imageAlt}" class="w-full h-64 object-cover rounded-md mb-6">
-          </a>
-        `;
+      // --- INICIO DE LA NUEVA LÓGICA ---
+
+      let displayContent;
+      let readMoreLink = ''; // Por defecto, no hay enlace "Leer más"
+
+      // Si es el primer post (el más reciente), muestra el contenido completo.
+      if (index === 0) {
+        displayContent = content; // Usamos el campo de contenido principal
+      }
+      // Para todos los demás posts, muestra un extracto.
+      else {
+        // Creamos un extracto de los primeros 400 caracteres del contenido.
+        displayContent = content.substring(0, 400) + ' [...]';
+        // Y añadimos el enlace "Leer más".
+        readMoreLink = `<a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>`;
       }
 
-      // Usa los valores, con un respaldo por si alguno es nulo.
-      const postTitle = title || "Título no disponible";
-      const postCategory = category || "General";
-      const postSummary = summary || "";
+      // --- FIN DE LA NUEVA LÓGICA ---
+
       const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
 
       const postElement = document.createElement('article');
-      postElement.className = 'bg-white/5 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300';
+      // Eliminamos las clases de la tarjeta (sombra, fondo, padding, etc.)
+      postElement.className = 'py-8';
 
       postElement.innerHTML = `
-        ${imageHTML}
-        <div class="text-sm text-zinc-400 mb-2">
-          <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${postCategory}</span>
+        <div class="text-sm text-zinc-500 mb-2">
+          <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${category}</span>
           <span>&middot; ${postDate}</span>
         </div>
-        <h2 class="text-3xl font-serif mb-3">
-          <a href="post.html?slug=${slug || '#'}" class="hover:text-[--color-accent] transition-colors">${postTitle}</a>
+        <h2 class="text-3xl font-serif mb-4">
+          <a href="post.html?slug=${slug || '#'}" class="hover:text-[--color-accent] transition-colors">${title}</a>
         </h2>
-        <p class="text-zinc-400 mb-6">${postSummary}</p>
-        <a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>
+
+        <div class="text-zinc-700 space-y-4 leading-relaxed">
+            ${displayContent}
+        </div>
+
+        <div class="mt-4">
+            ${readMoreLink}
+        </div>
       `;
+
       postsContainer.appendChild(postElement);
+
+      // Añadimos un separador después de cada post, excepto el último.
+      if (index < posts.length - 1) {
+          const separator = document.createElement('hr');
+          separator.className = 'my-6 border-t border-zinc-200'; // Estilo de la línea
+          postsContainer.appendChild(separator);
+      }
     });
 }
 
