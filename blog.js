@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
             // CAMBIO: Menos espacio entre posts (my-3)
-            separator.className = 'my-2 mx-auto w-20 border-t border-zinc-400';
+            separator.className = 'my-3 mx-auto w-20 border-t border-zinc-400';
             postsContainer.appendChild(separator);
         }
       });
