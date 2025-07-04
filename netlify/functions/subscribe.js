@@ -1,5 +1,8 @@
 // netlify/functions/subscribe.js
 
+// Importa la herramienta 'fetch' para que la función pueda usarla.
+const fetch = require('node-fetch');
+
 exports.handler = async function(event) {
   // Solo aceptamos peticiones POST
   if (event.httpMethod !== 'POST') {
@@ -11,7 +14,7 @@ exports.handler = async function(event) {
     const apiKey = process.env.MAILERLITE_API_KEY;
 
     if (!email || !groupId) {
-      return { statusCode: 400, body: 'Email y Group ID son requeridos.' };
+      return { statusCode: 400, body: JSON.stringify({ message: 'Email y Group ID son requeridos.' }) };
     }
 
     const mailerliteUrl = 'https://connect.mailerlite.com/api/subscribers';
@@ -25,14 +28,17 @@ exports.handler = async function(event) {
       body: JSON.stringify({
         email: email,
         groups: [groupId],
+        // Puedes añadir más campos si los necesitas
       })
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      // Si MailerLite da un error, lo pasamos al frontend
-      return { statusCode: response.status, body: JSON.stringify(data) };
+      // Si MailerLite da un error (ej: email ya suscrito), lo pasamos al frontend
+      // El error de MailerLite suele estar en data.error.message
+      const errorMessage = data.message || 'Error en la suscripción.';
+      return { statusCode: response.status, body: JSON.stringify({ message: errorMessage }) };
     }
 
     return {
@@ -41,6 +47,7 @@ exports.handler = async function(event) {
     };
 
   } catch (error) {
-    return { statusCode: 500, body: `Error interno del servidor: ${error.message}` };
+    console.error('Error en la función de Netlify:', error);
+    return { statusCode: 500, body: JSON.stringify({ message: `Error interno del servidor: ${error.message}` }) };
   }
 };
