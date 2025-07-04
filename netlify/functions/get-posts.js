@@ -1,10 +1,15 @@
 // Ruta: netlify/functions/get-posts.js
 
+// Solo requerimos 'contentful' al principio, que sí usa el sistema antiguo.
 const contentful = require('contentful');
 
+// La función principal se mantiene igual.
 exports.handler = async function(event) {
-  // Importamos 'marked' de forma dinámica. Esto es crucial.
+  // --- INICIO DE LA CORRECCIÓN ---
+  // Importamos 'marked' de forma dinámica dentro de la función asíncrona.
+  // Esto es compatible con los ES Modules.
   const { marked } = await import('marked');
+  // --- FIN DE LA CORRECCIÓN ---
 
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
   const { slug } = event.queryStringParameters;
@@ -34,8 +39,7 @@ exports.handler = async function(event) {
 
     const response = await client.getEntries(queryOptions);
 
-    // --- LA TRADUCCIÓN OCURRE AQUÍ ---
-    // Este bloque convierte el Markdown de Contently a HTML.
+    // El resto del código funciona igual, porque 'marked' ya está cargado.
     const processedItems = response.items.map(item => {
       if (item.fields.content) {
         item.fields.content = marked.parse(item.fields.content);
