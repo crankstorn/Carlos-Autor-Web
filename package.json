@@ -9,6 +9,7 @@
   "author": "Carlos Ramirez Hernandez",
   "license": "ISC",
   "dependencies": {
-    "contentful": "^10.0.0"
+    "contentful": "^10.0.0",
+    "marked": "^16.0.0"
   }
 }
