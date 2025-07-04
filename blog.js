@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function loadBlogPosts() {
-    // MENSAJE DE CARGA RESTAURADO
     postsContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículos...</p>';
 
     try {
@@ -17,33 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const posts = await response.json();
 
-      // ESTA LÍNEA ES LA QUE NECESITAMOS AÑADIR
       console.log('Datos recibidos de Contentful:', posts);
 
       if (posts.length === 0) {
         postsContainer.innerHTML = '<p class="text-center text-zinc-400">Aún no hay artículos publicados.</p>';
         return;
       }
-    try {
-      const response = await fetch('/.netlify/functions/get-posts');
 
-      if (!response.ok) {
-        throw new Error(`Error del servidor: ${response.statusText}`);
-      }
-
-      const posts = await response.json();
-
-      if (posts.length === 0) {
-        postsContainer.innerHTML = '<p class="text-center text-zinc-400">Aún no hay artículos publicados.</p>';
-        return;
-      }
-
+      // ===== CORRECCIÓN 1: Se ha eliminado el bloque try...catch duplicado que estaba aquí =====
+      // Ahora se llama directamente a las funciones para mostrar el contenido.
       displayPosts(posts);
       displayCategories(posts);
 
     } catch (error) {
       console.error('Error al cargar el blog:', error);
-      // MENSAJE DE ERROR RESTAURADO
       postsContainer.innerHTML = '<p class="text-center text-red-500">No se pudieron cargar los artículos. Inténtalo de nuevo más tarde.</p>';
     }
   }
@@ -52,46 +38,40 @@ function displayPosts(posts) {
     postsContainer.innerHTML = ''; // Limpiar el contenedor
 
     posts.forEach(post => {
-      const fields = post.fields;
+      // Accede directamente a post.fields, que contiene todos tus datos.
+      const { title, slug, category, summary, date, image } = post.fields;
 
-      // --- LÓGICA MODIFICADA PARA LA IMAGEN ---
-      // 1. Creamos una variable para el HTML de la imagen
       let imageHTML = '';
-
-      // 2. Si el campo "image" existe en los datos, llenamos la variable
-      if (fields.image) {
-        const imageUrl = fields.image.fields.file.url;
-        const imageAlt = fields.title || "Imagen del post";
+      if (image && image.fields && image.fields.file) {
+        const imageUrl = 'https:' + image.fields.file.url;
+        const imageAlt = image.fields.description || title || "Imagen del post";
         imageHTML = `
-          <a href="post.html?slug=${fields.slug || '#'}">
+          <a href="post.html?slug=${slug || '#'}">
               <img src="${imageUrl}" alt="${imageAlt}" class="w-full h-64 object-cover rounded-md mb-6">
           </a>
         `;
       }
-      // --- FIN DE LA LÓGICA MODIFICADA ---
 
-      // Asignamos valores por defecto para los otros campos por si están vacíos
-      const title = fields.title || "Título no disponible";
-      const slug = fields.slug || "#";
-      const category = fields.category || "General";
-      const summary = fields.summary || ""; // Dejar vacío si no hay resumen
-      const date = fields.date ? new Date(fields.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "";
+      // Usa los valores, con un respaldo por si alguno es nulo.
+      const postTitle = title || "Título no disponible";
+      const postCategory = category || "General";
+      const postSummary = summary || "";
+      const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
 
       const postElement = document.createElement('article');
       postElement.className = 'bg-white/5 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300';
 
-      // 3. Insertamos la variable imageHTML. Si no había imagen, no se insertará nada.
       postElement.innerHTML = `
         ${imageHTML}
         <div class="text-sm text-zinc-400 mb-2">
-          <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${category}</span>
-          ${date ? `&middot; <span>${date}</span>` : ''}
+          <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${postCategory}</span>
+          <span>&middot; ${postDate}</span>
         </div>
         <h2 class="text-3xl font-serif mb-3">
-          <a href="post.html?slug=${slug}" class="hover:text-[--color-accent] transition-colors">${title}</a>
+          <a href="post.html?slug=${slug || '#'}" class="hover:text-[--color-accent] transition-colors">${postTitle}</a>
         </h2>
-        <p class="text-zinc-400 mb-6">${summary}</p>
-        <a href="post.html?slug=${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>
+        <p class="text-zinc-400 mb-6">${postSummary}</p>
+        <a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>
       `;
       postsContainer.appendChild(postElement);
     });
@@ -100,7 +80,8 @@ function displayPosts(posts) {
   function displayCategories(posts) {
       if (!categoriesContainer) return;
 
-      const allCategories = [...new Set(posts.map(p => p.fields.categoria).filter(Boolean))];
+      // ===== CORRECCIÓN 2: Se usa el ID de campo correcto "category" en lugar de "categoria" =====
+      const allCategories = [...new Set(posts.map(p => p.fields.category).filter(Boolean))];
 
       categoriesContainer.innerHTML = '<a href="/blog.html" class="hover:text-[--color-accent] transition-colors">Todo</a>';
 
