@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let displayContent;
         let readMoreLink = '';
-        // 1. CENTRADO: Añadimos la clase 'text-center' para centrar el texto del contenido.
         let contentWrapperClass = 'text-zinc-700 leading-relaxed text-center';
 
         if (index === 0) {
@@ -52,34 +51,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
 
         const postElement = document.createElement('article');
-        // 2. ESPACIADO: Reducimos el padding vertical del artículo para que sea más compacto.
         postElement.className = 'py-4';
 
+        // --- INICIO DE LA REESTRUCTURACIÓN ---
         postElement.innerHTML = `
-          <div class="text-sm text-zinc-500 mb-2 text-center">
-            <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${category}</span>
-            <span>&middot; ${postDate}</span>
-          </div>
-          <h2 class="text-3xl font-serif mb-4 text-center">
+          <h2 class="text-4xl font-serif mb-2 text-center">
             <a href="post.html?slug=${slug || '#'}" class="hover:text-[--color-accent] transition-colors">${title}</a>
           </h2>
+
+          <div class="text-sm text-zinc-400 mb-6 text-center uppercase tracking-wider">
+            <span>${postDate}</span>
+          </div>
 
           <div class="${contentWrapperClass}">
               ${displayContent}
           </div>
 
-          <div class="mt-4 text-center">
-              ${readMoreLink}
+          <div class="mt-6 text-center text-sm">
+            ${readMoreLink}
+            <!-- Añadimos un separador si hay enlace "Leer más" -->
+            ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
+            <span class="text-zinc-500">Publicado en <span class="font-semibold text-zinc-600 uppercase tracking-wider">${category}</span></span>
           </div>
         `;
+        // --- FIN DE LA REESTRUCTURACIÓN ---
 
         postsContainer.appendChild(postElement);
 
-        // Añadimos el separador después de cada post, excepto el último.
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
-            // 3. SEPARADOR: Más corto (w-20), centrado (mx-auto), más oscuro (border-zinc-300) y con más margen vertical (my-12).
-            separator.className = 'my-12 mx-auto w-20 border-t border-zinc-300';
+            // SEPARADOR: Más denso (border-zinc-400)
+            separator.className = 'my-12 mx-auto w-20 border-t border-zinc-400';
             postsContainer.appendChild(separator);
         }
       });
