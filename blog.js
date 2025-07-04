@@ -34,33 +34,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function displayPosts(posts) {
-    postsContainer.innerHTML = '';
+function displayPosts(posts) {
+    postsContainer.innerHTML = ''; // Limpiar el mensaje de "Cargando..."
 
     posts.forEach(post => {
       const fields = post.fields;
-      const imageUrl = fields.imagenDePortada?.fields.file.url || 'https://placehold.co/800x400/1A202C/FDFBF7?text=CR';
+
+      // CORRECCIÓN: El campo de imagen es "image"
+      const imageUrl = fields.image?.fields.file.url || 'https://placehold.co/800x400/1A202C/FDFBF7?text=CR';
 
       const postElement = document.createElement('article');
       postElement.className = 'bg-white/5 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300';
 
       postElement.innerHTML = `
         <a href="post.html?slug=${fields.slug}">
-            <img src="${imageUrl}" alt="Imagen de portada para ${fields.titulo}" class="w-full h-64 object-cover rounded-md mb-6">
+            <img src="${imageUrl}" alt="Imagen de portada para ${fields.title}" class="w-full h-64 object-cover rounded-md mb-6">
         </a>
         <div class="text-sm text-zinc-400 mb-2">
-          <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${fields.categoria}</span> &middot;
-          <span>${new Date(fields.fechaDePublicacion).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${fields.category}</span> &middot;
+          <span>${new Date(fields.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         </div>
         <h2 class="text-3xl font-serif mb-3">
-          <a href="post.html?slug=${fields.slug}" class="hover:text-[--color-accent] transition-colors">${fields.titulo}</a>
+          <a href="post.html?slug=${fields.slug}" class="hover:text-[--color-accent] transition-colors">${fields.title}</a>
         </h2>
-        <p class="text-zinc-400 mb-6">${fields.resumen}</p>
+        <p class="text-zinc-400 mb-6">${fields.summary}</p>
         <a href="post.html?slug=${fields.slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>
       `;
       postsContainer.appendChild(postElement);
     });
-  }
+}
 
   function displayCategories(posts) {
       if (!categoriesContainer) return;
