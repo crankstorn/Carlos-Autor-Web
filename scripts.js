@@ -2,66 +2,60 @@
 
 function initializePageScripts() {
 
-    // --- MANEJO DE LA NEWSLETTER CON NETLIFY Y RGPD ---
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        const submitButton = document.getElementById('newsletter-submit-btn');
-        const consentCheckbox = document.getElementById('gdpr-consent');
-        const feedbackDiv = document.getElementById('newsletter-feedback');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        if (submitButton && consentCheckbox) {
-            submitButton.disabled = true;
-            consentCheckbox.addEventListener('change', () => {
-                submitButton.disabled = !consentCheckbox.checked;
-            });
-
-            newsletterForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                if (!consentCheckbox.checked) return;
-
-                const emailInput = document.getElementById('newsletter-email');
-                const email = emailInput.value;
-
-                // === CORRECCIÓN: Se restaura el ID del grupo de MailerLite ===
-                const MAILERLITE_GROUP_ID = '158756233196602950';
-                const FUNCTION_URL = '/.netlify/functions/subscribe';
-
-                feedbackDiv.textContent = 'Procesando...';
-                feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
+            // --- MANEJO DE LA NEWSLETTER CON NETLIFY Y RGPD ---
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                const submitButton = document.getElementById('newsletter-submit-btn');
+                const consentCheckbox = document.getElementById('gdpr-consent');
                 submitButton.disabled = true;
-
-                try {
-                    const response = await fetch(FUNCTION_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        // === CORRECCIÓN: Se vuelve a enviar el groupId ===
-                        body: JSON.stringify({
-                            email: email,
-                            groupId: MAILERLITE_GROUP_ID
-                        }),
-                    });
-
-                    if (response.ok) {
-                        feedbackDiv.textContent = '¡Gracias por suscribirte!';
-                        feedbackDiv.className = 'mt-4 text-sm h-5 text-green-400';
-                        newsletterForm.reset();
-                        consentCheckbox.checked = false;
-                        submitButton.disabled = true;
-                    } else {
-                        const errorData = await response.json();
-                        feedbackDiv.textContent = errorData.message || 'El email es inválido o ya está suscrito.';
+                consentCheckbox.addEventListener('change', () => {
+                    submitButton.disabled = !consentCheckbox.checked;
+                });
+                newsletterForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    if (!consentCheckbox.checked) return;
+                    const form = e.target;
+                    const emailInput = document.getElementById('newsletter-email');
+                    const feedbackDiv = document.getElementById('newsletter-feedback');
+                    const email = emailInput.value;
+                    const MAILERLITE_GROUP_ID = '158756233196602950';
+                    const FUNCTION_URL = '/.netlify/functions/subscribe';
+                    feedbackDiv.textContent = 'Procesando...';
+                    feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
+                    submitButton.disabled = true;
+                    try {
+                        const response = await fetch(FUNCTION_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: email,
+                                groupId: MAILERLITE_GROUP_ID
+                            }),
+                        });
+                        if (response.ok) {
+                            feedbackDiv.textContent = '¡Gracias por suscribirte!';
+                            feedbackDiv.className = 'mt-4 text-sm h-5 text-green-400';
+                            form.reset();
+                            consentCheckbox.checked = false;
+                            submitButton.disabled = true;
+                        } else {
+                            const errorData = await response.json();
+                            const errorMessage = errorData.message || 'El email es inválido o ya está suscrito.';
+                            feedbackDiv.textContent = errorMessage;
+                            feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
+                            submitButton.disabled = false;
+                        }
+                    } catch (error) {
+                        feedbackDiv.textContent = 'Ocurrió un error. Inténtalo de nuevo.';
                         feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
+                        console.error('Error en la suscripción:', error);
                         submitButton.disabled = false;
                     }
-                } catch (error) {
-                    feedbackDiv.textContent = 'Ocurrió un error. Inténtalo de nuevo.';
-                    feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
-                    console.error('Error en la suscripción:', error);
-                    submitButton.disabled = false;
-                }
-            });
-        }
-    }
+                });
+            }
+
 
     // --- INICIALIZADOR DE MODALES ---
     const initModal = (triggerBtnId, overlayId, closeBtnId, modalId) => {
