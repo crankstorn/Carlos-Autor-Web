@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
-            separator.className = 'my-6 mx-auto w-20 border-t border-zinc-500';
+            separator.className = 'my-4 mx-auto w-20 border-t border-zinc-500';
             postsContainer.appendChild(separator);
         }
       });
