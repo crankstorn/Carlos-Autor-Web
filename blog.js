@@ -80,8 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
-            // SEPARADOR: Más denso (border-zinc-400)
-            separator.className = 'my-12 mx-auto w-20 border-t border-zinc-400';
+            separator.className = 'my-8 mx-auto w-20 border-t border-zinc-500';
             postsContainer.appendChild(separator);
         }
       });
