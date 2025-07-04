@@ -32,6 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // --- INICIO SEPARADOR TRISKEL ---
+      // Comprueba si el separador ya existe para no duplicarlo al filtrar.
+      if (!document.getElementById('triskel-separator')) {
+        const triskelSeparator = document.createElement('div');
+        triskelSeparator.id = 'triskel-separator';
+        triskelSeparator.className = 'my-8 text-center'; // Margen y centrado
+        triskelSeparator.innerHTML = `<img src="https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/ade1a9db78c22724be5b2e963819b8086da1891a/Separador%20Triskel.svg" alt="Separador decorativo" class="mx-auto h-8 w-8">`;
+
+        // Inserta el separador después del contenedor de categorías.
+        if (categoriesContainer) {
+          categoriesContainer.insertAdjacentElement('afterend', triskelSeparator);
+        }
+      }
+      // --- FIN SEPARADOR TRISKEL ---
+
       displayPosts(posts);
       displayCategories(posts);
 
@@ -81,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ${readMoreLink}
             ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
             <span class="text-zinc-500">Publicado en
-              <!-- CAMBIO: La categoría ahora es un enlace sin negrita -->
               <a href="/blog.html?category=${encodeURIComponent(category)}" class="text-[--color-accent] hover:underline uppercase tracking-wider">${category}</a>
             </span>
           </div>
@@ -91,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
-            // CAMBIO: Menos espacio entre posts (my-6)
-            separator.className = 'my-6 mx-auto w-20 border-t border-zinc-400';
+            // CAMBIO: Menos espacio entre posts (my-3)
+            separator.className = 'my-3 mx-auto w-20 border-t border-zinc-400';
             postsContainer.appendChild(separator);
         }
       });
@@ -101,13 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayCategories(posts) {
       if (!categoriesContainer) return;
 
-      // Usamos todos los posts originales para mostrar todas las categorías disponibles
       const allCategories = [...new Set(posts.map(p => p.fields.category).filter(Boolean))];
 
       categoriesContainer.innerHTML = '<a href="/blog.html" class="hover:text-[--color-accent] transition-colors">Todo</a>';
 
       allCategories.forEach(cat => {
-          // CAMBIO: Los enlaces del filtro superior ahora usan el parámetro de URL
           categoriesContainer.innerHTML += ` <span class="text-zinc-500">/</span> <a href="/blog.html?category=${encodeURIComponent(cat)}" class="hover:text-[--color-accent] transition-colors">${cat}</a>`;
       });
   }
