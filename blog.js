@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     postsContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículos...</p>';
 
     try {
-      const response = await fetch('/.netlify/functions/get-posts.js');
+      const response = await fetch('/.netlify/functions/get-posts');
 
       if (!response.ok) {
         throw new Error(`Error del servidor: ${response.statusText}`);
