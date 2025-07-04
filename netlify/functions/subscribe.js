@@ -1,31 +1,36 @@
 // netlify/functions/subscribe.js
 
-// Importa la herramienta 'fetch' para que la función pueda usarla.
 const fetch = require('node-fetch');
 
 exports.handler = async function(event) {
-  // Solo aceptamos peticiones POST
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
   try {
-    // ===== INICIO: CÓDIGO DE DEPURACIÓN =====
-    // Imprimimos en los logs de Netlify el cuerpo del evento para ver qué llega.
-    console.log('Cuerpo del evento recibido:', event.body);
-    // ===== FIN: CÓDIGO DE DEPURACIÓN =====
+    let requestBody;
 
-    const { email, groupId } = JSON.parse(event.body);
+    // ===================================================================
+    // ===== INICIO: CÓDIGO DEFENSIVO ====================================
+    // ===================================================================
+    // A veces, el cuerpo (body) ya viene como un objeto y no necesita
+    // ser procesado. Otras veces, es un string. Este código maneja
+    // ambas posibilidades para asegurar que siempre funcione.
+
+    if (typeof event.body === 'string') {
+      requestBody = JSON.parse(event.body);
+    } else {
+      requestBody = event.body; // Se asume que ya es un objeto
+    }
+    // ===================================================================
+    // ===== FIN: CÓDIGO DEFENSIVO =======================================
+    // ===================================================================
+
+    const { email, groupId } = requestBody;
     const apiKey = process.env.MAILERLITE_API_KEY;
 
-    // ===== INICIO: CÓDIGO DE DEPURACIÓN =====
-    // Imprimimos las variables después de procesarlas.
-    console.log('Email extraído:', email);
-    console.log('Group ID extraído:', groupId);
-    // ===== FIN: CÓDIGO DE DEPURACIÓN =====
-
     if (!email || !groupId) {
-      console.error('Error: Email o Group ID faltantes.');
+      console.error('Error: Faltan Email o Group ID en el cuerpo de la petición.', requestBody);
       return { statusCode: 400, body: JSON.stringify({ message: 'Email y Group ID son requeridos.' }) };
     }
 
@@ -46,7 +51,7 @@ exports.handler = async function(event) {
     const data = await response.json();
 
     if (!response.ok) {
-      const errorMessage = data.message || 'Error en la suscripción.';
+      const errorMessage = data.message || (data.error ? data.error.message : 'Error en la suscripción.');
       console.error('Error de MailerLite:', errorMessage);
       return { statusCode: response.status, body: JSON.stringify({ message: errorMessage }) };
     }
@@ -57,7 +62,7 @@ exports.handler = async function(event) {
     };
 
   } catch (error) {
-    console.error('Error en la función de Netlify:', error);
+    console.error('Error catastrófico en la función de Netlify:', error);
     return { statusCode: 500, body: JSON.stringify({ message: `Error interno del servidor: ${error.message}` }) };
   }
 };
