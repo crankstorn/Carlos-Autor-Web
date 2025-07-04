@@ -1,0 +1,261 @@
+/* ===================================== */
+/* ===== ESTILOS GLOBALES DEL SITIO ==== */
+/* ===================================== */
+
+:root {
+    --color-accent: #493547;
+    --color-accent-hover: #66495E;
+    --color-bg: #FDFBF7;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #5c5c5c;
+    --color-dark-bg: #1A202C;
+    --color-dark-text-primary: #F7FAFC;
+    --color-dark-text-secondary: #A0AEC0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+}
+
+/* ===== Componentes y Estilos Reutilizables ===== */
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    transition: color 0.3s ease-out;
+}
+
+.logo-link:hover .logo-text {
+    color: var(--color-accent);
+}
+
+.cta-button {
+    background-color: var(--color-accent);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3);
+}
+
+.cta-button:hover:not(:disabled) {
+    transform: scale(1.05);
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4);
+}
+
+.cta-button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: scale(1);
+    box-shadow: none;
+}
+
+.nav-active {
+    font-weight: 600;
+    color: var(--color-accent) !important; /* !important para asegurar la prioridad */
+}
+
+/* ===== Secciones Oscuras (Footer, etc.) ===== */
+
+.dark-section {
+    background-color: var(--color-dark-bg);
+    background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png);
+}
+
+.dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span {
+    color: var(--color-dark-text-primary);
+}
+
+.dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon {
+    font-family: 'Inter', sans-serif;
+}
+
+.dark-section .text-special-accent {
+    color: #D69E2E;
+}
+
+.dark-section .button-secondary {
+    border-color: var(--color-dark-text-secondary);
+    color: var(--color-dark-text-secondary);
+}
+
+.dark-section .button-secondary:hover {
+    background-color: var(--color-dark-text-secondary);
+    color: var(--color-dark-bg);
+}
+
+.dark-section .form-input {
+    background-color: #2D3748;
+    border-color: #4A5568;
+}
+
+.dark-section .footer-link {
+    color: var(--color-dark-text-secondary);
+}
+
+.dark-section .footer-link:hover {
+    color: var(--color-dark-text-primary);
+    text-decoration: underline;
+}
+
+/* ===== Separadores y Decoración ===== */
+
+.section-separator {
+    height: 60px;
+    position: relative;
+    background-color: var(--color-bg);
+}
+
+.section-separator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #EBE3D8;
+}
+
+.section-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-bg);
+    padding: 0 15px;
+    background-image: url('https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/50018b7f258b44030a3a57a84c8a023679997c73/Separador%20Triskel.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.title-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+.title-separator::before, .title-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #EBE3D8;
+}
+
+.title-separator:not(:empty)::before {
+    margin-right: 1.5em;
+}
+
+.title-separator:not(:empty)::after {
+    margin-left: 1.5em;
+}
+
+/* ===== Animaciones y Efectos ===== */
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.easter-egg-note {
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #20c2c2;
+    opacity: 0;
+    text-shadow: 0 0 8px rgba(32, 194, 194, 0);
+    transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.easter-egg-note:hover {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(32, 194, 194, 1), 0 0 20px rgba(32, 194, 194, 0.7);
+}
+
+/* ===== Modales y Botón "Volver Arriba" ===== */
+
+#secret-modal-overlay, #other-stores-modal-overlay {
+    transition: opacity 0.3s ease-out;
+}
+
+#secret-modal, #other-stores-modal {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(20px) scale(0.95);
+}
+
+#secret-modal-overlay.show #secret-modal, #other-stores-modal-overlay.show #other-stores-modal {
+    transform: translateY(0) scale(1);
+}
+
+#back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1rem);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+
+#back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ===== Estilos Específicos de Página (si los hubiera) ===== */
+
+/* Estilos para política de privacidad */
+.privacy-content h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #EBE3D8;
+    padding-bottom: 0.5rem;
+}
+
+.privacy-content p, .privacy-content ul {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+}
+
+.privacy-content ul {
+    list-style-position: inside;
+    list-style-type: disc;
+    padding-left: 1rem;
+}
+
+.privacy-content li {
+    margin-bottom: 0.5rem;
+}
+
+.privacy-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.privacy-content strong {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}

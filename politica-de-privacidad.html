@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidad - Carlos Ramírez Hernández</title>
     <meta name="description" content="Política de Privacidad del sitio web del autor Carlos Ramírez Hernández.">
-    <meta name="robots" content="noindex, nofollow"> <!-- Se recomienda no indexar esta página legal -->
+    <meta name="robots" content="noindex, nofollow">
 
     <!-- ===== FAVICON ===== -->
     <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
@@ -18,78 +18,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- ===== ESTILOS PERSONALIZADOS ===== -->
-    <style>
-        :root {
-            --color-accent: #493547;
-            --color-accent-hover: #66495E;
-            --color-bg: #FDFBF7;
-            --color-text-primary: #1A1A1A;
-            --color-text-secondary: #5c5c5c;
-            --color-dark-bg: #1A202C;
-            --color-dark-text-primary: #F7FAFC;
-            --color-dark-text-secondary: #A0AEC0;
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); background-color: var(--color-bg); }
-        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; font-weight: 400; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); transition: color 0.3s ease-out; }
-        .logo-link:hover .logo-text { color: var(--color-accent); }
-        .cta-button:disabled { background-color: #9ca3af; cursor: not-allowed; transform: scale(1); box-shadow: none; }
-        .cta-button { background-color: var(--color-accent); transition: all 0.3s ease; box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3); }
-        .cta-button:hover:not(:disabled) { transform: scale(1.05); background-color: var(--color-accent-hover); box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4); }
-        .nav-active { font-weight: 600; color: var(--color-accent); }
-        .dark-section { background-color: var(--color-dark-bg); background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png); }
-        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span { color: var(--color-dark-text-primary); }
-        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon { font-family: 'Inter', sans-serif; }
-        .dark-section .form-input { background-color: #2D3748; border-color: #4A5568; }
-        .dark-section .footer-link { color: var(--color-dark-text-secondary); }
-        .dark-section .footer-link:hover { color: var(--color-dark-text-primary); text-decoration: underline; }
-        #back-to-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
-        #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
-        /* Estilos para el contenido de la política */
-        .privacy-content h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid #EBE3D8; padding-bottom: 0.5rem;}
-        .privacy-content p, .privacy-content ul { margin-bottom: 1rem; line-height: 1.7; color: var(--color-text-secondary); }
-        .privacy-content ul { list-style-position: inside; list-style-type: disc; padding-left: 1rem; }
-        .privacy-content li { margin-bottom: 0.5rem; }
-        .privacy-content a { color: var(--color-accent); text-decoration: underline; }
-        .privacy-content strong { font-weight: 600; color: var(--color-text-primary); }
-    </style>
+    <!-- ===== NUEVO ARCHIVO DE ESTILOS UNIFICADO ===== -->
+    <link rel="stylesheet" href="estilos.css">
+
 </head>
 <body class="bg-[--color-bg] antialiased">
 
-    <!-- ===== HEADER ===== -->
-    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="./index.html" class="logo-link">
-                <span class="logo-text">CARLOS RAMÍREZ</span>
-            </a>
-            <div class="flex items-center gap-8">
-                <nav id="main-nav" class="hidden md:flex items-center space-x-8">
-                    <a href="./index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
-                    <a href="./una-melodia-de-silencio.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
-                    <a href="./autor.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Sobre Carlos</a>
-                    <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
-                    <i class="fas fa-bars w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
-             <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
-            <a href="./una-melodia-de-silencio.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
-            <a href="./autor.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre Carlos</a>
-            <a href="./contacto.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Contacto</a>
-        </div>
-    </header>
+    <!-- ===== CONTENEDOR PARA EL HEADER ===== -->
+    <div id="header-placeholder"></div>
 
-    <!-- ===== CONTENIDO PRINCIPAL: POLÍTICA DE PRIVACIDAD (ACTUALIZADA) ===== -->
+    <!-- =================================================================== -->
+    <!-- ===== CONTENIDO PRINCIPAL: POLÍTICA DE PRIVACIDAD             ===== -->
+    <!-- =================================================================== -->
     <main class="py-16">
         <div class="container mx-auto px-6 max-w-3xl">
             <div class="text-center">
                 <h1 class="text-5xl">Política de Privacidad</h1>
-                <p class="mt-4 text-lg text-[--color-text-secondary]">Última actualización: 3 de julio de 2025</p>
+                <p class="mt-4 text-lg text-[--color-text-secondary]">Última actualización: 4 de julio de 2025</p>
             </div>
 
             <article class="privacy-content mt-12">
@@ -154,52 +99,14 @@
         </div>
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="dark-section py-12 mt-8">
-        <div class="container mx-auto px-6">
-            <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
-                <a href="./index.html" class="footer-link">Inicio</a>
-                <a href="./una-melodia-de-silencio.html" class="footer-link">El Libro</a>
-                <a href="./autor.html" class="footer-link">Sobre Carlos</a>
-                <a href="./contacto.html" class="footer-link">Contacto</a>
-                <a href="./politica-de-privacidad.html" class="footer-link">Política de Privacidad</a>
-            </nav>
-            <div class="text-center">
-                <div class="flex justify-center space-x-6 mb-6">
-                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Goodreads"><i class="fab fa-goodreads"></i></a>
-                </div>
-                <div class="text-sm footer-link">
-                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez Hernández. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- ===== CONTENEDOR PARA EL FOOTER ===== -->
+    <div id="footer-placeholder"></div>
 
-    <!-- ===== SCRIPT PRINCIPAL ===== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            const yearSpan = document.getElementById('year');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
-            const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-            navLinks.forEach(link => {
-                const linkPath = link.getAttribute('href').split('/').pop();
-                if (linkPath === currentPath) {
-                    link.classList.add('nav-active');
-                }
-            });
-        });
-    </script>
+    <!-- =================================================================== -->
+    <!-- ===== LLAMADA A LOS NUEVOS SCRIPTS ===== -->
+    <!-- =================================================================== -->
+    <script src="scripts.js"></script>
+    <script src="componentes.js"></script>
+
 </body>
 </html>
