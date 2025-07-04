@@ -1,15 +1,14 @@
 // Ruta: netlify/functions/get-posts.js
-
 const contentful = require('contentful');
 
 exports.handler = async function(event) {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
 
+  // Obtenemos el slug de los parámetros de la URL, si existe.
+  const { slug } = event.queryStringParameters;
+
   if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
-    return {
-      statusCode: 500,
-      body: 'Error: Faltan las variables de configuración de Contentful en Netlify.'
-    };
+    return { statusCode: 500, body: 'Error: Faltan las variables de configuración de Contentful.' };
   }
 
   try {
@@ -18,16 +17,20 @@ exports.handler = async function(event) {
       accessToken: CONTENTFUL_ACCESS_TOKEN,
     });
 
-    const response = await client.getEntries({
+    // ===== LÓGICA MODIFICADA =====
+    // Preparamos la consulta base
+    const queryOptions = {
       content_type: 'blogPost',
       order: '-fields.date'
-    });
+    };
 
-    // ===================================================================
-    // ===== LÍNEA DE DIAGNÓSTICO AÑADIDA =====
-    // Esto imprimirá los datos directamente en el log de la función de Netlify.
-    console.log('DATOS RECIBIDOS DESDE CONTENTFUL:', JSON.stringify(response.items, null, 2));
-    // ===================================================================
+    // Si nos han pasado un slug, lo añadimos a la consulta para filtrar
+    if (slug) {
+      queryOptions['fields.slug'] = slug;
+      queryOptions.limit = 1; // Solo esperamos un resultado
+    }
+
+    const response = await client.getEntries(queryOptions);
 
     return {
       statusCode: 200,
