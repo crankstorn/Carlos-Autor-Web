@@ -10,10 +10,22 @@ exports.handler = async function(event) {
   }
 
   try {
+    // ===== INICIO: CÓDIGO DE DEPURACIÓN =====
+    // Imprimimos en los logs de Netlify el cuerpo del evento para ver qué llega.
+    console.log('Cuerpo del evento recibido:', event.body);
+    // ===== FIN: CÓDIGO DE DEPURACIÓN =====
+
     const { email, groupId } = JSON.parse(event.body);
     const apiKey = process.env.MAILERLITE_API_KEY;
 
+    // ===== INICIO: CÓDIGO DE DEPURACIÓN =====
+    // Imprimimos las variables después de procesarlas.
+    console.log('Email extraído:', email);
+    console.log('Group ID extraído:', groupId);
+    // ===== FIN: CÓDIGO DE DEPURACIÓN =====
+
     if (!email || !groupId) {
+      console.error('Error: Email o Group ID faltantes.');
       return { statusCode: 400, body: JSON.stringify({ message: 'Email y Group ID son requeridos.' }) };
     }
 
@@ -28,16 +40,14 @@ exports.handler = async function(event) {
       body: JSON.stringify({
         email: email,
         groups: [groupId],
-        // Puedes añadir más campos si los necesitas
       })
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      // Si MailerLite da un error (ej: email ya suscrito), lo pasamos al frontend
-      // El error de MailerLite suele estar en data.error.message
       const errorMessage = data.message || 'Error en la suscripción.';
+      console.error('Error de MailerLite:', errorMessage);
       return { statusCode: response.status, body: JSON.stringify({ message: errorMessage }) };
     }
 
