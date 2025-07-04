@@ -19,11 +19,15 @@ exports.handler = async function(event) {
     });
 
     const response = await client.getEntries({
-      // CORRECCIÓN 1: El ID de tu modelo es "blogPost"
       content_type: 'blogPost',
-      // CORRECCIÓN 2: El ID de tu campo de fecha es "date"
       order: '-fields.date'
     });
+
+    // ===================================================================
+    // ===== LÍNEA DE DIAGNÓSTICO AÑADIDA =====
+    // Esto imprimirá los datos directamente en el log de la función de Netlify.
+    console.log('DATOS RECIBIDOS DESDE CONTENTFUL:', JSON.stringify(response.items, null, 2));
+    // ===================================================================
 
     return {
       statusCode: 200,
@@ -32,6 +36,7 @@ exports.handler = async function(event) {
     };
 
   } catch (error) {
+    console.error('ERROR EN LA FUNCIÓN:', error);
     return {
       statusCode: 500,
       body: `Error al obtener los datos de Contentful: ${error.message}`
