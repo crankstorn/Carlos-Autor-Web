@@ -12,6 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const response = await fetch('/.netlify/functions/get-posts');
+      if (!response.ok) {
+        throw new Error(`Error del servidor: ${response.statusText}`);
+      }
+      const posts = await response.json();
+    
+      // ESTA LÍNEA ES LA QUE NECESITAMOS AÑADIR
+      console.log('Datos recibidos de Contentful:', posts);
+
+      if (posts.length === 0) {
+        postsContainer.innerHTML = '<p class="text-center text-zinc-400">Aún no hay artículos publicados.</p>';
+        return;
+      }
+    try {
+      const response = await fetch('/.netlify/functions/get-posts');
 
       if (!response.ok) {
         throw new Error(`Error del servidor: ${response.statusText}`);
