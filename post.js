@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <h1 class="text-4xl lg:text-5xl font-serif mb-6">${title}</h1>
       ${imageHTML}
-      <div class="prose prose-invert lg:prose-xl max-w-none text-zinc-300">
+      <div class="prose lg:prose-xl max-w-none text-zinc-700 space-y-6 leading-relaxed">
         ${content}
       </div>
     `;
