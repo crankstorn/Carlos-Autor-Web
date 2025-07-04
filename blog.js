@@ -9,15 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadBlogPosts() {
     postsContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículos...</p>';
 
+    // --- INICIO LÓGICA DE FILTRADO ---
+    // Obtenemos la categoría de la URL, si existe.
+    const params = new URLSearchParams(window.location.search);
+    const categoryFilter = params.get('category');
+    // --- FIN LÓGICA DE FILTRADO ---
+
     try {
       const response = await fetch('/.netlify/functions/get-posts');
       if (!response.ok) {
         throw new Error(`Error del servidor: ${response.statusText}`);
       }
-      const posts = await response.json();
+      let posts = await response.json();
+
+      // Si hay un filtro de categoría, aplicarlo.
+      if (categoryFilter) {
+        posts = posts.filter(post => post.fields.category === categoryFilter);
+      }
 
       if (posts.length === 0) {
-        postsContainer.innerHTML = '<p class="text-center text-zinc-400">Aún no hay artículos publicados.</p>';
+        postsContainer.innerHTML = '<p class="text-center text-zinc-400">No hay artículos para esta categoría.</p>';
         return;
       }
 
@@ -53,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const postElement = document.createElement('article');
         postElement.className = 'py-4';
 
-        // --- INICIO DE LA REESTRUCTURACIÓN ---
         postElement.innerHTML = `
           <h2 class="text-4xl font-serif mb-2 text-center">
             <a href="post.html?slug=${slug || '#'}" class="hover:text-[--color-accent] transition-colors">${title}</a>
@@ -69,18 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="mt-6 text-center text-sm">
             ${readMoreLink}
-            <!-- Añadimos un separador si hay enlace "Leer más" -->
             ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
-            <span class="text-zinc-500">Publicado en <span class="font-semibold text-zinc-600 uppercase tracking-wider">${category}</span></span>
+            <span class="text-zinc-500">Publicado en
+              <!-- CAMBIO: La categoría ahora es un enlace sin negrita -->
+              <a href="/blog.html?category=${encodeURIComponent(category)}" class="text-[--color-accent] hover:underline uppercase tracking-wider">${category}</a>
+            </span>
           </div>
         `;
-        // --- FIN DE LA REESTRUCTURACIÓN ---
 
         postsContainer.appendChild(postElement);
 
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
-            separator.className = 'my-4 mx-auto w-20 border-t border-zinc-500';
+            // CAMBIO: Menos espacio entre posts (my-6)
+            separator.className = 'my-6 mx-auto w-20 border-t border-zinc-400';
             postsContainer.appendChild(separator);
         }
       });
@@ -89,12 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayCategories(posts) {
       if (!categoriesContainer) return;
 
+      // Usamos todos los posts originales para mostrar todas las categorías disponibles
       const allCategories = [...new Set(posts.map(p => p.fields.category).filter(Boolean))];
 
       categoriesContainer.innerHTML = '<a href="/blog.html" class="hover:text-[--color-accent] transition-colors">Todo</a>';
 
       allCategories.forEach(cat => {
-          categoriesContainer.innerHTML += ` <span class="text-zinc-500">/</span> <a href="#" class="hover:text-[--color-accent] transition-colors">${cat}</a>`;
+          // CAMBIO: Los enlaces del filtro superior ahora usan el parámetro de URL
+          categoriesContainer.innerHTML += ` <span class="text-zinc-500">/</span> <a href="/blog.html?category=${encodeURIComponent(cat)}" class="hover:text-[--color-accent] transition-colors">${cat}</a>`;
       });
   }
 
