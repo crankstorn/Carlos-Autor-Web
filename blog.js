@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Si hay un filtro de categoría, aplicarlo.
       if (categoryFilter) {
-        posts = posts.filter(post => post.fields.category === categoryFilter);
+        posts = posts.filter(post => post.fields.category && post.fields.category.includes(categoryFilter));
       }
 
       if (posts.length === 0) {
@@ -123,7 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ${readMoreLink}
             ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
             <span class="text-zinc-500">Publicado en
-              <a href="/blog.html?category=${encodeURIComponent(category)}" class="text-[--color-accent] hover:underline uppercase tracking-wider">${category}</a>
+              ${category.map(cat =>
+                `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline uppercase tracking-wider">${cat}</a>`
+              ).join(', ')}
             </span>
           </div>
         `;
@@ -142,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayCategories(posts) {
       if (!categoriesContainer) return;
 
-      const allCategories = [...new Set(posts.map(p => p.fields.category).filter(Boolean))];
+      const allCategories = [...const allCategories = [...new Set(posts.flatMap(p => p.fields.category || []).filter(Boolean))];
 
       categoriesContainer.innerHTML = '<a href="/blog.html" class="hover:text-[--color-accent] transition-colors">Todo</a>';
 
