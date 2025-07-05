@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayPost(post) {
     const { title, date, content, category, image } = post.fields;
 
-    // Cambiamos el título de la página
     document.title = `${title} - Carlos Ramírez Hernández`;
 
     let imageHTML = '';
@@ -50,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const postDate = new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    // --- INICIO: Lógica para la sección final del post ---
-    const separatorHTML = '<hr class="my-8 w-20 mx-auto border-t border-zinc-400">';
+    // --- Lógica para la sección final del post (sin cambios) ---
+    const separatorHTML = '<hr class="my-8 w-24 mx-auto border-t border-zinc-300">';
     let categoryLinksHTML = '';
 
     if (category) {
@@ -67,16 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
         Publicado en ${categoryLinksHTML} el ${postDate}.
       </div>
     `;
-    // --- FIN: Lógica para la sección final del post ---
 
+    // --- Fin de la lógica para la sección final ---
 
-    // Aquí usamos el campo 'content' que antes no usábamos
     postContainer.innerHTML = `
-      <div class="text-sm text-zinc-400 mb-2">
-        <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${Array.isArray(category) ? category[0] : category}</span>
-        &middot; <span>${postDate}</span>
+      <h1 class="text-4xl lg:text-5xl font-serif text-center mb-4">${title}</h1>
+
+      <div class="text-sm text-zinc-400 text-center mb-8">
+        <span>${postDate}</span>
       </div>
-      <h1 class="text-4xl lg:text-5xl font-serif mb-6">${title}</h1>
+
       ${imageHTML}
       <div class="prose lg:prose-xl max-w-none text-zinc-700 space-y-6 leading-relaxed">
         ${content}
@@ -84,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ${postFooterHTML}
     `;
-}
+  }
 
   loadPost();
 });
