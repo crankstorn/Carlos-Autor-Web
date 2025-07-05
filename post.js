@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const postDate = new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 
-    const separatorHTML = '<hr class="my-8 w-20 mx-auto border-t border-zinc-400">';
+    // --- INICIO: Lógica para la sección final del post ---
+    const separatorHTML = '<hr class="my-8 w-24 mx-auto border-t border-zinc-300">';
     let categoryLinksHTML = '';
 
     if (category) {
@@ -66,10 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
         Publicado en ${categoryLinksHTML} el ${postDate}.
       </div>
     `;
+    // --- FIN: Lógica para la sección final del post ---
+
+
     // Aquí usamos el campo 'content' que antes no usábamos
     postContainer.innerHTML = `
       <div class="text-sm text-zinc-400 mb-2">
-        <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${category}</span>
+        <span class="font-semibold text-[--color-accent] uppercase tracking-wider">${Array.isArray(category) ? category[0] : category}</span>
         &middot; <span>${postDate}</span>
       </div>
       <h1 class="text-4xl lg:text-5xl font-serif mb-6">${title}</h1>
@@ -77,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="prose lg:prose-xl max-w-none text-zinc-700 space-y-6 leading-relaxed">
         ${content}
       </div>
+
+      ${postFooterHTML}
     `;
-  }
+}
 
   loadPost();
 });
