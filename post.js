@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const postDate = new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 
     // --- INICIO: Lógica para la sección final del post ---
-    const separatorHTML = '<hr class="my-8 w-24 mx-auto border-t border-zinc-300">';
+    const separatorHTML = '<hr class="my-8 w-20 mx-auto border-t border-zinc-400">';
     let categoryLinksHTML = '';
 
     if (category) {
