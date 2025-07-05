@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
 
         const postElement = document.createElement('article');
-        postElement.className = 'py-4';
+        postElement.className = 'py-2';
 
         postElement.innerHTML = `
           <h2 class="text-4xl font-serif mb-2 text-center">
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
             // CAMBIO: Menos espacio entre posts (my-3)
-            separator.className = 'my-1 mx-auto w-20 border-t border-zinc-400';
+            separator.className = 'my-2 mx-auto w-20 border-t border-zinc-400';
             postsContainer.appendChild(separator);
         }
       });
