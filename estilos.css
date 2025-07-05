@@ -270,6 +270,8 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 #mobile-menu {
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
+  max-height: 50vh; /* Límite de altura, ajústalo si quieres */
+  overflow-y: auto;
 }
 
 /* Cuando el menú tenga la clase 'is-open', lo trae a la pantalla */
@@ -290,4 +292,13 @@ body.menu-open {
 
 #overlay.is-visible {
   display: block; /* Lo hacemos visible cuando el menú se abre */
+}
+
+/* Separadores entre los elementos del menú */
+#mobile-menu ul li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#mobile-menu ul li:last-child {
+  border-bottom: none; /* Elimina el separador del último elemento */
 }

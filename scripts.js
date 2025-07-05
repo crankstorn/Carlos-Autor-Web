@@ -102,30 +102,42 @@ function initializePageScripts() {
 
 
     // --- MENÚ MÓVIL ---
-const menu = document.getElementById('mobile-menu');
-const openBtn = document.getElementById('open-menu-btn');
-const closeBtn = document.getElementById('close-menu-btn');
-const overlay = document.getElementById('overlay');
-const body = document.body;
+    const menu = document.getElementById('mobile-menu');
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const overlay = document.getElementById('overlay');
+    const body = document.body;
 
-// Asegurarnos de que todos los elementos existen antes de añadir listeners
-if (menu && openBtn && closeBtn && overlay) {
-    const openMenu = () => {
-        menu.classList.add('is-open');
-        overlay.classList.add('is-visible');
-        body.classList.add('menu-open');
-    };
+    if (menu && openBtn && closeBtn && overlay && body) {
+        const openMenu = () => {
+            menu.classList.add('is-open');
+            overlay.classList.add('is-visible');
+            body.classList.add('menu-open');
+        };
 
-    const closeMenu = () => {
-        menu.classList.remove('is-open');
-        overlay.classList.remove('is-visible');
-        body.classList.remove('menu-open');
-    };
+        const closeMenu = () => {
+            menu.classList.remove('is-open');
+            overlay.classList.remove('is-visible');
+            body.classList.remove('menu-open');
+        };
 
-    openBtn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', closeMenu);
-}
+        openBtn.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+
+        // Cerrar el menú al hacer clic en el overlay
+        overlay.addEventListener('click', (event) => {
+            if (event.target === overlay) {
+                closeMenu();
+            }
+        });
+
+        // Cerrar el menú con la tecla Escape
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && menu.classList.contains('is-open')) {
+                closeMenu();
+            }
+        });
+    }
 
     // --- AÑO ACTUAL EN EL FOOTER ---
     const yearSpan = document.getElementById('year');
