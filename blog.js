@@ -85,8 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
           // Aplicamos la conversión al contenido del primer post
           displayContent = convertNewlinesToParagraphs(content);
         } else {
-          // Aplicamos la conversión también a los demás posts
-          displayContent = convertNewlinesToParagraphs(content);
+          const wordLimit = 55;
+          const words = (content || '').split(/\s+/);
+          let truncatedContent = content;
+
+          if (words.length > wordLimit) {
+            // Cortamos y añadimos el corchete con elipsis
+            truncatedContent = words.slice(0, wordLimit).join(' ') + ' [...]';
+          }
+
+          // Ahora, convertimos a párrafos el contenido ya acortado
+          displayContent = convertNewlinesToParagraphs(truncatedContent);
+
           contentWrapperClass += ' truncated-content';
           readMoreLink = `<a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>`;
         }
