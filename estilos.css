@@ -265,3 +265,29 @@ h1, h2, h3, h4, h5, h6, .font-serif {
   position: relative;
   overflow: hidden;
 }
+
+/* Esconde el menú moviéndolo fuera de la pantalla a la derecha */
+#mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Cuando el menú tenga la clase 'is-open', lo trae a la pantalla */
+#mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+/* Evita que se pueda hacer scroll en el contenido principal cuando el menú está abierto */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Estilos para la capa de fondo */
+#overlay {
+  display: none; /* Por defecto está oculto */
+  transition: opacity 0.3s ease-in-out;
+}
+
+#overlay.is-visible {
+  display: block; /* Lo hacemos visible cuando el menú se abre */
+}

@@ -102,13 +102,30 @@ function initializePageScripts() {
 
 
     // --- MENÚ MÓVIL ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
+const menu = document.getElementById('mobile-menu');
+const openBtn = document.getElementById('open-menu-btn');
+const closeBtn = document.getElementById('close-menu-btn');
+const overlay = document.getElementById('overlay');
+const body = document.body;
+
+// Asegurarnos de que todos los elementos existen antes de añadir listeners
+if (menu && openBtn && closeBtn && overlay) {
+    const openMenu = () => {
+        menu.classList.add('is-open');
+        overlay.classList.add('is-visible');
+        body.classList.add('menu-open');
+    };
+
+    const closeMenu = () => {
+        menu.classList.remove('is-open');
+        overlay.classList.remove('is-visible');
+        body.classList.remove('menu-open');
+    };
+
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+}
 
     // --- AÑO ACTUAL EN EL FOOTER ---
     const yearSpan = document.getElementById('year');
