@@ -50,6 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const postDate = new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 
+    const separatorHTML = '<hr class="my-8 w-20 mx-auto border-t border-zinc-400">';
+    let categoryLinksHTML = '';
+
+    if (category) {
+      const categories = Array.isArray(category) ? category : [category];
+      categoryLinksHTML = categories.map(cat =>
+          `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline">${cat}</a>`
+      ).join(', ');
+    }
+
+    const postFooterHTML = `
+      ${separatorHTML}
+      <div class="text-center text-sm text-zinc-500">
+        Publicado en ${categoryLinksHTML} el ${postDate}.
+      </div>
+    `;
     // Aquí usamos el campo 'content' que antes no usábamos
     postContainer.innerHTML = `
       <div class="text-sm text-zinc-400 mb-2">
