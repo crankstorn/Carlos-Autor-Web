@@ -6,6 +6,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // --- Nueva función para convertir saltos de línea a párrafos HTML ---
+  function convertNewlinesToParagraphs(text) {
+    if (!text) return '';
+    // Reemplaza dobles saltos de línea con etiquetas <p>
+    // Asume que un doble salto de línea significa un nuevo párrafo.
+    let htmlContent = text.split('\n\n')
+                          .map(paragraph => `<p>${paragraph}</p>`)
+                          .join('');
+    // Reemplaza saltos de línea simples dentro de los párrafos con <br>
+    htmlContent = htmlContent.replace(/\n/g, '<br>');
+    return htmlContent;
+  }
+  // --- Fin Nueva función ---
+
   async function loadBlogPosts() {
     postsContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículos...</p>';
 
@@ -64,12 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let displayContent;
         let readMoreLink = '';
-        let contentWrapperClass = 'text-zinc-700 leading-relaxed text-center';
+        // Hemos añadido 'prose' directamente aquí
+        let contentWrapperClass = 'prose max-w-none text-zinc-700 leading-relaxed text-center';
 
         if (index === 0) {
-          displayContent = content;
+          // Aplicamos la conversión al contenido del primer post
+          displayContent = convertNewlinesToParagraphs(content);
         } else {
-          displayContent = content;
+          // Aplicamos la conversión también a los demás posts
+          displayContent = convertNewlinesToParagraphs(content);
           contentWrapperClass += ' truncated-content';
           readMoreLink = `<a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>`;
         }
