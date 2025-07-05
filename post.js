@@ -37,7 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Mostrar el post en la página
   function displayPost(post) {
     const { title, date, content, category, image } = post.fields;
+    // 1. Preparar los datos para las etiquetas
+    const postUrl = window.location.href;
+    const excerpt = content ? content.split(' ').slice(0, 25).join(' ') + '...' : 'Lee este artículo en el blog de Carlos Ramírez Hernández.';
+    let ogImageUrl = 'https://images.unsplash.com/photo-1615291238543-568053a8a342?q=80&w=1200&auto=format&fit=crop'; // Imagen por defecto
 
+    if (image && image.fields && image.fields.file) {
+      ogImageUrl = 'https:' + image.fields.file.url;
+    }
+
+    // 2. Actualizar las etiquetas del <head>
+    document.title = `${title} - Carlos Ramírez Hernández`;
+    document.querySelector('meta[name="description"]').setAttribute('content', excerpt);
+    document.querySelector('meta[property="og:title"]').setAttribute('content', title);
+    document.querySelector('meta[property="og:url"]').setAttribute('content', postUrl);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', excerpt);
+    document.querySelector('meta[property="og:image"]').setAttribute('content', ogImageUrl);
     document.title = `${title} - Carlos Ramírez Hernández`;
 
     let imageHTML = '';

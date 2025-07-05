@@ -149,6 +149,22 @@ document.addEventListener('DOMContentLoaded', () => {
       allCategories.forEach(cat => {
           categoriesContainer.innerHTML += ` <span class="text-zinc-500">/</span> <a href="/blog.html?category=${encodeURIComponent(cat)}" class="hover:text-[--color-accent] transition-colors">${cat}</a>`;
       });
+          const params = new URLSearchParams(window.location.search);
+    const categoryFilter = params.get('category');
+
+        // Si hay un filtro de categoría, busca el enlace correspondiente
+        if (categoryFilter) {
+            const activeLink = document.querySelector(`a[href="/blog.html?category=${encodeURIComponent(categoryFilter)}"]`);
+            if (activeLink) {
+                activeLink.classList.add('font-bold', 'text-[--color-accent]');
+            }
+        } else {
+            // Si no hay filtro, resalta el enlace "Todo"
+            const allLink = document.querySelector('a[href="/blog.html"]');
+            if (allLink) {
+                allLink.classList.add('font-bold', 'text-[--color-accent]');
+            }
+        }
   }
 
   loadBlogPosts();
