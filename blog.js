@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
           displayContent = convertNewlinesToParagraphs(truncatedContent);
 
           contentWrapperClass += ' truncated-content';
-          readMoreLink = `<a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más &rarr;</a>`;
+          readMoreLink = `<a href="post.html?slug=${slug || '#'}" class="font-semibold text-[--color-accent] hover:underline">Leer más</a>`;
         }
 
         const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
