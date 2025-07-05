@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>${postDate}</span>
           </div>
 
-          <div class="prose max-w-none ${contentWrapperClass}">
+          <div class="${contentWrapperClass}">
               ${displayContent}
           </div>
 
