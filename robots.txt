@@ -1,0 +1,6 @@
+# Permitir a todos los bots rastrear todo el sitio
+User-agent: *
+Allow: /
+
+# Ubicación del sitemap
+Sitemap: https://carlosramirezhernandez.com/sitemap.xml
