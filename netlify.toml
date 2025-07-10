@@ -1,0 +1,12 @@
+# Archivo: netlify.toml
+
+# Regla de reescritura para los posts del blog
+[[redirects]]
+  # Cuando alguien pida el archivo post.html...
+  from = "/post.html"
+
+  # ...Netlify internamente le pasará la petición a esta función...
+  to = "/.netlify/functions/get-posts"
+
+  # ...y devolverá el resultado como si fuera la página original.
+  status = 200
