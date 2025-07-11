@@ -2,19 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const postContainer = document.getElementById('post-content');
   if (!postContainer) return;
 
-  // 1. Obtener el slug de la URL
-  const params = new URLSearchParams(window.location.search);
-  const postSlug = params.get('slug');
+  // --- OBTENEMOS EL SLUG DE LA NUEVA URL LIMPIA ---
+  // Por ejemplo, de "/blog/bienvenidos-al-viaje", extraemos "bienvenidos-al-viaje".
+  const pathParts = window.location.pathname.split('/');
+  const postSlug = pathParts[pathParts.length - 1];
 
   if (!postSlug) {
     postContainer.innerHTML = '<p class="text-center text-red-500">No se ha especificado ningún artículo.</p>';
     return;
   }
 
-  // 2. Cargar los datos del post específico
+  // Carga los datos del post específico usando el slug.
   async function loadPost() {
     try {
-      // Hacemos la petición a la misma función, pero ahora con el parámetro slug
       const response = await fetch(`/.netlify/functions/get-posts?slug=${postSlug}`);
       if (!response.ok) {
         throw new Error(`Error del servidor: ${response.statusText}`);
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error('El artículo no fue encontrado.');
       }
 
-      // El post que queremos es el primero (y único) del array
       displayPost(posts[0]);
 
     } catch (error) {
@@ -34,26 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. Mostrar el post en la página
+  // Pinta el contenido del post en la página y actualiza las metaetiquetas.
   function displayPost(post) {
     const { title, date, content, category, image } = post.fields;
-    // 1. Preparar los datos para las etiquetas
-    const postUrl = window.location.href;
-    const excerpt = content ? content.split(' ').slice(0, 25).join(' ') + '...' : 'Lee este artículo en el blog de Carlos Ramírez Hernández.';
-    let ogImageUrl = 'https://images.unsplash.com/photo-1615291238543-568053a8a342?q=80&w=1200&auto=format&fit=crop'; // Imagen por defecto
+
+    // Aseguramos que la URL canónica es la nueva URL limpia.
+    const postUrl = `https://carlosramirezhernandez.com/blog/${postSlug}`;
+
+    // Genera un extracto para las metaetiquetas.
+    const excerpt = content ? content.replace(/<[^>]*>/g, '').trim().split(' ').slice(0, 25).join(' ') + '...' : 'Lee este artículo en el blog de Carlos Ramírez Hernández.';
+    let ogImageUrl = 'https://carlosramirezhernandez.com/assets/og-image-inicio.jpg';
 
     if (image && image.fields && image.fields.file) {
       ogImageUrl = 'https:' + image.fields.file.url;
     }
 
-    // 2. Actualizar las etiquetas del <head>
+    // Actualiza dinámicamente las etiquetas del <head> para el SEO y las redes sociales.
     document.title = `${title} - Carlos Ramírez Hernández`;
     document.querySelector('meta[name="description"]').setAttribute('content', excerpt);
     document.querySelector('meta[property="og:title"]').setAttribute('content', title);
     document.querySelector('meta[property="og:url"]').setAttribute('content', postUrl);
     document.querySelector('meta[property="og:description"]').setAttribute('content', excerpt);
     document.querySelector('meta[property="og:image"]').setAttribute('content', ogImageUrl);
-    document.title = `${title} - Carlos Ramírez Hernández`;
 
     let imageHTML = '';
     if (image && image.fields && image.fields.file) {
@@ -63,14 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const postDate = new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
-
-    // --- Lógica para la sección final del post (sin cambios) ---
     const separatorHTML = '<hr class="my-8 w-20 mx-auto border-t border-zinc-500">';
     let categoryLinksHTML = '';
 
     if (category) {
       const categories = Array.isArray(category) ? category : [category];
       categoryLinksHTML = categories.map(cat =>
+          // El enlace a la categoría apunta a la página principal del blog con un filtro.
           `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline">${cat}</a>`
       ).join(', ');
     }
@@ -82,20 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // --- Fin de la lógica para la sección final ---
-
+    // Pinta el contenido final en el contenedor.
     postContainer.innerHTML = `
       <h1 class="text-4xl lg:text-5xl font-serif text-center mb-4">${title}</h1>
-
       <div class="text-sm text-zinc-400 text-center mb-8">
         <span>${postDate}</span>
       </div>
-
       ${imageHTML}
       <div class="prose lg:prose-xl max-w-none text-zinc-700 space-y-6 leading-relaxed">
         ${content}
       </div>
-
       ${postFooterHTML}
     `;
   }

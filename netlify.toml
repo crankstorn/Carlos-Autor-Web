@@ -1,12 +1,15 @@
-# Archivo: netlify.toml
+# Archivo de configuración para Netlify
+# Este archivo debe estar en la raíz de tu proyecto.
 
-# Regla de reescritura para los posts del blog
+# Regla de reescritura para los posts del blog.
+# Es la pieza clave para tener URLs limpias y un SEO correcto.
 [[redirects]]
-  # Cuando alguien pida el archivo post.html...
-  from = "/post.html"
+  # Cuando un navegador o bot pida una URL como /blog/mi-primer-post...
+  from = "/blog/:slug"
 
-  # ...Netlify internamente le pasará la petición a esta función...
-  to = "/.netlify/functions/get-posts"
+  # ...Netlify ejecutará esta función por detrás, pasándole el valor de :slug.
+  to = "/.netlify/functions/get-posts?slug=:slug"
 
-  # ...y devolverá el resultado como si fuera la página original.
+  # El status 200 significa que es una reescritura, no una redirección.
+  # La URL en el navegador del usuario no cambiará.
   status = 200
