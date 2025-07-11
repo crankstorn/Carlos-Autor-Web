@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!postContainer) return;
 
   // --- CORRECCIÓN CLAVE ---
-  // Lee el slug desde la ruta de la URL, no desde los parámetros.
-  // Por ejemplo, de "/blog/mi-post-genial", extrae "mi-post-genial".
+  // En lugar de buscar "?slug=...", leemos la última parte de la URL.
+  // Por ejemplo, de "/blog/mi-post", extraemos "mi-post".
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   const postSlug = pathParts[pathParts.length - 1];
 
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // El resto del archivo es tu código original que ya funcionaba.
   async function loadPost() {
     try {
       const response = await fetch(`/.netlify/functions/get-posts?slug=${postSlug}`);
