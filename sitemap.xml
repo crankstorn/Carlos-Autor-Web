@@ -4,22 +4,25 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
-   <loc>https://carlosramirezhernandez.com/</loc>
-   <lastmod>2025-07-09</lastmod>
+  <loc>https://carlosramirezhernandez.com/</loc>
+  <lastmod>2025-07-11T18:22:36+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-   <loc>https://carlosramirezhernandez.com/una-melodia-de-silencio.html</loc>
-   <lastmod>2025-07-09</lastmod>
+  <loc>https://carlosramirezhernandez.com/una-melodia-de-silencio</loc>
+  <lastmod>2025-07-11T18:22:36+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-   <loc>https://carlosramirezhernandez.com/autor.html</loc>
-   <lastmod>2025-07-09</lastmod>
+  <loc>https://carlosramirezhernandez.com/pagina-de-suscripción</loc>
+  <lastmod>2025-07-11T18:22:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://carlosramirezhernandez.com/autor</loc>
+  <lastmod>2025-07-11T18:22:36+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
@@ -28,15 +31,24 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://carlosramirezhernandez.com/pagina-de-suscripcion.html</loc>
-  <lastmod>2025-07-09</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://carlosramirezhernandez.com/politica-de-privacidad</loc>
   <lastmod>2025-07-09</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://carlosramirezhernandez.com/blog</loc>
+  <lastmod>2025-07-11T18:22:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://carlosramirezhernandez.com/blog/el-panorama</loc>
+  <lastmod>2025-07-11</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://carlosramirezhernandez.com/blog/bienvenidos-abordo</loc>
+  <lastmod>2025-07-11</lastmod>
+  <priority>0.64</priority>
+</url>
 
 </urlset>
