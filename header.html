@@ -1,8 +1,9 @@
-<header id="header" class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-40">
-    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+<header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
         <a href="/index.html" class="logo-link">
             <span class="logo-text">CARLOS RAMÍREZ</span>
         </a>
+
         <div class="flex items-center gap-8">
             <nav id="main-nav" class="hidden md:flex items-center space-x-8">
                 <a href="/index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
@@ -18,17 +19,28 @@
                     <i class="fa-brands fa-instagram"></i>
                 </a>
             </nav>
+
             <div class="hidden md:block">
                 <span id="easter-egg-trigger" class="easter-egg-note">𝄽</span>
             </div>
-            <button id="open-menu-btn" class="md:hidden text-zinc-800 focus:outline-none z-50">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
+
+            <div class="md:hidden flex items-center gap-5">
+                <a href="https://x.com/CarlosRH_Autor" class="text-zinc-800 hover:text-[--color-accent] transition-colors" aria-label="Enlace a Twitter (X)" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-x-twitter text-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/carlosrh_autor/" class="text-zinc-800 hover:text-[--color-accent] transition-colors" aria-label="Enlace a Instagram" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <button id="open-menu-btn" class="text-zinc-800 focus:outline-none z-50">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            </div>
     </div>
 </header>
+
 <nav id="mobile-menu" class="fixed top-0 right-0 h-full w-2/3 max-w-sm bg-zinc-800 text-white shadow-lg z-50">
   <div class="p-8">
     <a href="https://x.com/CarlosRH_Autor" class="text-zinc-800 hover:text-[--color-accent] transition-colors" aria-label="Enlace a Twitter (X)" target="_blank" rel="noopener noreferrer">
@@ -36,7 +48,7 @@
     </a>
     <a href="https://www.instagram.com/carlosrh_autor/" class="text-zinc-800 hover:text-[--color-accent] transition-colors" aria-label="Enlace a Instagram" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-instagram text-lg"></i>
-    </a>  
+    </a>
     <button id="close-menu-btn" aria-label="Cerrar menú" class="absolute top-4 right-4 p-2 text-white">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
