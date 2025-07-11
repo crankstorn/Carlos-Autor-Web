@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!postContainer) return;
 
   // --- OBTENEMOS EL SLUG DE LA NUEVA URL LIMPIA ---
-  // Por ejemplo, de "/blog/bienvenidos-al-viaje", extraemos "bienvenidos-al-viaje".
+  // De "/blog/bienvenidos-al-viaje", extraemos "bienvenidos-al-viaje".
+  // Esto funciona gracias a la regla de reescritura en netlify.toml.
   const pathParts = window.location.pathname.split('/');
-  const postSlug = pathParts[pathParts.length - 1];
+  const postSlug = pathParts.pop() || pathParts.pop(); // Maneja trailing slash
 
   if (!postSlug) {
     postContainer.innerHTML = '<p class="text-center text-red-500">No se ha especificado ningún artículo.</p>';
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Carga los datos del post específico usando el slug.
   async function loadPost() {
     try {
+      // Llamamos a nuestra función/API para obtener los datos del post.
       const response = await fetch(`/.netlify/functions/get-posts?slug=${postSlug}`);
       if (!response.ok) {
         throw new Error(`Error del servidor: ${response.statusText}`);
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayPost(post) {
     const { title, date, content, category, image } = post.fields;
 
-    // Aseguramos que la URL canónica es la nueva URL limpia.
+    // **CORRECCIÓN CLAVE**: La URL canónica y para compartir es la URL limpia.
     const postUrl = `https://carlosramirezhernandez.com/blog/${postSlug}`;
 
     // Genera un extracto para las metaetiquetas.
@@ -48,9 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ogImageUrl = 'https:' + image.fields.file.url;
     }
 
-    // Actualiza dinámicamente las etiquetas del <head> para el SEO y las redes sociales.
+    // Actualiza dinámicamente las etiquetas del <head>.
+    // Esto es para el usuario. Los bots recibirán esto pre-renderizado por Netlify.
     document.title = `${title} - Carlos Ramírez Hernández`;
     document.querySelector('meta[name="description"]').setAttribute('content', excerpt);
+    document.querySelector('link[rel="canonical"]').setAttribute('href', postUrl);
     document.querySelector('meta[property="og:title"]').setAttribute('content', title);
     document.querySelector('meta[property="og:url"]').setAttribute('content', postUrl);
     document.querySelector('meta[property="og:description"]').setAttribute('content', excerpt);
@@ -70,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (category) {
       const categories = Array.isArray(category) ? category : [category];
       categoryLinksHTML = categories.map(cat =>
-          // El enlace a la categoría apunta a la página principal del blog con un filtro.
           `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline">${cat}</a>`
       ).join(', ');
     }
@@ -82,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Pinta el contenido final en el contenedor.
     postContainer.innerHTML = `
       <h1 class="text-4xl lg:text-5xl font-serif text-center mb-4">${title}</h1>
       <div class="text-sm text-zinc-400 text-center mb-8">

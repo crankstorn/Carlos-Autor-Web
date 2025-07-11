@@ -6,24 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Función para convertir saltos de línea a párrafos HTML
-  function convertNewlinesToParagraphs(text) {
+  // Función para convertir el contenido de Contentful (que puede tener saltos de línea) a HTML.
+  function formatContent(text) {
     if (!text) return '';
-    let htmlContent = text.split('\n\n')
-                          .map(paragraph => `<p>${paragraph}</p>`)
-                          .join('');
-    htmlContent = htmlContent.replace(/\n/g, '<br>');
+    // Reemplaza múltiples saltos de línea con cierres y aperturas de párrafos.
+    let htmlContent = text.split(/\n\s*\n/).map(paragraph => `<p>${paragraph.trim()}</p>`).join('');
+    // Reemplaza saltos de línea individuales con <br>.
+    htmlContent = htmlContent.replace(/(?<!>)(\n)(?!<)/g, '<br>');
     return htmlContent;
   }
+
 
   async function loadBlogPosts() {
     postsContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículos...</p>';
 
-    // Lógica para filtrar por categoría desde la URL
     const params = new URLSearchParams(window.location.search);
     const categoryFilter = params.get('category');
 
     try {
+      // La llamada a la función no cambia.
       const response = await fetch('/.netlify/functions/get-posts');
       if (!response.ok) {
         throw new Error(`Error del servidor: ${response.statusText}`);
@@ -31,9 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
       let allPosts = await response.json();
       let postsToDisplay = allPosts;
 
-      // Si hay un filtro de categoría, se aplica aquí
       if (categoryFilter) {
-        postsToDisplay = allPosts.filter(post => post.fields.category === categoryFilter);
+        postsToDisplay = allPosts.filter(post => {
+            if (!post.fields.category) return false;
+            // Maneja tanto si 'category' es un array como si es un string.
+            return Array.isArray(post.fields.category)
+                ? post.fields.category.includes(categoryFilter)
+                : post.fields.category === categoryFilter;
+        });
       }
 
       if (postsToDisplay.length === 0) {
@@ -51,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayPosts(posts) {
-      postsContainer.innerHTML = ''; // Limpiar el contenedor
+      postsContainer.innerHTML = '';
 
       posts.forEach((post, index) => {
         const { title, slug, category, date, content } = post.fields;
@@ -59,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let displayContent;
         let readMoreLink = '';
 
-        // El primer post se muestra completo, los demás con un extracto
+        // El primer post se muestra completo.
         if (index === 0) {
-          displayContent = convertNewlinesToParagraphs(content);
+          displayContent = formatContent(content);
         } else {
           const wordLimit = 55;
           const words = (content || '').split(/\s+/);
@@ -70,22 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
           if (words.length > wordLimit) {
             truncatedContent = words.slice(0, wordLimit).join(' ') + ' [...]';
           }
-          displayContent = convertNewlinesToParagraphs(truncatedContent);
+          displayContent = formatContent(truncatedContent);
 
-          // ***** CORRECCIÓN CLAVE *****
-          // El enlace "Leer más" ahora usa la URL limpia.
+          // **CORRECCIÓN CLAVE VERIFICADA**: El enlace "Leer más" usa la URL limpia.
           readMoreLink = `<a href="/blog/${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más</a>`;
         }
 
         const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "Fecha no disponible";
+
+        const categoryArray = Array.isArray(category) ? category : [category].filter(Boolean);
+        const categoryLinks = categoryArray.map(cat => `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline uppercase tracking-wider">${cat}</a>`).join(', ');
 
         const postElement = document.createElement('article');
         postElement.className = 'py-2';
 
         postElement.innerHTML = `
           <h2 class="text-4xl font-serif mb-2 text-center">
-            <!-- ***** CORRECCIÓN CLAVE ***** -->
-            <!-- El enlace del título ahora usa la URL limpia. -->
+            <!-- **CORRECCIÓN CLAVE VERIFICADA**: El enlace del título usa la URL limpia. -->
             <a href="/blog/${slug}" class="hover:text-[--color-accent] transition-colors">${title}</a>
           </h2>
 
@@ -99,10 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="mt-6 text-center text-sm">
             ${readMoreLink}
-            ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
-            <span class="text-zinc-500">Publicado en
-              <a href="/blog.html?category=${encodeURIComponent(category)}" class="text-[--color-accent] hover:underline uppercase tracking-wider">${category}</a>
-            </span>
+            ${readMoreLink && categoryLinks ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
+            ${categoryLinks ? `<span class="text-zinc-500">Publicado en ${categoryLinks}</span>` : ''}
           </div>
         `;
 
@@ -110,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (index < posts.length - 1) {
             const separator = document.createElement('hr');
-            separator.className = 'my-1 mx-auto w-20 border-t border-zinc-500';
+            separator.className = 'my-12 mx-auto w-20 border-t border-zinc-500';
             postsContainer.appendChild(separator);
         }
       });
@@ -119,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayCategories(allPosts) {
       if (!categoriesContainer) return;
 
-      const allCategories = [...new Set(allPosts.map(p => p.fields.category).filter(Boolean))];
+      const allCategories = [...new Set(allPosts.flatMap(p => p.fields.category).filter(Boolean))];
 
       let categoriesHTML = '<a href="/blog.html" class="hover:text-[--color-accent] transition-colors">Todo</a>';
       allCategories.forEach(cat => {
@@ -130,12 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
       const categoryFilter = params.get('category');
 
+      document.querySelectorAll('#categories a').forEach(link => link.classList.remove('font-bold', 'text-[--color-accent]'));
+
+      let activeLink;
       if (categoryFilter) {
-          const activeLink = document.querySelector(`a[href="/blog.html?category=${encodeURIComponent(categoryFilter)}"]`);
-          if (activeLink) activeLink.classList.add('font-bold', 'text-[--color-accent]');
+          activeLink = document.querySelector(`#categories a[href="/blog.html?category=${encodeURIComponent(categoryFilter)}"]`);
       } else {
-          const allLink = document.querySelector('a[href="/blog.html"]');
-          if (allLink) allLink.classList.add('font-bold', 'text-[--color-accent]');
+          activeLink = document.querySelector('#categories a[href="/blog.html"]');
+      }
+
+      if (activeLink) {
+        activeLink.classList.add('font-bold', 'text-[--color-accent]');
       }
   }
 
