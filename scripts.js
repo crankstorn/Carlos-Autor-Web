@@ -21,7 +21,9 @@ function initializePageScripts() {
 
                 const emailInput = document.getElementById('newsletter-email');
                 const email = emailInput.value;
-                const FUNCTION_URL = '/.netlify/functions/subscribe'; // Ajusta si es necesario
+
+                const MAILERLITE_GROUP_ID = '158756233196602950';
+                const FUNCTION_URL = '/.netlify/functions/subscribe';
 
                 feedbackDiv.textContent = 'Procesando...';
                 feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
@@ -31,13 +33,17 @@ function initializePageScripts() {
                     const response = await fetch(FUNCTION_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: email }), // Adapta el payload si tu función necesita más datos
+                        body: JSON.stringify({
+                            email: email,
+                            groupId: MAILERLITE_GROUP_ID
+                        }),
                     });
 
                     if (response.ok) {
+                        const form = e.target;
                         feedbackDiv.textContent = '¡Gracias por suscribirte!';
                         feedbackDiv.className = 'mt-4 text-sm h-5 text-green-400';
-                        newsletterForm.reset();
+                        form.reset();
                         consentCheckbox.checked = false;
                         submitButton.disabled = true;
                     } else {
