@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const postContainer = document.getElementById('post-content');
   if (!postContainer) return;
 
-  // --- CORRECCIÓN CLAVE ---
-  // En lugar de buscar "?slug=...", leemos la última parte de la URL.
-  // Por ejemplo, de "/blog/mi-post", extraemos "mi-post".
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   const postSlug = pathParts[pathParts.length - 1];
 
@@ -13,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // El resto del archivo es tu código original que ya funcionaba.
   async function loadPost() {
     try {
       const response = await fetch(`/.netlify/functions/get-posts?slug=${postSlug}`);
@@ -32,21 +28,37 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayPost(post) {
     const { title, date, content, category, image, slug } = post.fields;
 
-    // Aseguramos que las metaetiquetas usan la URL limpia para el SEO
     const postUrl = `https://carlosramirezhernandez.com/blog/${slug}`;
     const excerpt = content ? content.replace(/<[^>]*>/g, '').trim().substring(0, 155) + '...' : 'Lee este artículo.';
+
+    // --- CORRECCIÓN PARA LAS DIMENSIONES DE LA IMAGEN ---
     let ogImageUrl = 'https://carlosramirezhernandez.com/assets/og-image-inicio.jpg';
+    let ogImageWidth = '1200'; // Ancho por defecto para la imagen de respaldo
+    let ogImageHeight = '630'; // Alto por defecto para la imagen de respaldo
+
+    // Si el post tiene una imagen, usamos sus datos
     if (image && image.fields && image.fields.file) {
       ogImageUrl = 'https:' + image.fields.file.url;
+      // Y si Contentful nos da las dimensiones, las usamos también
+      if (image.fields.file.details && image.fields.file.details.image) {
+          ogImageWidth = image.fields.file.details.image.width;
+          ogImageHeight = image.fields.file.details.image.height;
+      }
     }
 
+    // Actualizamos las metaetiquetas del <head>
     document.title = `${title} - Carlos Ramírez Hernández`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', excerpt);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', postUrl);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', excerpt);
-    document.querySelector('meta[property="og:image"]')?.setAttribute('content', ogImageUrl);
 
+    // Actualizamos la imagen Y sus dimensiones
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', ogImageUrl);
+    document.querySelector('meta[property="og:image:width"]')?.setAttribute('content', ogImageWidth);
+    document.querySelector('meta[property="og:image:height"]')?.setAttribute('content', ogImageHeight);
+
+    // El resto del código para mostrar el post se mantiene igual
     let imageHTML = '';
     if (image && image.fields && image.fields.file) {
       const imageUrl = 'https:' + image.fields.file.url;
