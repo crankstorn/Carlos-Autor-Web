@@ -187,21 +187,20 @@ function initializePageScripts() {
     // --- CARGAR ÚLTIMAS NOTICIAS EN LA PÁGINA DE INICIO ---
     const newsContainer = document.getElementById('news-list-container');
     if (newsContainer) {
-        const getOrdinalSuffix = (day) => {
-            if (day > 3 && day < 21) return 'th';
-            switch (day % 10) {
-                case 1: return "st";
-                case 2: return "nd";
-                case 3: return "rd";
-                default: return "th";
-            }
-        };
 
         const formatNewsDate = (isoDate) => {
-            if (!isoDate) return '';
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            const date = new Date(isoDate);
-            return `${months[date.getMonth()].toUpperCase()} ${date.getDate()}${getOrdinalSuffix(date.getDate())}, ${date.getFullYear()}`;
+        if (!isoDate) return '';
+        const date = new Date(isoDate);
+        const timeZone = 'UTC'; // Usar UTC para evitar errores de un día por la zona horaria.
+
+        // --- Opción 1: Formato de texto en español (11 de julio de 2025) ---
+        // Esta es la opción activa por defecto.
+        const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone };
+        return new Intl.DateTimeFormat('es-ES', options).format(date);
+
+        // --- Opción 2: Formato numérico (11/07/2025) ---
+        // Si prefieres esta, borra el '//' del inicio de la línea de abajo y ponlo en la de arriba.
+        // return new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone }).format(date);
         };
 
         const loadLatestNews = async () => {
