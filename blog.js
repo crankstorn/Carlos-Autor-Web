@@ -1,5 +1,3 @@
-// Basado en tu archivo original que funcionaba.
-
 document.addEventListener('DOMContentLoaded', () => {
   const postsContainer = document.getElementById('posts');
   const categoriesContainer = document.getElementById('categories');
@@ -8,8 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function convertNewlinesToParagraphs(text) {
     if (!text) return '';
     let htmlContent = text.split('\n\n').map(p => `<p>${p}</p>`).join('');
-    htmlContent = htmlContent.replace(/\n/g, '<br>');
-    return htmlContent;
+    return htmlContent.replace(/\n/g, '<br>');
   }
 
   async function loadBlogPosts() {
@@ -31,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         displayPosts(postsToDisplay);
       }
-      displayCategories(allPosts); // Pasamos todos los posts para tener todas las categorías
+      displayCategories(allPosts);
     } catch (error) {
       console.error('Error al cargar el blog:', error);
       postsContainer.innerHTML = '<p class="text-center text-red-500">No se pudieron cargar los artículos.</p>';
@@ -45,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let displayContent;
       let readMoreLink = '';
 
+      // Muestra el contenido completo solo para el primer post en la página principal sin filtro
       if (index === 0 && !new URLSearchParams(window.location.search).get('category')) {
         displayContent = convertNewlinesToParagraphs(content);
       } else {
@@ -53,8 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let truncatedContent = words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + ' [...]' : content;
         displayContent = convertNewlinesToParagraphs(truncatedContent);
 
-        // --- CAMBIO CLAVE #1 ---
-        // El enlace "Leer más" ahora usa la URL limpia.
+        // --- CORRECCIÓN CLAVE ---
         readMoreLink = `<a href="/blog/${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más</a>`;
       }
 
@@ -64,8 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       postElement.className = 'py-2';
       postElement.innerHTML = `
         <h2 class="text-4xl font-serif mb-2 text-center">
-          <!-- --- CAMBIO CLAVE #2 --- -->
-          <!-- El enlace del título ahora usa la URL limpia. -->
+          <!-- --- CORRECCIÓN CLAVE --- -->
           <a href="/blog/${slug}" class="hover:text-[--color-accent] transition-colors">${title}</a>
         </h2>
         <div class="text-sm text-zinc-400 mb-6 text-center uppercase tracking-wider">

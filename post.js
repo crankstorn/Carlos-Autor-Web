@@ -1,59 +1,37 @@
-// Basado en tu archivo original que funcionaba.
-// Versión con diagnóstico para encontrar el punto de fallo.
-
 document.addEventListener('DOMContentLoaded', () => {
   const postContainer = document.getElementById('post-content');
-  if (!postContainer) {
-    console.error("Error Crítico: El contenedor #post-content no existe en el HTML.");
-    return;
-  }
-  console.log("[Paso 1 de 5] Contenedor #post-content encontrado.");
+  if (!postContainer) return;
 
-  // --- CAMBIO CLAVE ---
-  // En lugar de leer "?slug=...", leemos el final de la ruta "/blog/mi-slug".
-  const pathParts = window.location.pathname.split('/').filter(Boolean); // Elimina partes vacías
+  // --- CORRECCIÓN CLAVE ---
+  // Lee el slug desde la ruta de la URL, no desde los parámetros.
+  // Por ejemplo, de "/blog/mi-post-genial", extrae "mi-post-genial".
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
   const postSlug = pathParts[pathParts.length - 1];
-  console.log(`[Paso 2 de 5] La URL es "${window.location.pathname}". Slug extraído: "${postSlug}".`);
 
   if (!postSlug || pathParts[0] !== 'blog') {
-    postContainer.innerHTML = '<p class="text-center text-red-500">No se ha especificado un artículo válido.</p>';
-    console.error(`Error: El slug o la ruta no son válidos. Parts: ${pathParts}`);
+    postContainer.innerHTML = '<p class="text-center text-red-500">No se ha especificado ningún artículo.</p>';
     return;
   }
-  console.log("[Paso 3 de 5] El slug es válido. Procediendo a cargar el post.");
 
   async function loadPost() {
     try {
-      const fetchURL = `/.netlify/functions/get-posts?slug=${postSlug}`;
-      console.log(`[Paso 4 de 5] Intentando hacer fetch a la URL: ${fetchURL}`);
-      const response = await fetch(fetchURL);
-
-      console.log(`[Paso 5 de 5] Respuesta recibida del servidor. Status: ${response.status}`);
-      if (!response.ok) {
-        throw new Error(`El servidor respondió con un error: ${response.status} ${response.statusText}`);
-      }
+      const response = await fetch(`/.netlify/functions/get-posts?slug=${postSlug}`);
+      if (!response.ok) throw new Error(`Error del servidor: ${response.statusText}`);
 
       const posts = await response.json();
-      console.log("Datos JSON recibidos:", posts);
+      if (posts.length === 0) throw new Error('El artículo no fue encontrado.');
 
-      if (posts.length === 0) {
-        throw new Error('La API funcionó, pero no devolvió ningún artículo para este slug.');
-      }
-
-      console.log("Post encontrado. Llamando a displayPost...");
       displayPost(posts[0]);
-
     } catch (error) {
-      console.error('Error final al cargar el post:', error);
-      postContainer.innerHTML = `<p class="text-center text-red-500">Error: ${error.message}. Revisa la consola para más detalles.</p>`;
+      console.error('Error al cargar el post:', error);
+      postContainer.innerHTML = `<p class="text-center text-red-500">${error.message}</p>`;
     }
   }
 
   function displayPost(post) {
-    console.log(`Renderizando el post: "${post.fields.title}"`);
     const { title, date, content, category, image, slug } = post.fields;
 
-    // Aseguramos que la URL canónica y para compartir sea la nueva URL limpia.
+    // Aseguramos que las metaetiquetas usan la URL limpia para el SEO
     const postUrl = `https://carlosramirezhernandez.com/blog/${slug}`;
     const excerpt = content ? content.replace(/<[^>]*>/g, '').trim().substring(0, 155) + '...' : 'Lee este artículo.';
     let ogImageUrl = 'https://carlosramirezhernandez.com/assets/og-image-inicio.jpg';
@@ -61,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ogImageUrl = 'https:' + image.fields.file.url;
     }
 
-    // Actualizamos las metaetiquetas del <head> para el SEO y las redes sociales.
     document.title = `${title} - Carlos Ramírez Hernández`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', excerpt);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
@@ -95,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Publicado en ${categoryLinksHTML} el ${postDate}.
       </div>
     `;
-    console.log("Renderizado completado con éxito.");
   }
 
   loadPost();
