@@ -1,4 +1,3 @@
-// Fichero: scripts.js (Versión final y funcional)
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- MANEJO DE LA NEWSLETTER ---
@@ -109,6 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // --- ANIMACIÓN DE ENTRADA (FADE-IN) ---
+    const fadeInSections = document.querySelectorAll('.fade-in-section');
+    if (fadeInSections.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('is-visible');
+            });
+        }, { rootMargin: '0px 0px -100px 0px' });
+        fadeInSections.forEach(section => observer.observe(section));
+    }
+
     // --- BOTÓN "VOLVER ARRIBA" ---
     const backToTopBtn = document.getElementById('back-to-top-btn');
     if (backToTopBtn) {
@@ -119,30 +129,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LÓGICA DE NAVEGACIÓN ACTIVA ---
+    // ==========================================================
+    // ===== LÓGICA DE NAVEGACIÓN ACTIVA (RESTAURADA) =====
+    // ==========================================================
     const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-    const currentPath = window.location.pathname.replace(/\/$/, '');
-    navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname.replace(/\/$/, '').replace('.html', '');
-        if (currentPath.startsWith('/blog') && linkPath === '/blog') {
-            link.classList.add('nav-active');
-            link.setAttribute('aria-current', 'page');
-        } else if (linkPath === currentPath || (currentPath === '' && linkPath === '/index')) {
-            link.classList.add('nav-active');
-            link.setAttribute('aria-current', 'page');
-        }
-    });
+    const currentPath = window.location.pathname.replace(/\/$/, ''); // Ruta actual sin la barra final
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            const linkPath = new URL(link.href).pathname.replace(/\/$/, '').replace('.html', '');
+
+            // Caso especial para el blog: cualquier ruta que empiece con /blog activa el enlace del blog.
+            if (currentPath.startsWith('/blog') && linkPath === '/blog') {
+                link.classList.add('nav-active');
+                link.setAttribute('aria-current', 'page');
+            }
+            // Caso para el resto de páginas, incluyendo la de inicio
+            else if (linkPath === currentPath || (currentPath === '' && (linkPath === '/index' || linkPath === ''))) {
+                link.classList.add('nav-active');
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+    }
 
     // --- CARGAR ÚLTIMAS NOTICIAS EN LA PÁGINA DE INICIO ---
     const newsContainer = document.getElementById('news-list-container');
     if (newsContainer) {
-        // Función para añadir el sufijo ordinal a los días (1st, 2nd, 3rd, 4th)
         const getOrdinalSuffix = (day) => {
             if (day > 3 && day < 21) return 'th';
             switch (day % 10) { case 1: return "st"; case 2: return "nd"; case 3: return "rd"; default: return "th"; }
         };
 
-        // Función para formatear la fecha como en la imagen de referencia
         const formatNewsDate = (isoDate) => {
             if (!isoDate) return '';
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -166,10 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 newsContainer.innerHTML = '';
                 latestPosts.forEach(post => {
                     const { title, slug, date } = post.fields;
-                    const formattedDate = formatNewsDate(date); // Formatea la fecha
+                    const formattedDate = formatNewsDate(date);
 
                     const newsItem = document.createElement('div');
-                    // NUEVA ESTRUCTURA: Flexbox para crear dos columnas
                     newsItem.className = 'flex items-center gap-6';
                     newsItem.innerHTML = `
                         <div class="w-1/3 md:w-1/4 text-sm text-zinc-500 uppercase tracking-wider font-sans">
