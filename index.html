@@ -4,18 +4,27 @@
     <!-- ===== METADATOS ESENCIALES ===== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Ramírez Hernández - Autor</title>
+    <title>Carlos Ramírez Hernández - Autor de Fantasía y Ciencia Ficción</title>
     <meta name="description" content="Web oficial de Carlos Ramírez Hernández, autor de la novela 'Una Melodía de Silencio'. Descubre sus libros, noticias y eventos.">
 
-    <!-- ===== FAVICON (ACTUALIZADO) ===== -->
-    <link rel="icon" href="https://placehold.co/32x32/1A202C/FDFBF7?text=CR&font=playfair-display" type="image/png">
+    <!-- ===== FAVICON ===== -->
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#1a202c">
+    <meta name="theme-color" content="#fdfbf7">
 
     <!-- ===== LIBRERÍAS Y FUENTES EXTERNAS ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- ===== NUEVO ARCHIVO DE ESTILOS UNIFICADO ===== -->
+    <link rel="stylesheet" href="estilos.css">
 
     <!-- ===== DATOS ESTRUCTURADOS (SEO) ===== -->
     <script type="application/ld+json">
@@ -24,25 +33,18 @@
       "@graph": [
         {
           "@type": "WebSite",
-          "name": "Carlos Ramírez Hernández - Sitio Oficial",
-          "url": "https://carlosramirezhernandez.com/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://carlosramirezhernandez.com/?s={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-          }
+          "name": "Carlos Ramírez Hernández - Autor de Fantasía y Ciencia Ficción",
+          "url": "https://carlosramirezhernandez.com/"
         },
         {
           "@type": "Person",
           "@id": "https://carlosramirezhernandez.com/#person",
           "name": "Carlos Ramírez Hernández",
-          "url": "https://carlosramirezhernandez.com/autor.html",
+          "url": "https://carlosramirezhernandez.com/autor",
            "sameAs": [
-            "https://twitter.com/TU_USUARIO_DE_TWITTER",
-            "https://www.instagram.com/TU_USUARIO_DE_INSTAGRAM",
+            "https://www.linkedin.com/in/carlos-ramirez-hernandez/",
+            "https://x.com/CarlosRH_Autor",
+            "https://www.instagram.com/carlosrh_autor/",
             "https://www.goodreads.com/author/show/TU_ID_DE_GOODREADS"
           ],
           "mainEntityOfPage": {
@@ -59,7 +61,7 @@
     <meta property="og:url" content="https://carlosramirezhernandez.com/">
     <meta property="og:title" content="Carlos Ramírez Hernández - Autor de Fantasía y Ciencia Ficción">
     <meta property="og:description" content="Web oficial del autor Carlos Ramírez Hernández. Descubre su nueva novela 'Una Melodía de Silencio', noticias, biografía y contenido exclusivo.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1615291238543-568053a8a342?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:image" content="https://carlosramirezhernandez.com/assets/portada-temporal-redes.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="es_ES">
@@ -69,93 +71,16 @@
     <meta name="twitter:url" content="https://carlosramirezhernandez.com/">
     <meta name="twitter:title" content="Carlos Ramírez Hernández - Autor de Fantasía y Ciencia Ficción">
     <meta name="twitter:description" content="Web oficial del autor Carlos Ramírez Hernández. Descubre su nueva novela 'Una Melodía de Silencio', noticias, biografía y contenido exclusivo.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1615291238543-568053a8a342?q=80&w=1200&auto=format&fit=crop">
+    <meta name="twitter:image" content="https://carlosramirezhernandez.com/assets/portada-temporal-redes.jpg">
 
-    <!-- ===== ESTILOS PERSONALIZADOS ===== -->
-    <style>
-        :root {
-            --color-accent: #493547;
-            --color-accent-hover: #66495E;
-            --color-bg: #FDFBF7;
-            --color-text-primary: #1A1A1A;
-            --color-text-secondary: #5c5c5c;
-            --color-dark-bg: #1A202C;
-            --color-dark-text-primary: #F7FAFC;
-            --color-dark-text-secondary: #A0AEC0;
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--color-text-primary); background-color: var(--color-bg); }
-        h1, h2, h3, h4, h5, h6, .font-serif { font-family: 'Playfair Display', serif; font-weight: 400; }
-        .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); transition: color 0.3s ease-out; }
-        .logo-link:hover .logo-text { color: var(--color-accent); }
-        .cta-button:disabled { background-color: #9ca3af; cursor: not-allowed; transform: scale(1); box-shadow: none; }
-        .cta-button { background-color: var(--color-accent); transition: all 0.3s ease; box-shadow: 0 4px 15px 0 rgba(47, 79, 79, 0.3); }
-        .cta-button:hover:not(:disabled) { transform: scale(1.05); background-color: var(--color-accent-hover); box-shadow: 0 6px 20px 0 rgba(47, 79, 79, 0.4); }
-        .nav-active { font-weight: 600; color: var(--color-accent); }
-        .dark-section { background-color: var(--color-dark-bg); background-image: url(https://www.transparenttextures.com/patterns/dark-stone.png); }
-        .dark-section h1, .dark-section h2, .dark-section h3, .dark-section p, .dark-section a, .dark-section span { color: var(--color-dark-text-primary); }
-        .dark-section p, .dark-section .form-input, .dark-section nav a, .dark-section .social-icon { font-family: 'Inter', sans-serif; }
-        .dark-section .text-special-accent { color: #D69E2E; }
-        .dark-section .button-secondary { border-color: var(--color-dark-text-secondary); color: var(--color-dark-text-secondary); }
-        .dark-section .button-secondary:hover { background-color: var(--color-dark-text-secondary); color: var(--color-dark-bg); }
-        .dark-section .form-input { background-color: #2D3748; border-color: #4A5568; }
-        .dark-section .footer-link { color: var(--color-dark-text-secondary); }
-        .dark-section .footer-link:hover { color: var(--color-dark-text-primary); text-decoration: underline; }
-        .section-separator { height: 60px; position: relative; background-color: var(--color-bg); }
-        .section-separator::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; border-top: 1px solid #EBE3D8; }
-        .section-separator::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 28px; height: 28px; background-color: var(--color-bg); padding: 0 15px; background-image: url('https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/50018b7f258b44030a3a57a84c8a023679997c73/Separador%20Triskel.svg'); background-size: contain; background-repeat: no-repeat; background-position: center; }
-        .title-separator { display: flex; align-items: center; text-align: center; color: var(--color-text-primary); }
-        .title-separator::before, .title-separator::after { content: ''; flex: 1; border-bottom: 1px solid #EBE3D8; }
-        .title-separator:not(:empty)::before { margin-right: 1.5em; }
-        .title-separator:not(:empty)::after { margin-left: 1.5em; }
-        .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
-        .easter-egg-note { font-size: 1.5rem; line-height: 1; cursor: pointer; color: #20c2c2; opacity: 0; text-shadow: 0 0 8px rgba(32, 194, 194, 0); transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out; }
-        .easter-egg-note:hover { opacity: 1; text-shadow: 0 0 10px rgba(32, 194, 194, 1), 0 0 20px rgba(32, 194, 194, 0.7); }
-        #secret-modal-overlay { transition: opacity 0.3s ease-out; }
-        #secret-modal { transition: transform 0.3s ease-out, opacity 0.3s ease-out; transform: translateY(20px) scale(0.95); }
-        #secret-modal-overlay.show #secret-modal { transform: translateY(0) scale(1); }
-        #back-to-top-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 50; opacity: 0; visibility: hidden; transform: translateY(1rem); transition: opacity 0.3s, visibility 0.3s, transform 0.3s; }
-        #back-to-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
-    </style>
 </head>
 <body class="antialiased">
 
-    <!-- =================================================================== -->
-    <!-- ===== HEADER                                                  ===== -->
-    <!-- =================================================================== -->
-    <header id="header" class="bg-white/90 backdrop-blur-md shadow-sm top-0 z-40">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="./index.html" class="logo-link">
-                <span class="logo-text">CARLOS RAMÍREZ</span>
-            </a>
-            <div class="flex items-center gap-8">
-                <nav id="main-nav" class="hidden md:flex items-center space-x-8">
-                    <a href="./index.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Inicio</a>
-                    <a href="./una-melodia-de-silencio.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">El Libro</a>
-                    <a href="./autor.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Sobre Carlos</a>
-                    <!--<a href="./noticias.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Noticias</a>-->
-                    <a href="./contacto.html" class="text-zinc-600 hover:text-[--color-accent] transition duration-300">Contacto</a>
-                </nav>
-                <div class="hidden md:block">
-                    <span id="easter-egg-trigger" class="easter-egg-note">𝄽</span>
-                </div>
-                <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
-                    <i class="fas fa-bars w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-200">
-            <a href="./index.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Inicio</a>
-            <a href="./una-melodia-de-silencio.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">El Libro</a>
-            <a href="./autor.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Sobre Carlos</a>
-           <!-- <a href="./noticias.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Noticias</a>-->
-            <a href="./contacto.html" class="block px-6 py-3 text-sm text-zinc-700 hover:bg-zinc-50">Contacto</a>
-        </div>
-    </header>
+    <!-- ===== CONTENEDOR PARA EL HEADER ===== -->
+    <div id="header-placeholder"></div>
 
     <!-- =================================================================== -->
-    <!-- ===== CONTENIDO PRINCIPAL                                     ===== -->
+    <!-- ===== CONTENIDO PRINCIPAL (ESPECÍFICO DE ESTA PÁGINA)         ===== -->
     <!-- =================================================================== -->
     <main>
 
@@ -165,18 +90,17 @@
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 p-8 flex justify-center items-center">
                         <a href="./una-melodia-de-silencio.html" class="group block">
-                            <img src="https://images.unsplash.com/photo-1727035305444-bbdfe6be13a3?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Clavijero de un bajo con una luz roja" class="rounded-lg shadow-2xl shadow-black/50 max-w-xs w-full transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/400x600/F5EFE6/333333?text=Error+cargando+imagen';">
+                            <img src="assets/portada-temporal.jpg" alt="Portada de la novela Una Melodía de Silencio" class="rounded-lg shadow-2xl shadow-black/50 max-w-xs w-full transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/400x600/F5EFE6/333333?text=Error+cargando+imagen';">
                         </a>
                     </div>
                     <div class="w-full md:w-1/2 p-8 text-center md:text-left">
-                        <!-- CAMBIO: Añadida la clase 'font-sans' para forzar la fuente del body (Inter) -->
                         <h2 class="font-sans text-sm tracking-widest text-special-accent font-semibold">Su amor es música. Su secreto, guerra.</h2>
                         <h1 class="text-4xl md:text-5xl my-4 leading-tight">Una Melodía de Silencio</h1>
                         <p class="text-[--color-dark-text-secondary] leading-relaxed mb-8">
                             La vida para Tom es una rutina monótona hasta que la enigmática Eli y su música imposible irrumpen en ella. Su conexión, tan fascinante como peligrosa, es la llave a un nuevo mundo y el billete de entrada a una guerra fría y de desgaste. Con tal de proteger a sus seres queridos, Tom dejará atrás la única realidad que conoce y se encontrará librando una guerra que no comenzó, contra un enemigo que no acaba de comprender.
                         </p>
                         <div class="mt-8 flex justify-center md:justify-start">
-                            <a href="./pagina-de-suscripción.html" class="cta-button text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-special-accent">
+                            <a href="/pagina-de-suscripción" class="cta-button text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-special-accent">
                                 Avísame del lanzamiento
                             </a>
                         </div>
@@ -193,7 +117,7 @@
             <div class="container mx-auto px-6">
                 <div class="md:flex md:items-center md:gap-12">
                     <div class="md:w-1/3 text-center mb-8 md:mb-0 flex-shrink-0">
-                        <img src="https://raw.githubusercontent.com/crankstorn/Carlos-Autor-Web/main/Profile%20Picture.png" alt="Fotografía del autor Carlos Ramírez" class="w-64 h-64 mx-auto rounded-full shadow-xl object-cover" onerror="this.onerror=null;this.src='https://placehold.co/256x256/ccc/333?text=Autor';">
+                        <img src="assets/index-sobre-mi.png" alt="Fotografía del autor Carlos Ramírez" class="w-64 h-64 mx-auto rounded-full shadow-xl object-cover" onerror="this.onerror=null;this.src='https://placehold.co/256x256/ccc/333?text=Autor';">
                     </div>
                     <div class="md:w-2/3">
                         <h2 class="text-4xl text-zinc-800 mb-4">Sobre Carlos Ramírez Hernández</h2>
@@ -204,249 +128,33 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN DE NOTICIAS (SEPARADOR MODIFICADO) ===== -->
-        <!--
-        <section id="noticias" class="py-8 mb-16">
-            <div class="container mx-auto px-6">
-                <h2 class="title-separator text-4xl text-zinc-800 mb-12">Últimas Noticias</h2>
-                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                    <div class="flex items-start gap-6 p-6 rounded-lg transition-all duration-300 bg-white border border-stone-200 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-[--color-accent] text-3xl mt-1"><i class="fas fa-calendar-alt"></i></div>
-                        <div>
-                            <p class="text-sm text-zinc-500 mb-1">15 de Julio, 2025</p>
-                            <h3 class="text-2xl text-zinc-800 mb-2">Ejemplo evento</h3>
-                            <p class="text-[--color-text-secondary]">Estaré en la librería Rata Corner de Palma para charlar sobre 'Una Melodía de Silencio'.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-6 p-6 rounded-lg transition-all duration-300 bg-white border border-stone-200 hover:shadow-lg hover:-translate-y-1">
-                        <div class="text-[--color-accent] text-3xl mt-1"><i class="fas fa-bullhorn"></i></div>
-                        <div>
-                            <p class="text-sm text-zinc-500 mb-1">1 de Septiembre, 2025</p>
-                            <h3 class="text-2xl text-zinc-800 mb-2">Ejemplo gira</h3>
-                            <p class="text-[--color-text-secondary]">Pronto anunciaré las fechas para la gira de firmas en Dinamarca.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <a href="./noticias.html" class="cta-button text-white font-bold py-3 px-8 rounded-lg">Ver todas las noticias</a>
-                </div>
+        <!-- Las secciones comentadas se mantienen por si quieres reactivarlas en el futuro -->
+        <div class="py-16">
+            <h2 class="title-separator text-4xl text-zinc-800">
+                Últimas Noticias
+            </h2>
+        </div>
+
+        <section id="lista-noticias" class="pb-16">
+          <div class="container mx-auto px-6">
+            <div id="news-list-container" class="max-w-3xl mx-auto text-left space-y-6">
+                <p class="text-zinc-500 text-center">Cargando noticias...</p>
             </div>
+            <div class="text-center mt-12">
+                 <a href="/blog.html" class="inline-block font-bold text-[--color-accent] hover:underline">Ver todas las noticias &rarr;</a>
+            </div>
+          </div>
         </section>
-        -->
     </main>
 
-    <!-- =================================================================== -->
-    <!-- ===== FOOTER (OSCURO) CON NEWSLETTER Y MEJORAS RGPD           ===== -->
-    <!-- =================================================================== -->
-    <footer class="dark-section py-12 mt-16">
-        <div class="container mx-auto px-6">
-             <div class="max-w-2xl mx-auto text-center mb-10">
-                 <h3 class="text-2xl">Únete a la Comunidad</h3>
-                 <p class="mt-2 text-[--color-dark-text-secondary]">Recibe noticias, contenido inédito y fechas de eventos directamente en tu correo.</p>
-                <form id="newsletter-form" class="mt-6">
-                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                        <input type="email" id="newsletter-email" name="email" placeholder="Tu correo electrónico" required class="w-full sm:w-auto flex-grow px-4 py-2.5 text-white form-input rounded-md focus:ring-2 focus:ring-white/80 focus:border-white/80 transition duration-300">
-                        <button type="submit" id="newsletter-submit-btn" class="cta-button text-white font-bold py-2.5 px-8 rounded-md text-base">Suscribirme</button>
-                    </div>
-                    <div class="mt-4 text-left max-w-sm mx-auto">
-                        <label for="gdpr-consent" class="flex items-start space-x-3 cursor-pointer">
-                            <input type="checkbox" id="gdpr-consent" name="gdpr-consent" required class="mt-1 h-4 w-4 rounded border-gray-300 text-[--color-accent] focus:ring-[--color-accent]">
-                            <span class="text-xs text-left text-[--color-dark-text-secondary]">
-                                Acepto recibir comunicaciones y confirmo que he leído y acepto la <a href="./politica-de-privacidad.html" class="underline hover:text-white">Política de Privacidad</a>.
-                            </span>
-                        </label>
-                    </div>
-                </form>
-                <div id="newsletter-feedback" class="mt-4 text-sm h-5"></div>
-            </div>
-            <nav class="mb-8 flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
-                <a href="./index.html" class="footer-link">Inicio</a>
-                <a href="./una-melodia-de-silencio.html" class="footer-link">El Libro</a>
-                <a href="./autor.html" class="footer-link">Sobre Carlos</a>
-               <!-- <a href="./noticias.html" class="footer-link">Noticias</a>-->
-                <a href="./contacto.html" class="footer-link">Contacto</a>
-                <a href="./politica-de-privacidad.html" class="footer-link">Política de Privacidad</a>
-            </nav>
-            <div class="text-center">
-                <div class="flex justify-center space-x-6 mb-6">
-                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon footer-link text-2xl" aria-label="Enlace a Goodreads"><i class="fab fa-goodreads"></i></a>
-                </div>
-                <div class="text-sm footer-link">
-                    <a href="./assets/press_kit/kit_de_prensa.zip" download class="footer-link">Kit de Prensa</a>
-                    <span class="mx-2">|</span>
-                    <p class="inline">&copy; <span id="year"></span> Carlos Ramírez Hernández. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- ===== CONTENEDOR PARA EL FOOTER ===== -->
+    <div id="footer-placeholder"></div>
 
     <!-- =================================================================== -->
-    <!-- ===== ELEMENTOS FLOTANTES Y MODALES (CON SÍMBOLO SECRETO)     ===== -->
+    <!-- ===== LLAMADA A LOS NUEVOS SCRIPTS ===== -->
     <!-- =================================================================== -->
-    <a href="#" id="back-to-top-btn" class="p-3 rounded-full bg-[--color-accent] text-white shadow-lg hover:bg-[--color-accent-hover]">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-    <div id="secret-modal-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4 hidden opacity-0">
-        <div id="secret-modal" class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative text-center">
-            <button id="close-secret-modal-btn" class="absolute top-2 right-4 text-zinc-500 hover:text-zinc-800 text-3xl">&times;</button>
-            <p class="text-xl italic text-zinc-700 leading-relaxed font-serif">
-                Has encontrado un momento de silencio. A veces, es la curiosidad la que nos regala las sonrisas más inesperadas. Gracias por tu curiosidad.
-            </p>
-            <p class="text-right mt-4 font-semibold text-zinc-800">- Carlos Ramírez Hernández</p>
-        </div>
-    </div>
+    <script src="scripts.js"></script>
+    <script src="componentes.js"></script>
 
-    <!-- =================================================================== -->
-    <!-- ===== SCRIPT PRINCIPAL (VERSIÓN SEGURA Y COMPLETA)            ===== -->
-    <!-- =================================================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // --- MANEJO DE LA NEWSLETTER CON NETLIFY Y RGPD ---
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (newsletterForm) {
-                const submitButton = document.getElementById('newsletter-submit-btn');
-                const consentCheckbox = document.getElementById('gdpr-consent');
-                submitButton.disabled = true;
-                consentCheckbox.addEventListener('change', () => {
-                    submitButton.disabled = !consentCheckbox.checked;
-                });
-                newsletterForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    if (!consentCheckbox.checked) return;
-                    const form = e.target;
-                    const emailInput = document.getElementById('newsletter-email');
-                    const feedbackDiv = document.getElementById('newsletter-feedback');
-                    const email = emailInput.value;
-                    const MAILERLITE_GROUP_ID = '158756233196602950';
-                    const FUNCTION_URL = '/.netlify/functions/subscribe';
-                    feedbackDiv.textContent = 'Procesando...';
-                    feedbackDiv.className = 'mt-4 text-sm h-5 text-gray-400';
-                    submitButton.disabled = true;
-                    try {
-                        const response = await fetch(FUNCTION_URL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                email: email,
-                                groupId: MAILERLITE_GROUP_ID
-                            }),
-                        });
-                        if (response.ok) {
-                            feedbackDiv.textContent = '¡Gracias por suscribirte!';
-                            feedbackDiv.className = 'mt-4 text-sm h-5 text-green-400';
-                            form.reset();
-                            consentCheckbox.checked = false;
-                            submitButton.disabled = true;
-                        } else {
-                            const errorData = await response.json();
-                            const errorMessage = errorData.message || 'El email es inválido o ya está suscrito.';
-                            feedbackDiv.textContent = errorMessage;
-                            feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
-                            submitButton.disabled = false;
-                        }
-                    } catch (error) {
-                        feedbackDiv.textContent = 'Ocurrió un error. Inténtalo de nuevo.';
-                        feedbackDiv.className = 'mt-4 text-sm h-5 text-red-400';
-                        console.error('Error en la suscripción:', error);
-                        submitButton.disabled = false;
-                    }
-                });
-            }
-
-            // --- CÓDIGO GENÉRICO (MENÚ, AÑO, EASTER EGG, ETC.) ---
-            const initModal = (triggerBtnId, overlayId, closeBtnId, modalId) => {
-                const triggerBtn = document.getElementById(triggerBtnId);
-                const overlay = document.getElementById(overlayId);
-                const closeBtn = document.getElementById(closeBtnId);
-                const modal = document.getElementById(modalId);
-
-                if (triggerBtn && overlay && closeBtn && modal) {
-                    const openModal = () => {
-                        overlay.classList.remove('hidden');
-                        setTimeout(() => {
-                            overlay.classList.add('opacity-100');
-                            modal.classList.add('show');
-                        }, 10);
-                    };
-
-                    const closeModal = () => {
-                        overlay.classList.remove('opacity-100');
-                        modal.classList.remove('show');
-                        setTimeout(() => overlay.classList.add('hidden'), 300);
-                    };
-
-                    triggerBtn.addEventListener('click', openModal);
-                    closeBtn.addEventListener('click', closeModal);
-                    overlay.addEventListener('click', (e) => {
-                        if (e.target === overlay) closeModal();
-                    });
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === "Escape" && !overlay.classList.contains('hidden')) {
-                            closeModal();
-                        }
-                    });
-                }
-            };
-
-            initModal('easter-egg-trigger', 'secret-modal-overlay', 'close-secret-modal-btn', 'secret-modal');
-
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-            }
-
-            const yearSpan = document.getElementById('year');
-            if(yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); }
-                });
-            }, { rootMargin: '0px 0px -100px 0px' });
-            const sections = document.querySelectorAll('.fade-in-section');
-            sections.forEach(section => { observer.observe(section); });
-
-            const backToTopBtn = document.getElementById('back-to-top-btn');
-            if (backToTopBtn) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) { backToTopBtn.classList.add('show'); }
-                    else { backToTopBtn.classList.remove('show'); }
-                });
-                backToTopBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-
-            // LÓGICA DE NAVEGACIÓN ACTIVA CORREGIDA
-            const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-            const currentPath = window.location.pathname;
-
-            navLinks.forEach(link => {
-                // Usamos 'link.pathname' que es la forma más segura de obtener la ruta del enlace.
-                const linkPath = link.pathname;
-
-                // Normalizamos las rutas para asegurarnos de que no haya barras finales
-                const cleanCurrentPath = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
-                const cleanLinkPath = linkPath.endsWith('/') && linkPath.length > 1 ? linkPath.slice(0, -1) : linkPath;
-
-                // Comparamos las rutas
-                if (cleanLinkPath === cleanCurrentPath) {
-                    link.classList.add('nav-active');
-                }
-                // Caso especial para la página de inicio, donde la ruta puede ser '/'
-                else if (cleanCurrentPath === '/' && cleanLinkPath.endsWith('/index.html')) {
-                    link.classList.add('nav-active');
-                }
-                else {
-                    link.classList.remove('nav-active');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
