@@ -1,21 +1,14 @@
 # Archivo de configuración para Netlify
 
 # Regla de reescritura para los posts del blog.
-# Esta es la configuración correcta para que las Single Page Apps (SPA) o
-# los sitios con renderizado del lado del cliente funcionen con URLs limpias.
+# Esta es la pieza clave que permite que las URLs limpias funcionen.
 [[redirects]]
-  # Cuando un navegador pida una URL como /blog/mi-primer-post...
+  # Cuando un navegador o bot pida una URL como /blog/mi-primer-post...
   from = "/blog/*"
 
   # ...Netlify internamente le servirá el archivo post.html sin cambiar la URL.
   to = "/post.html"
 
-  # El status 200 significa que es una reescritura (la URL no cambia),
-  # no una redirección 301 (que sí cambiaría la URL).
+  # El status 200 significa que es una reescritura, no una redirección.
+  # La URL en el navegador del usuario no cambiará.
   status = 200
-
-# NOTA IMPORTANTE:
-# Para que los bots de redes sociales y buscadores vean el contenido correcto,
-# ve a tu panel de Netlify -> Site configuration -> Build & deploy -> Prerendering
-# y activa el pre-renderizado. Netlify se encargará del resto.
-# La lógica para detectar bots en tu función ya no es necesaria.
