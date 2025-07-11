@@ -22,13 +22,16 @@ async function loadComponent(url, placeholderId) {
 
 // Cargar todos los componentes y luego inicializar los scripts
 async function loadAllComponents() {
-    // Usamos Promise.all para cargar header y footer en paralelo
+    // --- CORRECCIÓN CLAVE ---
+    // Usamos rutas absolutas (empezando con /) para que funcionen
+    // desde cualquier página, incluyendo /blog/un-post.
     await Promise.all([
-        loadComponent('header.html', 'header-placeholder'),
-        loadComponent('footer.html', 'footer-placeholder')
+        loadComponent('/header.html', 'header-placeholder'),
+        loadComponent('/footer.html', 'footer-placeholder')
     ]);
 
     // Una vez que los componentes están en el DOM, inicializamos los scripts
+    // que les dan vida (menú móvil, etc.).
     if (typeof initializePageScripts === 'function') {
         initializePageScripts();
     } else {
