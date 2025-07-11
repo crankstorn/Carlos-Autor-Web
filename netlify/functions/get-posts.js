@@ -1,13 +1,14 @@
 // Ruta: netlify/functions/get-posts.js
 
 const contentful = require('contentful');
-// Importamos 'marked' para convertir Markdown a HTML.
-// Usamos import() dinámico como es requerido en Netlify Functions.
-const { marked } = require('marked');
 
 // --- Función principal de Netlify (Handler) ---
-// Esta función ahora actúa como un simple endpoint de API.
 exports.handler = async function(event) {
+  // --- CORRECCIÓN CLAVE ---
+  // Importamos 'marked' de forma dinámica DENTRO del handler asíncrono.
+  // Esto es compatible con las versiones modernas de la librería y soluciona el error de Netlify.
+  const { marked } = await import('marked');
+
   // Obtenemos las variables de entorno de forma segura.
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
 
@@ -55,7 +56,6 @@ exports.handler = async function(event) {
     });
 
     // Siempre devolvemos los datos en formato JSON.
-    // Netlify se encargará de pre-renderizar la página para los bots.
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
