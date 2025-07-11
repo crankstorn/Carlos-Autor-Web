@@ -133,23 +133,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== LÓGICA DE NAVEGACIÓN ACTIVA (RESTAURADA) =====
     // ==========================================================
     const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-    const currentPath = window.location.pathname.replace(/\/$/, ''); // Ruta actual sin la barra final
     if (navLinks.length > 0) {
-        navLinks.forEach(link => {
-            const linkPath = new URL(link.href).pathname.replace(/\/$/, '').replace('.html', '');
-
-            // Caso especial para el blog: cualquier ruta que empiece con /blog activa el enlace del blog.
-            if (currentPath.startsWith('/blog') && linkPath === '/blog') {
-                link.classList.add('nav-active');
-                link.setAttribute('aria-current', 'page');
-            }
-            // Caso para el resto de páginas, incluyendo la de inicio
-            else if (linkPath === currentPath || (currentPath === '' && (linkPath === '/index' || linkPath === ''))) {
-                link.classList.add('nav-active');
-                link.setAttribute('aria-current', 'page');
-            }
-        });
+    // 1. Normalizamos la ruta ACTUAL para que no tenga ni barra final ni extensión .html
+    //    y tratamos '/index' como la raíz ('').
+    let currentPath = window.location.pathname
+        .replace(/\/$/, '')       // Elimina la barra final (ej. /blog/ -> /blog)
+        .replace(/\.html$/, '');  // Elimina la extensión .html al final
+    if (currentPath === '/index') {
+        currentPath = ''; // La página de inicio es una cadena vacía
     }
+
+    navLinks.forEach(link => {
+        // 2. Hacemos la MISMA normalización para la ruta de CADA ENLACE.
+        let linkPath = new URL(link.href).pathname
+            .replace(/\/$/, '')
+            .replace(/\.html$/, '');
+        if (linkPath === '/index') {
+            linkPath = '';
+        }
+
+        // 3. La lógica de comparación ahora es mucho más simple y robusta.
+        let isActive = false;
+
+        // Caso especial: si estamos en cualquier página del blog, activamos el enlace "Blog".
+        if (currentPath.startsWith('/blog') && linkPath === '/blog') {
+            isActive = true;
+        }
+        // Caso general: para todas las demás páginas, comprobamos si las rutas normalizadas coinciden.
+        else if (currentPath === linkPath) {
+            isActive = true;
+        }
+
+        // Aplicamos la clase si el enlace está activo.
+        if (isActive) {
+            link.classList.add('nav-active');
+            link.setAttribute('aria-current', 'page');
+        }
+    });
+}
 
     // --- CARGAR ÚLTIMAS NOTICIAS EN LA PÁGINA DE INICIO ---
     const newsContainer = document.getElementById('news-list-container');
