@@ -1,64 +1,71 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Identificamos el contenedor donde irá el contenido del post.
   const postContainer = document.getElementById('post-content');
-  if (!postContainer) return;
 
-  // --- OBTENEMOS EL SLUG DE LA NUEVA URL LIMPIA ---
-  // De "/blog/bienvenidos-al-viaje", extraemos "bienvenidos-al-viaje".
-  // Esto funciona gracias a la regla de reescritura en netlify.toml.
-  const pathParts = window.location.pathname.split('/');
-  const postSlug = pathParts.pop() || pathParts.pop(); // Maneja trailing slash
-
-  if (!postSlug) {
-    postContainer.innerHTML = '<p class="text-center text-red-500">No se ha especificado ningún artículo.</p>';
+  // 2. Verificación CRÍTICA: Si este contenedor no existe en post.html, el script se detiene.
+  if (!postContainer) {
+    console.error('Error Fatal: No se encontró el elemento con id="post-content" en el archivo post.html. No se puede cargar el artículo.');
     return;
   }
 
-  // Carga los datos del post específico usando el slug.
+  // 3. Extraemos el "slug" (identificador del post) de la URL de forma segura.
+  // Por ejemplo, de "/blog/mi-post-genial", extrae "mi-post-genial".
+  const pathParts = window.location.pathname.split('/').filter(part => part.length > 0);
+  const postSlug = pathParts[pathParts.length - 1];
+
+  // Si no se encuentra un slug, muestra un error.
+  if (!postSlug || pathParts[0] !== 'blog') {
+    postContainer.innerHTML = '<p class="text-center text-red-500">URL inválida. No se pudo encontrar el artículo.</p>';
+    console.error('No se pudo extraer un slug válido de la URL o la ruta no comienza con /blog/.');
+    return;
+  }
+
+  // 4. Función principal para cargar y mostrar el post.
   async function loadPost() {
+    // Mostramos un mensaje de carga mientras se obtienen los datos.
+    postContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículo...</p>';
     try {
-      // Llamamos a nuestra función/API para obtener los datos del post.
+      // Llamamos a nuestra función de Netlify pasándole el slug.
       const response = await fetch(`/.netlify/functions/get-posts?slug=${postSlug}`);
+
       if (!response.ok) {
-        throw new Error(`Error del servidor: ${response.statusText}`);
+        throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
       }
+
       const posts = await response.json();
 
-      if (posts.length === 0) {
-        throw new Error('El artículo no fue encontrado.');
+      // Si la función no devuelve ningún post, mostramos un error.
+      if (!posts || posts.length === 0) {
+        throw new Error(`El artículo con el identificador "${postSlug}" no fue encontrado.`);
       }
 
+      // Si todo va bien, llamamos a la función que pinta el post en pantalla.
       displayPost(posts[0]);
 
     } catch (error) {
-      console.error('Error al cargar el post:', error);
-      postContainer.innerHTML = `<p class="text-center text-red-500">${error.message}</p>`;
+      console.error('Error detallado al cargar el post:', error);
+      postContainer.innerHTML = `<p class="text-center text-red-500">Hubo un problema al cargar el artículo. ${error.message}</p>`;
     }
   }
 
-  // Pinta el contenido del post en la página y actualiza las metaetiquetas.
+  // 5. Función que construye el HTML del post y actualiza la página.
   function displayPost(post) {
-    const { title, date, content, category, image } = post.fields;
-
-    // **CORRECCIÓN CLAVE**: La URL canónica y para compartir es la URL limpia.
-    const postUrl = `https://carlosramirezhernandez.com/blog/${postSlug}`;
-
-    // Genera un extracto para las metaetiquetas.
-    const excerpt = content ? content.replace(/<[^>]*>/g, '').trim().split(' ').slice(0, 25).join(' ') + '...' : 'Lee este artículo en el blog de Carlos Ramírez Hernández.';
+    const { title, date, content, category, image, slug } = post.fields;
+    const postUrl = `https://carlosramirezhernandez.com/blog/${slug}`;
+    const excerpt = content ? content.replace(/<[^>]*>/g, '').trim().substring(0, 155) + '...' : 'Lee este artículo en el blog de Carlos Ramírez Hernández.';
     let ogImageUrl = 'https://carlosramirezhernandez.com/assets/og-image-inicio.jpg';
-
     if (image && image.fields && image.fields.file) {
       ogImageUrl = 'https:' + image.fields.file.url;
     }
 
-    // Actualiza dinámicamente las etiquetas del <head>.
-    // Esto es para el usuario. Los bots recibirán esto pre-renderizado por Netlify.
+    // Actualiza las metaetiquetas para SEO y para compartir en redes sociales.
     document.title = `${title} - Carlos Ramírez Hernández`;
-    document.querySelector('meta[name="description"]').setAttribute('content', excerpt);
-    document.querySelector('link[rel="canonical"]').setAttribute('href', postUrl);
-    document.querySelector('meta[property="og:title"]').setAttribute('content', title);
-    document.querySelector('meta[property="og:url"]').setAttribute('content', postUrl);
-    document.querySelector('meta[property="og:description"]').setAttribute('content', excerpt);
-    document.querySelector('meta[property="og:image"]').setAttribute('content', ogImageUrl);
+    document.querySelector('meta[name="description"]')?.setAttribute('content', excerpt);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', postUrl);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', postUrl);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', excerpt);
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', ogImageUrl);
 
     let imageHTML = '';
     if (image && image.fields && image.fields.file) {
@@ -68,23 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const postDate = new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
-    const separatorHTML = '<hr class="my-8 w-20 mx-auto border-t border-zinc-500">';
-    let categoryLinksHTML = '';
+    const categoryArray = Array.isArray(category) ? category : [category].filter(Boolean);
+    const categoryLinksHTML = categoryArray.map(cat =>
+        `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline">${cat}</a>`
+    ).join(', ');
 
-    if (category) {
-      const categories = Array.isArray(category) ? category : [category];
-      categoryLinksHTML = categories.map(cat =>
-          `<a href="/blog.html?category=${encodeURIComponent(cat)}" class="text-[--color-accent] hover:underline">${cat}</a>`
-      ).join(', ');
-    }
-
-    const postFooterHTML = `
-      ${separatorHTML}
-      <div class="text-center text-sm text-zinc-500">
-        Publicado en ${categoryLinksHTML} el ${postDate}.
-      </div>
-    `;
-
+    // Pinta el contenido final en el contenedor.
     postContainer.innerHTML = `
       <h1 class="text-4xl lg:text-5xl font-serif text-center mb-4">${title}</h1>
       <div class="text-sm text-zinc-400 text-center mb-8">
@@ -94,9 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="prose lg:prose-xl max-w-none text-zinc-700 space-y-6 leading-relaxed">
         ${content}
       </div>
-      ${postFooterHTML}
+      <hr class="my-8 w-20 mx-auto border-t border-zinc-500">
+      <div class="text-center text-sm text-zinc-500">
+        Publicado en ${categoryLinksHTML} el ${postDate}.
+      </div>
     `;
   }
 
+  // 6. Ejecutamos la función principal para que todo comience.
   loadPost();
 });
