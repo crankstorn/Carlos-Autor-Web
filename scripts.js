@@ -140,16 +140,41 @@ function initializePageScripts() {
         });
     }
 
-    // --- LÓGICA DE NAVEGACIÓN ACTIVA ---
+// --- LÓGICA DE NAVEGACIÓN ACTIVA (CORREGIDA Y SEGURA) ---
     const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-    const currentPath = window.location.pathname.replace(/\/$/, ''); // Elimina la barra final si existe
     if (navLinks.length > 0) {
+
+        // Esta función se asegura de que todas las rutas se comparen de la misma manera.
+        const normalizePath = (path) => {
+            let normalized = path
+                .replace(/\/$/, '')       // 1. Elimina la barra final (ej: /autor/ -> /autor)
+                .replace(/\.html$/, '');  // 2. Elimina la extensión .html (ej: /autor.html -> /autor)
+
+            // 3. Trata la página de inicio ('/index') como la raíz ('')
+            if (normalized === '/index') {
+                normalized = '';
+            }
+            return normalized;
+        };
+
+        const currentPath = normalizePath(window.location.pathname);
+
         navLinks.forEach(link => {
-            const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
-            // Compara la ruta actual con la del enlace
-            if (linkPath === currentPath || (currentPath === '' && linkPath.endsWith('/index.html'))) {
-                link.classList.add('nav-active');
-                link.setAttribute('aria-current', 'page');
+            // Usamos try/catch como medida de seguridad por si un 'href' no es una URL válida.
+            try {
+                const linkPath = normalizePath(new URL(link.href).pathname);
+
+                // Comprobamos si el enlace debe estar activo
+                if (linkPath === currentPath) {
+                    link.classList.add('nav-active');
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    // Es buena práctica asegurarse de que no se quede activa si no corresponde.
+                    link.classList.remove('nav-active');
+                    link.removeAttribute('aria-current');
+                }
+            } catch (error) {
+                console.error('Enlace con formato no válido en la navegación:', link.href);
             }
         });
     }
