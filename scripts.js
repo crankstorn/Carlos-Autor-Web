@@ -1,3 +1,4 @@
+// Fichero: scripts.js (Versión final y funcional)
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- MANEJO DE LA NEWSLETTER ---
@@ -108,17 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // --- ANIMACIÓN DE ENTRADA (FADE-IN) ---
-    const fadeInSections = document.querySelectorAll('.fade-in-section');
-    if (fadeInSections.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('is-visible');
-            });
-        }, { rootMargin: '0px 0px -100px 0px' });
-        fadeInSections.forEach(section => observer.observe(section));
-    }
-
     // --- BOTÓN "VOLVER ARRIBA" ---
     const backToTopBtn = document.getElementById('back-to-top-btn');
     if (backToTopBtn) {
@@ -143,18 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ==========================================================
-    // ===== NUEVO: Cargar Últimas Noticias en la Página de Inicio =====
-    // ==========================================================
+    // --- CARGAR ÚLTIMAS NOTICIAS EN LA PÁGINA DE INICIO ---
     const newsContainer = document.getElementById('news-list-container');
     if (newsContainer) {
         const loadLatestNews = async () => {
             try {
-                // 1. Llama a la función de Netlify para obtener los posts
                 const response = await fetch('/.netlify/functions/get-posts');
                 if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
 
-                // 2. Coge solo los 5 más recientes
                 const allPosts = await response.json();
                 const latestPosts = allPosts.slice(0, 5);
 
@@ -163,12 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // 3. Limpia el contenedor y muestra los títulos
-                newsContainer.innerHTML = ''; // Limpia el mensaje "Cargando..."
+                newsContainer.innerHTML = '';
                 latestPosts.forEach(post => {
                     const { title, slug } = post.fields;
                     const newsItem = document.createElement('div');
-                    newsItem.className = 'text-center border-b border-gray-200 pb-4'; // Estilo para cada noticia
+                    newsItem.className = 'text-center border-b border-gray-200 pb-4';
                     newsItem.innerHTML = `
                         <a href="/blog/${slug}" class="text-xl text-zinc-800 hover:text-[--color-accent] transition-colors duration-300">
                             ${title}
