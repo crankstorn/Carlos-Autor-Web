@@ -176,17 +176,32 @@ function initializePageScripts() {
 
     // --- LÓGICA DE NAVEGACIÓN ACTIVA ---
     const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-    const currentPath = window.location.pathname.replace(/\/$/, '');
+    const currentPath = window.location.pathname.replace(/\/$/, ''); // Ej: /blog/mi-post o /blog.html
+
     if (navLinks.length > 0) {
         navLinks.forEach(link => {
-            // Usamos new URL para obtener la ruta de forma segura, incluso con URLs completas
-            const linkPath = new URL(link.href).pathname.replace(/\/$/, '');
+            const linkPath = new URL(link.href).pathname.replace(/\/$/, ''); // Ej: /blog.html
 
-            // Comparamos la ruta actual con la del enlace.
-            // El segundo caso es para la página de inicio, que puede ser / o /index.html
-            if (linkPath === currentPath || (currentPath === '' && (linkPath.endsWith('/index.html') || linkPath === '/'))) {
+            // Condición 1: La ruta actual empieza con /blog Y el enlace es el del blog.
+            // Esto cubre tanto /blog.html como /blog/cualquier-post.
+            if (currentPath.startsWith('/blog') && linkPath.endsWith('/blog.html')) {
                 link.classList.add('nav-active');
                 link.setAttribute('aria-current', 'page');
+            }
+            // Condición 2: La ruta es una coincidencia exacta (para el resto de páginas).
+            else if (linkPath === currentPath) {
+                link.classList.add('nav-active');
+                link.setAttribute('aria-current', 'page');
+            }
+            // Condición 3: Caso especial para la página de inicio.
+            else if (currentPath === '' && (linkPath.endsWith('/index.html') || linkPath === '/')) {
+                link.classList.add('nav-active');
+                link.setAttribute('aria-current', 'page');
+            }
+            // Si no, nos aseguramos de que no esté activo.
+            else {
+                link.classList.remove('nav-active');
+                link.removeAttribute('aria-current');
             }
         });
     }
