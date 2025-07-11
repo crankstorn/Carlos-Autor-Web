@@ -1,0 +1,14 @@
+# Archivo de configuración para Netlify
+
+# Regla de reescritura para los posts del blog.
+# Esta es la pieza clave que permite que las URLs limpias funcionen.
+[[redirects]]
+  # Cuando un navegador o bot pida una URL como /blog/mi-primer-post...
+  from = "/blog/*"
+
+  # ...Netlify internamente le servirá el archivo post.html sin cambiar la URL.
+  to = "/post.html"
+
+  # El status 200 significa que es una reescritura, no una redirección.
+  # La URL en el navegador del usuario no cambiará.
+  status = 200
