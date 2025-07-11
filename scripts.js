@@ -176,33 +176,34 @@ function initializePageScripts() {
 
     // --- LÓGICA DE NAVEGACIÓN ACTIVA ---
     const navLinks = document.querySelectorAll('#main-nav a, #mobile-menu a');
-    const currentPath = window.location.pathname.replace(/\/$/, ''); // Ej: /blog/mi-post o /blog.html
+    const currentPath = window.location.pathname; // Ej: /blog/mi-post o /blog.html
 
     if (navLinks.length > 0) {
+        // Primero, limpiamos todos los enlaces
         navLinks.forEach(link => {
-            const linkPath = new URL(link.href).pathname.replace(/\/$/, ''); // Ej: /blog.html
-
-            // Condición 1: La ruta actual empieza con /blog Y el enlace es el del blog.
-            // Esto cubre tanto /blog.html como /blog/cualquier-post.
-            if (currentPath.startsWith('/blog') && linkPath.endsWith('/blog.html')) {
-                link.classList.add('nav-active');
-                link.setAttribute('aria-current', 'page');
-            }
-            // Condición 2: La ruta es una coincidencia exacta (para el resto de páginas).
-            else if (linkPath === currentPath) {
-                link.classList.add('nav-active');
-                link.setAttribute('aria-current', 'page');
-            }
-            // Condición 3: Caso especial para la página de inicio.
-            else if (currentPath === '' && (linkPath.endsWith('/index.html') || linkPath === '/')) {
-                link.classList.add('nav-active');
-                link.setAttribute('aria-current', 'page');
-            }
-            // Si no, nos aseguramos de que no esté activo.
-            else {
-                link.classList.remove('nav-active');
-                link.removeAttribute('aria-current');
-            }
+            link.classList.remove('nav-active');
+            link.removeAttribute('aria-current');
         });
+
+        // Aplicamos la regla simple
+        if (currentPath.startsWith('/blog')) {
+            // Si la ruta empieza con /blog, marcamos el enlace del blog
+            const blogLink = document.querySelector('a[href="/blog.html"]');
+            if (blogLink) {
+                blogLink.classList.add('nav-active');
+                blogLink.setAttribute('aria-current', 'page');
+            }
+        } else {
+            // Para el resto de páginas, buscamos una coincidencia exacta
+            const activeLink = document.querySelector(`a[href="${currentPath}"]`) || document.querySelector(`a[href="${currentPath}index.html"]`);
+            if (activeLink) {
+                activeLink.classList.add('nav-active');
+                activeLink.setAttribute('aria-current', 'page');
+            } else if (currentPath === '/') {
+                // Caso especial para la raíz del sitio
+                 const homeLink = document.querySelector('a[href="/index.html"]');
+                 if(homeLink) homeLink.classList.add('nav-active');
+            }
+        }
     }
 }
