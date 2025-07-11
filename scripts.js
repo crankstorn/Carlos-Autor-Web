@@ -178,4 +178,65 @@ function initializePageScripts() {
             }
         });
     }
+    // --- CARGAR ÚLTIMAS NOTICIAS EN LA PÁGINA DE INICIO ---
+    const newsContainer = document.getElementById('news-list-container');
+    if (newsContainer) {
+        const getOrdinalSuffix = (day) => {
+            if (day > 3 && day < 21) return 'th';
+            switch (day % 10) {
+                case 1: return "st";
+                case 2: return "nd";
+                case 3: return "rd";
+                default: return "th";
+            }
+        };
+
+        const formatNewsDate = (isoDate) => {
+            if (!isoDate) return '';
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const date = new Date(isoDate);
+            return `${months[date.getMonth()].toUpperCase()} ${date.getDate()}${getOrdinalSuffix(date.getDate())}, ${date.getFullYear()}`;
+        };
+
+        const loadLatestNews = async () => {
+            try {
+                const response = await fetch('/.netlify/functions/get-posts');
+                if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
+
+                const allPosts = await response.json();
+                const latestPosts = allPosts.slice(0, 5);
+
+                if (latestPosts.length === 0) {
+                    newsContainer.innerHTML = '<p class="text-center text-zinc-500">No hay noticias disponibles.</p>';
+                    return;
+                }
+
+                newsContainer.innerHTML = '';
+                latestPosts.forEach(post => {
+                    const { title, slug, date } = post.fields;
+                    const formattedDate = formatNewsDate(date);
+
+                    const newsItem = document.createElement('div');
+                    newsItem.className = 'flex items-center gap-6';
+                    newsItem.innerHTML = `
+                        <div class="w-1/3 md:w-1/4 text-sm text-zinc-500 uppercase tracking-wider font-sans">
+                            ${formattedDate}
+                        </div>
+                        <div class="w-2/3 md:w-3/4 text-xl">
+                            <a href="/blog/${slug}" class="text-zinc-800 hover:text-[--color-accent] transition-colors duration-300">
+                                ${title}
+                            </a>
+                        </div>
+                    `;
+                    newsContainer.appendChild(newsItem);
+                });
+
+            } catch (error) {
+                console.error('Error al cargar las últimas noticias:', error);
+                newsContainer.innerHTML = '<p class="text-center text-red-500">No se pudieron cargar las noticias.</p>';
+            }
+        };
+
+        loadLatestNews();
+    }
 }
