@@ -31,32 +31,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const postUrl = `https://carlosramirezhernandez.com/blog/${slug}`;
     const excerpt = content ? content.replace(/<[^>]*>/g, '').trim().substring(0, 155) + '...' : 'Lee este artículo.';
 
-    // --- CORRECCIÓN PARA LAS DIMENSIONES DE LA IMAGEN ---
     let ogImageUrl = 'https://carlosramirezhernandez.com/assets/og-image-inicio.jpg';
-    let ogImageWidth = '1200'; // Ancho por defecto para la imagen de respaldo
-    let ogImageHeight = '630'; // Alto por defecto para la imagen de respaldo
+    let ogImageWidth = '1200';
+    let ogImageHeight = '630';
+    let ogImageType = 'image/jpeg';
 
-    // Si el post tiene una imagen, usamos sus datos
     if (image && image.fields && image.fields.file) {
       ogImageUrl = 'https:' + image.fields.file.url;
-      // Y si Contentful nos da las dimensiones, las usamos también
       if (image.fields.file.details && image.fields.file.details.image) {
           ogImageWidth = image.fields.file.details.image.width;
           ogImageHeight = image.fields.file.details.image.height;
+      }
+      if (image.fields.file.contentType) {
+          ogImageType = image.fields.file.contentType;
       }
     }
 
     // Actualizamos las metaetiquetas del <head>
     document.title = `${title} - Carlos Ramírez Hernández`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', excerpt);
+
+    // Open Graph (Facebook, etc.)
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
     document.querySelector('meta[property="og:url"]')?.setAttribute('content', postUrl);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', excerpt);
-
-    // Actualizamos la imagen Y sus dimensiones
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', ogImageUrl);
     document.querySelector('meta[property="og:image:width"]')?.setAttribute('content', ogImageWidth);
     document.querySelector('meta[property="og:image:height"]')?.setAttribute('content', ogImageHeight);
+    document.querySelector('meta[property="og:image:type"]')?.setAttribute('content', ogImageType);
+
+    // Actualizamos las etiquetas específicas de Twitter
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', excerpt);
+    document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', ogImageUrl);
+
 
     // El resto del código para mostrar el post se mantiene igual
     let imageHTML = '';
