@@ -136,6 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- CARGAR ÚLTIMAS NOTICIAS EN LA PÁGINA DE INICIO ---
     const newsContainer = document.getElementById('news-list-container');
     if (newsContainer) {
+        // Función para añadir el sufijo ordinal a los días (1st, 2nd, 3rd, 4th)
+        const getOrdinalSuffix = (day) => {
+            if (day > 3 && day < 21) return 'th';
+            switch (day % 10) { case 1: return "st"; case 2: return "nd"; case 3: return "rd"; default: return "th"; }
+        };
+
+        // Función para formatear la fecha como en la imagen de referencia
+        const formatNewsDate = (isoDate) => {
+            if (!isoDate) return '';
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const date = new Date(isoDate);
+            return `${months[date.getMonth()].toUpperCase()} ${date.getDate()}${getOrdinalSuffix(date.getDate())}, ${date.getFullYear()}`;
+        };
+
         const loadLatestNews = async () => {
             try {
                 const response = await fetch('/.netlify/functions/get-posts');
@@ -151,13 +165,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 newsContainer.innerHTML = '';
                 latestPosts.forEach(post => {
-                    const { title, slug } = post.fields;
+                    const { title, slug, date } = post.fields;
+                    const formattedDate = formatNewsDate(date); // Formatea la fecha
+
                     const newsItem = document.createElement('div');
-                    newsItem.className = 'text-center border-b border-gray-200 pb-4';
+                    // NUEVA ESTRUCTURA: Flexbox para crear dos columnas
+                    newsItem.className = 'flex items-center gap-6';
                     newsItem.innerHTML = `
-                        <a href="/blog/${slug}" class="text-xl text-zinc-800 hover:text-[--color-accent] transition-colors duration-300">
-                            ${title}
-                        </a>
+                        <div class="w-1/3 md:w-1/4 text-sm text-zinc-500 uppercase tracking-wider font-sans">
+                            ${formattedDate}
+                        </div>
+                        <div class="w-2/3 md:w-3/4 text-xl">
+                            <a href="/blog/${slug}" class="text-zinc-800 hover:text-[--color-accent] transition-colors duration-300">
+                                ${title}
+                            </a>
+                        </div>
                     `;
                     newsContainer.appendChild(newsItem);
                 });
