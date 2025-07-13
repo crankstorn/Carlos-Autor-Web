@@ -102,12 +102,38 @@ function initializePageScripts() {
     initModal('open-stores-modal-btn', 'other-stores-modal-overlay', 'close-stores-modal-btn', 'other-stores-modal');
 
 
-    // --- MENÚ MÓVIL ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
+     // --- MENÚ MÓVIL ---
+    const openMenuBtn = document.getElementById('open-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+    const overlay = document.getElementById('overlay');
+    const body = document.body;
+
+    // Asegurarse de que todos los elementos existen
+    if (openMenuBtn && closeMenuBtn && mobileMenu && overlay) {
+
+        const openMobileMenu = () => {
+            mobileMenu.classList.add('is-open');      // Muestra el menú deslizándolo (usa tu clase de estilos.css)
+            overlay.classList.add('is-visible');    // Muestra el overlay (usa tu clase de estilos.css)
+            body.classList.add('menu-open');          // Bloquea el scroll del body (usa tu clase de estilos.css)
+        };
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.remove('is-open');   // Oculta el menú
+            overlay.classList.remove('is-visible'); // Oculta el overlay
+            body.classList.remove('menu-open');       // Restaura el scroll
+        };
+
+        // Asignar los eventos a los elementos correctos
+        openMenuBtn.addEventListener('click', openMobileMenu);
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu); // También cierra el menú al hacer clic en el overlay
+
+        // Opcional: Cerrar el menú con la tecla "Escape"
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && mobileMenu.classList.contains('is-open')) {
+                closeMobileMenu();
+            }
         });
     }
 
