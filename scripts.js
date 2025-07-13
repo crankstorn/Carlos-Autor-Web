@@ -103,36 +103,11 @@ function initializePageScripts() {
 
 
     // --- MENÚ MÓVIL ---
-    const openMenuBtn = document.getElementById('open-menu-btn');
-    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const overlay = document.getElementById('overlay');
-
-    // Nos aseguramos de que todos los elementos existen antes de añadir los listeners
-    if (openMenuBtn && closeMenuBtn && mobileMenu && overlay) {
-
-        const openMobileMenu = () => {
-            mobileMenu.classList.remove('translate-x-full'); // Muestra el menú
-            overlay.classList.remove('hidden');             // Muestra el fondo oscuro
-            document.body.style.overflow = 'hidden';        // Evita el scroll de la página
-        };
-
-        const closeMobileMenu = () => {
-            mobileMenu.classList.add('translate-x-full'); // Oculta el menú
-            overlay.classList.add('hidden');              // Oculta el fondo oscuro
-            document.body.style.overflow = '';            // Restaura el scroll
-        };
-
-        // Eventos para abrir y cerrar
-        openMenuBtn.addEventListener('click', openMobileMenu);
-        closeMenuBtn.addEventListener('click', closeMobileMenu);
-        overlay.addEventListener('click', closeMobileMenu); // Cierra el menú al hacer clic en el fondo
-
-        // Opcional: Cierra el menú si se presiona la tecla "Escape"
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && !mobileMenu.classList.contains('translate-x-full')) {
-                closeMobileMenu();
-            }
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
     }
 
