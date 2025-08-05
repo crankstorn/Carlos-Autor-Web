@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoriesContainer = document.getElementById('categories');
   if (!postsContainer) return;
 
+  // ESTA FUNCIÓN SE MANTIENE POR TU PETICIÓN, PERO NO SE USA
+  // EN EL CONTENIDO QUE YA VIENE FORMATEADO COMO HTML.
   function convertNewlinesToParagraphs(text) {
     if (!text) return '';
     let htmlContent = text.split('\n\n').map(p => `<p>${p}</p>`).join('');
@@ -19,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error(`Error del servidor: ${response.statusText}`);
 
       let allPosts = await response.json();
+      
       let postsToDisplay = categoryFilter
         ? allPosts.filter(post => post.fields.category === categoryFilter)
         : allPosts;
@@ -35,20 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // -- CÓDIGO CORREGIDO Y ELEGANTE --
   function displayPosts(posts) {
     postsContainer.innerHTML = '';
     posts.forEach((post, index) => {
       const { title, slug, category, date, content } = post.fields;
       
-      // El contenido (`content`) ya es HTML procesado por `marked` en el backend.
-      // Simplemente lo usamos directamente. No necesitamos `convertNewlinesToParagraphs` aquí.
-      const displayContent = content;
+      // LA CORRECCIÓN CLAVE:
+      // Usamos 'content' directamente porque ya es HTML. No lo pasamos por ninguna función.
+      const displayContent = content; 
       let readMoreLink = '';
 
-      // La lógica de truncado se elimina para no romper el HTML.
-      // En su lugar, simplemente mostramos el enlace "Leer más" en todos los posts
-      // excepto en el primero de la página principal (si no hay filtro).
       if (index > 0 || new URLSearchParams(window.location.search).get('category')) {
         readMoreLink = `<a href="/blog/${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más</a>`;
       }
@@ -64,11 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="text-sm text-zinc-400 mb-6 text-center uppercase tracking-wider">
           <span>${postDate}</span>
         </div>
-        
         <div class="prose max-w-none text-zinc-700 leading-relaxed">
           ${displayContent}
         </div>
-        
         <div class="mt-6 text-center text-sm">
           ${readMoreLink}
           ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
