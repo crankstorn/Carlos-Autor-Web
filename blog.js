@@ -35,23 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // -- CÓDIGO CORREGIDO Y ELEGANTE --
   function displayPosts(posts) {
     postsContainer.innerHTML = '';
     posts.forEach((post, index) => {
       const { title, slug, category, date, content } = post.fields;
-      let displayContent;
+      
+      // El contenido (`content`) ya es HTML procesado por `marked` en el backend.
+      // Simplemente lo usamos directamente. No necesitamos `convertNewlinesToParagraphs` aquí.
+      const displayContent = content;
       let readMoreLink = '';
 
-      // Muestra el contenido completo solo para el primer post en la página principal sin filtro
-      if (index === 0 && !new URLSearchParams(window.location.search).get('category')) {
-        displayContent = convertNewlinesToParagraphs(content);
-      } else {
-        const wordLimit = 55;
-        const words = (content || '').split(/\s+/);
-        let truncatedContent = words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + ' [...]' : content;
-        displayContent = convertNewlinesToParagraphs(truncatedContent);
-
-        // --- CORRECCIÓN CLAVE ---
+      // La lógica de truncado se elimina para no romper el HTML.
+      // En su lugar, simplemente mostramos el enlace "Leer más" en todos los posts
+      // excepto en el primero de la página principal (si no hay filtro).
+      if (index > 0 || new URLSearchParams(window.location.search).get('category')) {
         readMoreLink = `<a href="/blog/${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más</a>`;
       }
 
@@ -61,15 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
       postElement.className = 'py-2';
       postElement.innerHTML = `
         <h2 class="text-4xl font-serif mb-2 text-center">
-          <!-- --- CORRECCIÓN CLAVE --- -->
           <a href="/blog/${slug}" class="hover:text-[--color-accent] transition-colors">${title}</a>
         </h2>
         <div class="text-sm text-zinc-400 mb-6 text-center uppercase tracking-wider">
           <span>${postDate}</span>
         </div>
-        <div class="prose max-w-none text-zinc-700 leading-relaxed text-center">
+        
+        <div class="prose max-w-none text-zinc-700 leading-relaxed">
           ${displayContent}
         </div>
+        
         <div class="mt-6 text-center text-sm">
           ${readMoreLink}
           ${readMoreLink ? `<span class="text-zinc-400 mx-2">|</span>` : ''}
