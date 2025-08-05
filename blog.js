@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoriesContainer = document.getElementById('categories');
   if (!postsContainer) return;
 
+  function convertNewlinesToParagraphs(text) {
+    if (!text) return '';
+    let htmlContent = text.split('\n\n').map(p => `<p>${p}</p>`).join('');
+    return htmlContent.replace(/\n/g, '<br>');
+  }
+
   async function loadBlogPosts() {
     postsContainer.innerHTML = '<p class="text-center text-zinc-400">Cargando artículos...</p>';
     const params = new URLSearchParams(window.location.search);
@@ -36,45 +42,32 @@ document.addEventListener('DOMContentLoaded', () => {
       let displayContent;
       let readMoreLink = '';
 
-      // ---------------------------------------------------------------------------------------
-      // PASO 2: Simplificar la lógica de visualización de contenido.
-      // Simplemente usamos el 'content' que ya es HTML.
-      // La lógica de truncado se ha modificado para evitar romper el HTML.
-      // ---------------------------------------------------------------------------------------
-
-      // Si no es el primer post en la página principal (sin filtro), mostramos un resumen.
-      if (index > 0 || new URLSearchParams(window.location.search).get('category')) {
-          // Para el resumen, es mejor mostrar un texto introductorio y un enlace "Leer más".
-          // La forma más segura de truncar HTML es compleja. Una solución simple es no truncar
-          // o asegurarse de que Contentful provea un campo de "resumen" de texto plano.
-          // Por ahora, para que funcione, vamos a mostrar el contenido completo en todos los casos
-          // y siempre mostrar el enlace "Leer más" (excepto en el post principal).
-          displayContent = content; // Usar el contenido HTML completo
-          readMoreLink = `<a href="/blog/${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más...</a>`;
+      // Muestra el contenido completo solo para el primer post en la página principal sin filtro
+      if (index === 0 && !new URLSearchParams(window.location.search).get('category')) {
+        displayContent = convertNewlinesToParagraphs(content);
       } else {
-          // Para el primer post en la página principal, muestra el contenido completo
-          displayContent = content;
-          // No mostramos "Leer más" porque ya está todo el contenido.
+        const wordLimit = 55;
+        const words = (content || '').split(/\s+/);
+        let truncatedContent = words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + ' [...]' : content;
+        displayContent = convertNewlinesToParagraphs(truncatedContent);
+
+        // --- CORRECCIÓN CLAVE ---
+        readMoreLink = `<a href="/blog/${slug}" class="font-semibold text-[--color-accent] hover:underline">Leer más</a>`;
       }
-      
-      // Si estamos en la página de un post individual, el contenido ya es 'displayContent'
-      // y no se necesitan más cambios aquí. Esta lógica es para la lista de posts.
 
       const postDate = date ? new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) : "";
 
       const postElement = document.createElement('article');
       postElement.className = 'py-2';
-      
-      // Importante: .prose de Tailwind está diseñado para estilizar HTML generado,
-      // lo cual es perfecto para nuestro contenido de Contentful.
       postElement.innerHTML = `
         <h2 class="text-4xl font-serif mb-2 text-center">
+          <!-- --- CORRECCIÓN CLAVE --- -->
           <a href="/blog/${slug}" class="hover:text-[--color-accent] transition-colors">${title}</a>
         </h2>
         <div class="text-sm text-zinc-400 mb-6 text-center uppercase tracking-wider">
           <span>${postDate}</span>
         </div>
-        <div class="prose max-w-none text-zinc-700 leading-relaxed">
+        <div class="prose max-w-none text-zinc-700 leading-relaxed text-center">
           ${displayContent}
         </div>
         <div class="mt-6 text-center text-sm">
