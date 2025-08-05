@@ -300,3 +300,22 @@ body.menu-open {
 #mobile-menu ul li:last-child {
   border-bottom: none; /* Elimina el separador del último elemento */
 }
+
+.prose h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.875rem;  /* Equivalente a text-3xl de Tailwind */
+  line-height: 2.25rem; /* Equivalente a text-3xl de Tailwind */
+  font-weight: 700;     /* Lo hacemos negrita (bold) */
+  margin-top: 1.5em;      /* Añadimos espacio superior */
+  margin-bottom: 0.8em;   /* Añadimos espacio inferior */
+}
+
+/* Opcional: Si quieres que los h2 (si los usas) también se vean bien */
+.prose h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;    /* text-2xl */
+  line-height: 2rem;
+  font-weight: 700;
+  margin-top: 1.25em;
+  margin-bottom: 0.75em;
+}
